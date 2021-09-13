@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="general_rules">General</string>
+    <string name="mududd_rules">Mududd</string>
+    <string name="noon_rules">Noon</string>
+    <string name="mimm_rules">Mimm</string>
+    <string name="qalaqah_rules">Qalaqah</string>
+    <string name="tajweed_rules">Tajweed Rules</string>
+    <string name="idgham_rules">Idgham Mutajanisayn/Mutaqaribayn</string>
+
+    <string name="tajweed_hamza_wasl">Hamzat ul Wasl</string>
+    <string name="tajweed_silent">Silent (not pronounced)</string>
+    <string name="tajweed_lam_shamsiyyah">Lam Shamsiyyah</string>
+
+    <string name="tajweed_madda_normal">Normal Prolongation: 2 Vowels</string>
+    <string name="tajweed_madda_permissible">Permissible Prolongation: 2, 4, 6 Vowels</string>
+    <string name="tajweed_madda_necesssary">Necessary Prolongation: 6 Vowels</string>
+    <string name="tajweed_madda_obligatory">Obligatory Prolongation: 4–5 Vowels</string>
+    <string name="tajweed_madda_ghunnah">Ghunnah: 2 Vowels</string>
+
+    <string name="tajweed_idgham_mutajanisayn">Idgham - Mutajanisayn</string>
+    <string name="tajweed_idgham_mutaqaribayn">Idgham - Mutaqaribayn</string>
+
+    <string name="izhar_shafawi">Izhar Shafawi (pronouncing normal Mimm)</string>
+
+    <string name="idgham_shafawi">Idgham Shafawi - With Meem</string>
+    <string name="ikhafa_shafawi">Ikhafa\' Shafawi - With Meem</string>
+
+    <string name="izhar">Izhar (pronouncing normal Noon)</string>
+    <string name="ikhafa">Ikhafa\'</string>
+    <string name="tajweed_idgham_with_ghunnah">Idgham - With Ghunnah</string>
+    <string name="tajweed_idgham_without_ghunnah">Idgham - Without Ghunnah</string>
+    <string name="iqlab">Iqlab</string>
+
+    <string name="qalaqah">Qalaqah</string>
+
+
+</resources>

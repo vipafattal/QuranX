@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="general_rules">أحكام عامة</string>
+    <string name="tajweed_rules">أحكام التجويد</string>
+    <string name="mududd_rules">أحكام المدود</string>
+    <string name="noon_rules">أحكام النون الساكنة</string>
+    <string name="mimm_rules">أحكام الميم الساكنة</string>
+    <string name="qalaqah_rules">القلقلة</string>
+    <string name="idgham_rules">إدغام متقاربين/متجانسين</string>
+
+    <string name="tajweed_hamza_wasl">همزة وصل</string>
+    <string name="tajweed_silent">لا تلفظ</string>
+    <string name="tajweed_lam_shamsiyyah">لام شمسيه</string>
+
+    <string name="tajweed_madda_normal">مد طبيعي: حركتان</string>
+    <string name="tajweed_madda_permissible">مد جائز منفصل: 2, 4, 6 حركات</string>
+    <string name="tajweed_madda_necesssary">مد لازم: 6 حركات</string>
+    <string name="tajweed_madda_obligatory">مد واجب: 4–5 حركات</string>
+    <string name="tajweed_madda_ghunnah">حرف مشدد أغن: 2 حركتان</string>
+
+    <string name="tajweed_idgham_mutajanisayn">إدغام - متجانسين</string>
+    <string name="tajweed_idgham_mutaqaribayn">إدغام - متقاربين</string>
+
+    <string name="izhar_shafawi">إظهار شفوي</string>
+    <string name="idgham_shafawi">إدغام شفوي</string>
+    <string name="ikhafa_shafawi">إخفاء شفوي</string>
+
+    <string name="izhar">إظهار</string>
+    <string name="ikhafa">إخفاء</string>
+    <string name="tajweed_idgham_with_ghunnah">إدغام بغنة</string>
+    <string name="tajweed_idgham_without_ghunnah">إدغام بلا غنة</string>
+    <string name="iqlab">إقلاب</string>
+
+    <string name="qalaqah">قلقلة</string>
+</resources>

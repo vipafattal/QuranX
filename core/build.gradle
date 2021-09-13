@@ -1,0 +1,61 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'org.jetbrains.dokka'
+    id 'kotlin-kapt'
+    id 'kotlinx-serialization'
+}
+android {
+
+    compileSdkVersion 30
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 30
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+        vectorDrawables.useSupportLibrary = true
+
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation kt.core
+    implementation kt.serialization
+    api androidm.appcompat
+    api "androidx.activity:activity-ktx:$activity_version"
+
+    implementation coroutines.core
+    implementation coroutines.android
+
+    implementation roomDB.core
+    implementation roomDB.ktx
+    kapt roomDB.kapt
+
+    implementation retrofit.core
+    implementation retrofit.converter
+    implementation retrofit.interceptor
+
+    testImplementation tests.junit
+    testImplementation tests.espresso_core
+    androidTestImplementation tests.ext_junit
+}

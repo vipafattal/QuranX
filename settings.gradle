@@ -1,0 +1,6 @@
+rootProject.name = "QuranX"
+include ':samples'
+include ':core'
+include ':tajweed-rules'
+include ':tajweed-parser'
+include ':words-parser'

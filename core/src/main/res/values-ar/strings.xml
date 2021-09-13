@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="no_internet">لا يوجد إتصال في الإنترنت</string>
+    <string name="timout">إنتهت مهلة الإتصال</string>
+    <string name="connection_reset">خطأ في الإتصال</string>
+    <string name="connection_error">خطأ في الإتصال</string>
+    <string name="service_not_available">الخدمة غير متاحة</string>
+    <string name="unknown_error">حدث خطأ غير معروف في الإتصال</string>
+
+</resources>
