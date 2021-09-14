@@ -12,8 +12,9 @@ import kotlinx.serialization.json.Json
  */
 @Serializable
 data class AyaWordV2 internal constructor(
-    @SerialName("word_arabic") val word: String,
+    @SerialName("word_arabic") val arabicWord: String,
     @SerialName("word_translation") val wordTranslation: String,
+    @SerialName("word_transliteration") val wordTransliteration: String,
     @SerialName("word_number_in_ayah") val wordNumberInAya: Int,
     @SerialName("word_number_in_quran") val wordNumberInQuran: Int,
     @SerialName("word_number_in_surah") val wordNumberInSurah: Int,

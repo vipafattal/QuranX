@@ -9,7 +9,7 @@ import com.abedfattal.quranx.sample.R
 import com.abedfattal.quranx.sample.tajweedrules.rulesdialog.TajweedRulesBottomSheet
 import com.abedfattal.quranx.sample.utils.inflate
 
-class TajweedRulesAdapter(private val surahAyaList: List<Aya>) :
+class TajweedRulesAdapter(private val versesList: List<Aya>) :
     RecyclerView.Adapter<TajweedRulesAdapter.ItemHolder>() {
 
 
@@ -19,11 +19,11 @@ class TajweedRulesAdapter(private val surahAyaList: List<Aya>) :
     }
 
     override fun onBindViewHolder(itemHolder: ItemHolder, index: Int) {
-        val aya = surahAyaList[index]
+        val aya = versesList[index]
         itemHolder.bind(aya)
     }
 
-    override fun getItemCount(): Int = surahAyaList.size
+    override fun getItemCount(): Int = versesList.size
 
     inner class ItemHolder(holderView: View) : RecyclerView.ViewHolder(holderView) {
 
@@ -33,7 +33,7 @@ class TajweedRulesAdapter(private val surahAyaList: List<Aya>) :
 
         init {
             itemView.setOnClickListener {
-                val aya = surahAyaList[adapterPosition]
+                val aya = versesList[adapterPosition]
                 val fragmentManager = (it.context as TajweedRulesActivity).supportFragmentManager
                 TajweedRulesBottomSheet.showDialog(fragmentManager, aya)
             }
@@ -46,5 +46,4 @@ class TajweedRulesAdapter(private val surahAyaList: List<Aya>) :
         }
 
     }
-
 }
