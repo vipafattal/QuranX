@@ -12,7 +12,6 @@ import com.abedfattal.quranx.tajweedpasrser.model.WordsWithRules
 
 @Suppress("ReplaceGetOrSet")
 class TajweedRulesListAdapter(
-    private val aya: Aya,
     private val tajweedRulesList: List<WordsWithRules>
 ) :
     RecyclerView.Adapter<TajweedRulesListAdapter.ViewHolder>() {

@@ -14,7 +14,7 @@ import com.abedfattal.quranx.tajweedpasrser.model.WordWithItsMeta
  * @property metaColors used to apply colors on tajweed rules (reciting rules).
  */
 class Tajweed(val metaColors: MetaColors = MetaColors()) {
-
+    //TODO add meta filter.
 
     /**
      *
