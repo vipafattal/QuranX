@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">QuranX</string>
+    <string name="pick_language">Pick language:</string>
+    <string name="pick_edition_type">Pick edition type:</string>
+    <string name="pick_edition">Pick edition</string>
+    <string name="download">Download</string>
+
+    <string name="lang_loading">Loading: Language</string>
+    <string name="lang_fail">Failed on: Language </string>
+    <string name="lang_success">Success: Language</string>
+
+    <string name="edition_loading">Loading: Edition</string>
+    <string name="edition_fail">Failed on: Edition </string>
+    <string name="edition_success">Success: Edition</string>
+
+    <string name="download_loading">Loading: Downloading Edition</string>
+    <string name="download_fail">Failed on: Downloading Edition </string>
+    <string name="download_success">Success: Downloading Edition</string>
+    <string name="rules_in_verse">Rules in verse</string>
+</resources>

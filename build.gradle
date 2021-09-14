@@ -27,7 +27,7 @@ buildscript {
         //Architecture component
         room_version = "2.3.0"
 
-        lifecycle_version = '2.2.0'
+        lifecycle_version = '2.3.0'
 
         scalablePiexl_version = '1.0.6'
 
@@ -108,7 +108,7 @@ allprojects {
 
 
 subprojects {
-
+    // dokka and version configuration.
     afterEvaluate {
         if (tasks.findByName('dokkaHtmlPartial') == null) {
             // If dokka isn't enabled on this module, skip
@@ -122,11 +122,17 @@ subprojects {
             dokkaSourceSets {
 
                 configureEach {
-
                     reportUndocumented.set(true)
                     skipEmptyPackages.set(true)
                     skipDeprecated.set(true)
                     jdkVersion.set(8)
+
+                    // Add Android SDK packages
+                    noAndroidSdkLink.set(false)
+
+                    // Add sample from :sample module
+                    samples.from(rootProject.file("sample/src/main/java/"))
+
                     // Suppress a package
                     perPackageOption {
                         //matchingRegex.set(".*\\.internal.*") // will match all .internal packages and sub-packages
@@ -145,7 +151,7 @@ subprojects {
                     sourceLink {
                         localDirectory.set(project.file("src/main/java"))
                         // URL showing where the source code can be accessed through the web browser
-                        remoteUrl.set(new URL("https://github.com/google/accompanist/blob/main/${project.name}/src/main/java"))
+                        remoteUrl.set(new URL("https://github.com/vipafattal/QuranX/blob/master/${project.name}/src/main/java"))
                         // Suffix which is used to append the line number to the URL. Use #L for GitHub
                         remoteLineSuffix.set("#L")
                     }

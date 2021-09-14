@@ -1,8 +1,7 @@
 package com.abedfattal.quranx.core.utils
 
 import com.abedfattal.quranx.core.model.ProcessState
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.*
 
 /**
  * Sometimes we can't control the data type of the [ProcessState], e.g. when have fixed types in remote API response.
@@ -19,3 +18,15 @@ inline fun <reified Data, T : ProcessState<Data>, R> Flow<T>.processTransform(
             it.changeProcessType<R>()
     }
 }
+
+/**
+ * Create new flow that only if [ProcessState.Success] will emit values.
+ *
+ */
+inline val <reified T> Flow<ProcessState<T>>.onSuccess: Flow<T?>
+    get() = flow<T?> {
+        this@onSuccess.collect {
+            if (it is ProcessState.Success<*>)
+                emit(it.data as? T)
+        }
+    }

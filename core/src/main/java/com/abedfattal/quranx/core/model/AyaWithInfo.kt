@@ -18,7 +18,7 @@ data class AyaWithInfo(
         parentColumn = "numberInSurah",
         entityColumn = "surahNumberInMushaf"
     )
-    var surah: Surah,
+    var surah: Surah?,
     @Relation(
         parentColumn = "ayaEdition",
         entityColumn = "id",
