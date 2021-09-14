@@ -25,7 +25,7 @@ class TajweedRulesBottomSheet : BottomSheetDialogFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val ruleTajweedRules = getRules(aya.text)
-        recyclerView.adapter = TajweedRulesListAdapter(aya, ruleTajweedRules)
+        recyclerView.adapter = TajweedRulesListAdapter(ruleTajweedRules)
     }
 
     private fun getRules(ayaText: String): List<WordsWithRules> {

@@ -15,7 +15,7 @@ inline fun <reified Data, T : ProcessState<Data>, R> Flow<T>.processTransform(
         if (it is ProcessState.Success<*>)
             ProcessState.Success(block(it.data as Data))
         else
-            it.changeProcessType<R>()
+            it.transformProcessType<R>()
     }
 }
 

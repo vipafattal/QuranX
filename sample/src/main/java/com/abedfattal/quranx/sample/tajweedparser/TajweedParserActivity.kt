@@ -3,6 +3,7 @@ package com.abedfattal.quranx.sample.tajweedparser
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.abedfattal.quranx.sample.QURAN_TAJWEED_EDITION
 import com.abedfattal.quranx.sample.R
 import com.abedfattal.quranx.sample.utils.observer
 import com.abedfattal.quranx.sample.utils.viewModelOf
@@ -21,14 +22,13 @@ class TajweedParserActivity : AppCompatActivity() {
         //Binding Juz number 1, to a vertical RecyclerView.
         val recyclerView: RecyclerView = findViewById(R.id.tajweed_parser_recycler)
 
-        juzViewModel.getJuzVerses(2, "quran-tajweed").observer(this) { verses ->
+        juzViewModel.getJuzVerses(2, QURAN_TAJWEED_EDITION).observer(this) { verses ->
             recyclerView.adapter = TajweedAdapter(verses!!, tajweed)
         }
     }
 
 
     private fun init() {
-
         val metaColors = MetaColors(hsl = "#FF6200EE", ikhafa = "#D50000")
         //Optional: applying custom tajweed colors.
         tajweed = Tajweed(metaColors)

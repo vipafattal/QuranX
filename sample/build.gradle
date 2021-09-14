@@ -51,6 +51,7 @@ dependencies {
     implementation project(':core')
     implementation project(path: ':tajweedrules')
     implementation project(path: ':tajweedparser')
+    implementation project(path: ':wordparser')
 
     testImplementation tests.junit
     testImplementation tests.espresso_core

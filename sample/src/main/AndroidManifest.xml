@@ -14,31 +14,48 @@
         android:theme="@style/Theme.MushafLibrary"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".wordparser.WordsParserActivity"
+            android:exported="true" >
+          <intent-filter>
+              <action android:name="android.intent.action.MAIN" />
+
+              <category android:name="android.intent.category.LAUNCHER" />
+          </intent-filter>
+        </activity>
+        <activity
             android:name=".core.QuranManagementActivity"
-            android:exported="true" >
-          <!--  <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="true">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-        </activity>
-        <activity
-            android:name=".tajweedparser.TajweedParserActivity"
-            android:exported="true" >
-           <!-- <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-        </activity>
-        <activity
-            android:name=".tajweedrules.TajweedRulesActivity"
-            android:exported="true" >
+            <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            -->
+        </activity>
+        <activity
+            android:name=".tajweedparser.TajweedParserActivity"
+            android:exported="true">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+        <activity
+            android:name=".tajweedrules.TajweedRulesActivity"
+            android:exported="true">
+            <!--
+           <intent-filter>
+               <action android:name="android.intent.action.MAIN" />
+
+               <category android:name="android.intent.category.LAUNCHER" />
+           </intent-filter>
+           -->
         </activity>
     </application>
 

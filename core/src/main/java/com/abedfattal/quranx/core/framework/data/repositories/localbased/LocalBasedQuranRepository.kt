@@ -59,7 +59,6 @@ class LocalBasedQuranRepository internal constructor(
             emitAll(remoteRepository.getAya(numberInMushaf, editionId))
     }
 
-
     /**
      * Use [getPage] to get all verses in single Quran page from the database if only exists, otherwise will call the API service to provide the corresponds [Aya] list.
      *

@@ -36,7 +36,7 @@ sealed class ProcessState<T> {
      * Used by library to transform the current process [T] type to another.
      * @see processTransform
      */
-    fun <T> changeProcessType(): ProcessState<T> {
+    fun <T> transformProcessType(): ProcessState<T> {
         return when (this) {
             is Loading -> Loading()
             is Pending -> Pending()

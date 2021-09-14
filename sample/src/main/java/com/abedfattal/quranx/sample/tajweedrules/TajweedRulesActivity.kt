@@ -3,6 +3,7 @@ package com.abedfattal.quranx.sample.tajweedrules
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.abedfattal.quranx.sample.QURAN_TAJWEED_EDITION
 import com.abedfattal.quranx.sample.R
 import com.abedfattal.quranx.sample.tajweedparser.JuzViewModel
 import com.abedfattal.quranx.sample.utils.observer
@@ -19,7 +20,7 @@ class TajweedRulesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tajweed_parser)
 
-        juzViewModel.getJuzVerses(1, "quran-tajweed").observer(this) { verses ->
+        juzViewModel.getJuzVerses(1, QURAN_TAJWEED_EDITION).observer(this) { verses ->
                 recyclerView.adapter = TajweedRulesAdapter(verses!!)
         }
     }
