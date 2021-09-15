@@ -21,17 +21,19 @@ import com.google.android.material.button.MaterialButton
 
 class QuranManagementActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
+    //Initializing view models.
     private val languageViewModel: LanguageViewModel by lazy { viewModelOf() }
     private val editionViewModel: EditionViewModel by lazy { viewModelOf() }
     private val quranViewModel: QuranManagementViewModel by lazy { viewModelOf() }
 
+    //Initializing views.
     private val stateText: TextView by lazy { findViewById(R.id.state_text) }
     private val downloadButton: MaterialButton by lazy { findViewById(R.id.download_edition_button) }
-
     private val languagesPicker: Spinner by lazy { findViewById(R.id.languages_picker) }
     private val editionTypePicker: Spinner by lazy { findViewById(R.id.edition_type_picker) }
     private val editionPicker: Spinner by lazy { findViewById(R.id.edition_picker) }
 
+    //Picker selected values.
     private var selectedLanguage: String? = null
     private var selectedEditionType: String? = null
     private var selectedEdition: String? = null
@@ -44,10 +46,9 @@ class QuranManagementActivity : AppCompatActivity(), AdapterView.OnItemSelectedL
         loadEditionsTypePicker()
 
         downloadButton.setOnClickListener {
-            quranViewModel.downloadQuran(selectedEdition!!).observer(this){
-                    downloadingProcess ->
-                stateText.text =   when (downloadingProcess) {
-                    is ProcessState.Loading ->  getString(R.string.download_loading)
+            quranViewModel.downloadQuran(selectedEdition!!).observer(this) { downloadingProcess ->
+                stateText.text = when (downloadingProcess) {
+                    is ProcessState.Loading -> getString(R.string.download_loading)
                     is ProcessState.Failed -> {
                         Log.d(getString(R.string.download_fail), downloadingProcess.reason!!)
                         getString(R.string.download_fail) + downloadingProcess.friendlyMsg
@@ -99,7 +100,8 @@ class QuranManagementActivity : AppCompatActivity(), AdapterView.OnItemSelectedL
                     is ProcessState.Loading -> stateText.text = getString(R.string.edition_fail)
                     is ProcessState.Failed -> {
                         Log.d(getString(R.string.edition_fail), editionProcess.reason!!)
-                        stateText.text = getString(R.string.edition_fail) + editionProcess.friendlyMsg
+                        stateText.text =
+                            getString(R.string.edition_fail) + editionProcess.friendlyMsg
                     }
                     is ProcessState.Success -> {
                         stateText.text = getString(R.string.edition_success)
@@ -113,6 +115,10 @@ class QuranManagementActivity : AppCompatActivity(), AdapterView.OnItemSelectedL
         editionPicker.onItemSelectedListener = this
     }
 
+    /**
+     * When picker (spinner) value is selected will call [onItemSelected], and only if [selectedLanguage] and [selectedEditionType] are not null,
+     * then load editions picker data ([loadEditionsPicker]).
+     */
     override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
         val selectedData = parent.adapter.getItem(position) as String
         when (parent.id) {
@@ -126,15 +132,17 @@ class QuranManagementActivity : AppCompatActivity(), AdapterView.OnItemSelectedL
                 selectedEditionType = selectedData
                 if (selectedLanguage != null) loadEditionsPicker()
             }
-            R.id.edition_picker ->{
-                downloadButton.isEnabled = true
+            R.id.edition_picker -> {
+                //Enable download button when edition id is selected.
                 selectedEdition = selectedData
+                downloadButton.isEnabled = true
             }
         }
     }
+
     override fun onNothingSelected(parent: AdapterView<*>) {}
 
-    private fun clearEditionSelection(){
+    private fun clearEditionSelection() {
         selectedEdition = null
         downloadButton.isEnabled = false
     }

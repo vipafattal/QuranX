@@ -40,7 +40,10 @@ class Tajweed(val metaColors: MetaColors = MetaColors()) {
      * @param [action.meta] when value is null, means it has no tajweed meta in this
      * @param [action.ayahSplit].
      */
-    inline fun applyActionsSplits(splits: List<String>, action: (meta: Char?, ayahSplit: String) -> Unit) {
+    inline fun applyActionsSplits(
+        splits: List<String>,
+        action: (meta: Char?, ayahSplit: String) -> Unit
+    ) {
         Splitter.doOnSplits(splits = splits, action)
     }
 
@@ -62,6 +65,10 @@ class Tajweed(val metaColors: MetaColors = MetaColors()) {
 
     /**
      * Applies color to each meta in ayah split in [rawAyah].
+     *
+     * @sample com.abedfattal.quranx.sample.tajweedparser.TajweedParserActivity
+     * @sample com.abedfattal.quranx.sample.tajweedparser.TajweedAdapter
+     *
      */
     fun getStyledWords(rawAyah: String): Spannable {
         val ayahSplits = Splitter.getAyahSplits(rawAyah)

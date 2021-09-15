@@ -1,6 +1,7 @@
 package com.abedfattal.quranx.wordparser
 
 import AyaWordV1
+import com.abedfattal.quranx.wordparser.WordByWordEnglish.getWordOfAyaV2
 import com.abedfattal.quranx.wordparser.model.AyaWordV2
 
 /**
@@ -8,13 +9,18 @@ import com.abedfattal.quranx.wordparser.model.AyaWordV2
  * It only supports the following text editions [quran-wordbyword, quran-wordbyword-2].
  * It's recommend to use [getWordOfAyaV2] method which is based on `quran-wordbyword-2` for better results and
  * also you get transliteration for out the box.
+ *
+ * @sample com.abedfattal.quranx.sample.wordparser.WordsParserActivity
  */
 object WordByWordEnglish {
     /**
      * It's the recommended method to extract words meaning and transliteration in English from [ayaText].
+     *
+     * @sample com.abedfattal.quranx.sample.wordparser.VerseViewModel.getVerseWithTranslation
+     *
      * @param ayaText must be derivative from `quran-wordbyword-2` edition otherwise it won't work.
-     * @return [List<AyaWordV2>]
-     * for input sample see [https://api.alquran.cloud/v1/ayah/2/quran-wordbyword-2]
+     *
+     * @return [AyaWordV2] list that contains word meaning, and translation plus the transliteration.
      */
     fun getWordOfAyaV2(ayaText: String): List<AyaWordV2> {
         require(ayaText.isNotEmpty())
@@ -22,10 +28,11 @@ object WordByWordEnglish {
     }
 
     /**
-     * Extract words meaning in English from [ayaText].
+     * Extract words meaning in English from [ayaText]
+     *
      * @param ayaText must be derivative from `quran-wordbyword` edition otherwise it won't work.
-     * @return [List<AyaWordV2>]
-     * for input sample see [https://api.alquran.cloud/v1/ayah/2/quran-wordbyword]
+     *
+     * @return [AyaWordV1] list that contains word meaning, and translation.
      */
     fun getWordOfAyaV1(ayaText: String): List<AyaWordV1> {
         require(ayaText.isNotEmpty())

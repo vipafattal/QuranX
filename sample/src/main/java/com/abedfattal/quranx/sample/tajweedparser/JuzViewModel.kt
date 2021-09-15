@@ -10,8 +10,8 @@ import kotlinx.coroutines.Dispatchers
 
 class JuzViewModel : ViewModel() {
 
-    private val localDataSource = DataSources.localBasedDataSource
-    private val repository = localDataSource.quranRepository
+    private val dataSource = DataSources.localBasedDataSource
+    private val repository = dataSource.quranRepository
 
     fun getJuzVerses(juzNumber:Int, editionId: String): LiveData<List<Aya>?> {
         return repository.getJuz(juzNumber,editionId).onSuccess.asLiveData(Dispatchers.IO)

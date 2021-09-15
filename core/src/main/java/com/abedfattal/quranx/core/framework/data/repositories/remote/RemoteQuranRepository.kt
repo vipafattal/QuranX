@@ -3,6 +3,7 @@ package com.abedfattal.quranx.core.framework.data.repositories.remote
 import com.abedfattal.quranx.core.framework.api.QURAN_CLOUD_BASE_URL
 import com.abedfattal.quranx.core.framework.api.QuranCloudAPI
 import com.abedfattal.quranx.core.framework.api.models.Quran
+import com.abedfattal.quranx.core.framework.data.repositories.localbased.LocalBasedQuranRepository
 import com.abedfattal.quranx.core.model.Aya
 import com.abedfattal.quranx.core.model.AyatWithEdition
 import com.abedfattal.quranx.core.model.Edition
@@ -24,6 +25,10 @@ class RemoteQuranRepository internal constructor(
 ) {
 
     /**
+     * Use [getQuranBook] to list all Quran verses in a single remote request.
+     *
+     * @see [LocalBasedQuranRepository.downloadQuranBook]
+     *
      * @param editionId represents the Quran [Edition.id].
      *
      * @return the whole book Quran book by [editionId].
@@ -36,6 +41,11 @@ class RemoteQuranRepository internal constructor(
 
 
     /**
+     * Use [getAya] to get single verse.
+     *
+     * @sample com.abedfattal.quranx.sample.wordparser.VerseViewModel
+
+     *
      * @param numberInMushaf represents the verse number in Quran.
      * @param editionId represents the Quran [Edition.id].
      *
@@ -47,6 +57,8 @@ class RemoteQuranRepository internal constructor(
 
 
     /**
+     * Use [getPage] to all verses in single page.
+     *
      * @param number represents the page number in Quran.
      * @param editionId represents the Quran [Edition.id].
      *
@@ -59,6 +71,8 @@ class RemoteQuranRepository internal constructor(
     }
 
     /**
+     * Use [getJuz] to list all verses in single juz.
+     *
      * @param number represents the juz number in Quran.
      * @param editionId represents the Quran [Edition.id].
      *
@@ -72,6 +86,7 @@ class RemoteQuranRepository internal constructor(
 
     /**
      * Search in a specific Quran text edition.
+     *
      * @param query represents the words that you want search for.
      * @param editionId represents the Quran [Edition.id] that you want to search in.
      *
@@ -93,6 +108,7 @@ class RemoteQuranRepository internal constructor(
 
     /**
      * Search the whole Quran text in specific language.
+     *
      * @param query represents the words that you want search for.
      * @param languageCode represents the Quran [Edition.language] that you want to search in.
      *

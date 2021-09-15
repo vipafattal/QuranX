@@ -27,6 +27,8 @@ class LocalBasedQuranRepository internal constructor(
      * Use [downloadQuranBook] to download the whole Quern book edition,
      * by means download all verses ([Aya]) and surahs ([Surah]) in one request, then save data into the database.
      *
+     * @sample com.abedfattal.quranx.sample.core.viewmodels.QuranManagementViewModel
+     *
      * If only the process state of [RemoteQuranRepository.getQuranBook] is [ProcessState.Success] the Quran book will be saved in the local database.
      *
      * @param id represents the edition id of the Quran book to download.
@@ -78,6 +80,8 @@ class LocalBasedQuranRepository internal constructor(
 
     /**
      * Use [getJuz] to get all verses in single Quran juz from the database if only exists, otherwise will call the API service to provide the corresponds [Aya] list.
+     *
+     *  @sample com.abedfattal.quranx.sample.tajweedparser.JuzViewModel
      *
      * @param number represents the [Aya.juz] in Quran.
      * @param editionId represents the edition id of the Quran book.

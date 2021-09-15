@@ -10,8 +10,8 @@ import kotlinx.coroutines.Dispatchers
 
 class LanguageViewModel : ViewModel() {
 
-    private val localDataSource = DataSources.localBasedDataSource
-    private val repository = localDataSource.languagesRepository
+    private val dataSource = DataSources.localBasedDataSource
+    private val repository = dataSource.languagesRepository
 
     fun getSupportedLanguages(): LiveData<ProcessState<List<Language>>> {
         return repository.getSupportLanguages().asLiveData(Dispatchers.IO)

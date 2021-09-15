@@ -1,0 +1,27 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:////PointingToDeclaration/wordparser/[root]/index.html
+$dokka.location:/AyaWordV1.Companion///PointingToDeclaration/wordparser/[root]/-aya-word-v1/-companion/index.html
+$dokka.location:/AyaWordV1.Companion/getAyatWord/#kotlin.String/PointingToDeclaration/wordparser/[root]/-aya-word-v1/-companion/get-ayat-word.html
+$dokka.location:/AyaWordV1///PointingToDeclaration/wordparser/[root]/-aya-word-v1/index.html
+$dokka.location:/AyaWordV1/arabic/#/PointingToDeclaration/wordparser/[root]/-aya-word-v1/arabic.html
+$dokka.location:/AyaWordV1/english/#/PointingToDeclaration/wordparser/[root]/-aya-word-v1/english.html
+module:core
+com.abedfattal.quranx.core
+com.abedfattal.quranx.core.framework.data
+com.abedfattal.quranx.core.framework.data.repositories.local
+com.abedfattal.quranx.core.framework.data.repositories.localbased
+com.abedfattal.quranx.core.framework.data.repositories.remote
+com.abedfattal.quranx.core.framework.data.sources
+com.abedfattal.quranx.core.framework.db
+com.abedfattal.quranx.core.model
+com.abedfattal.quranx.core.utils
+module:tajweedparser
+com.abedfattal.quranx.tajweedpasrser
+com.abedfattal.quranx.tajweedpasrser.model
+module:tajweedrules
+com.abedfattal.quranx.tajweedpasrser
+com.abedfattal.quranx.tajweedpasrser.model
+module:wordparser
+com.abedfattal.quranx.wordparser
+com.abedfattal.quranx.wordparser.model

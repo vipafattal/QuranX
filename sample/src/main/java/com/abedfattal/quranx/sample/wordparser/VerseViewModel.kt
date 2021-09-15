@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.combine
 
 class VerseViewModel : ViewModel() {
 
-    private val dataSource = DataSources.localBasedDataSource
+    private val dataSource = DataSources.remoteDataSource
     private val repository = dataSource.quranRepository
 
     fun getVerseWithTranslation(
@@ -37,7 +37,6 @@ class VerseViewModel : ViewModel() {
              * repository.getAyaEditions(verseNumber,QURAN_EDITION,QURAN_WORDS_EDITION)
              *
              */
-
             val processes = listOf(
                 simpleQuranProcess,
                 wordByWordProcess

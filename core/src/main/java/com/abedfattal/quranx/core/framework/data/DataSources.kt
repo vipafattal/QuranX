@@ -1,18 +1,24 @@
 package com.abedfattal.quranx.core.framework.data
 
+import com.abedfattal.quranx.core.framework.api.QURAN_CLOUD_BASE_URL
+import com.abedfattal.quranx.core.framework.data.DataSources.remoteDataSource
 import com.abedfattal.quranx.core.framework.data.repositories.RepositoriesBuilder
 import com.abedfattal.quranx.core.framework.data.sources.LocalBasedDataSource
 import com.abedfattal.quranx.core.framework.data.sources.LocalDataSource
 import com.abedfattal.quranx.core.framework.data.sources.RemoteDataSource
-import com.abedfattal.quranx.core.framework.api.QURAN_CLOUD_BASE_URL
+
 /**
  * [DataSources] it's your entry point to access library data repositories.
- * Basically there are three types:
+ * Properties initialization are all done lazy (on-user-demand), to save resources.
+ *
+ * Have a look at sample for basic idea how to construct a [DataSources].
+ *
+ *  @sample com.abedfattal.quranx.sample.core.viewmodels.LanguageViewModel
+ *
  * @property RemoteDataSource that interacts with cloud API which is based on [QURAN_CLOUD_BASE_URL].
  * @property remoteDataSource performs local actions, such as downloading quran, querying supported languages...
  * @property LocalBasedDataSource performs local queries as first priority, by means if the queries don't local result it'll call remote methods to get data...
  *
- *  Properties initialization are all done lazy (on-user-demand), to save resources.
  */
 object DataSources {
 

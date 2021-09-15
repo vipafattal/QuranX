@@ -24,6 +24,11 @@ class TajweedRules(private val tajweed: Tajweed) {
     fun getAllRules() = rulesTypeList.rulesMap.values
 
     /**
+     * List all the reciting rules in each word of [ayaText].
+     *
+     * @sample com.abedfattal.quranx.sample.tajweedrules.rulesdialog.TajweedRulesBottomSheet
+     * @sample com.abedfattal.quranx.sample.tajweedrules.rulesdialog.word.WordRulesListAdapter
+     *
      * @return A list [WordsWithRules] of only tajweed rules that exists in [ayaText] `quran-tajweed` edition.
      * Note that [ayaText] must be derivative from `quran-tajweed` otherwise it won't work.
      */

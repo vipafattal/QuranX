@@ -122,6 +122,15 @@ subprojects {
             dokkaSourceSets {
 
                 configureEach {
+                    perPackageOption {
+                        skipDeprecated.set(false)
+                        skipEmptyPackages.set(true)
+                    }
+                    // Suppress a package
+                    perPackageOption {
+                        //matchingRegex.set(".*\\.internal.*") // will match all .internal packages and sub-packages
+                        suppress.set(true)
+                    }
                     reportUndocumented.set(true)
                     skipEmptyPackages.set(true)
                     skipDeprecated.set(true)
@@ -134,10 +143,7 @@ subprojects {
                     samples.from(rootProject.file("sample/src/main/java/"))
 
                     // Suppress a package
-                    perPackageOption {
-                        //matchingRegex.set(".*\\.internal.*") // will match all .internal packages and sub-packages
-                        suppress.set(true)
-                    }
+
 
                     externalDocumentationLink {
                         url.set(new URL("https://developer.android.com/reference/"))

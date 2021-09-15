@@ -11,8 +11,8 @@ import kotlinx.coroutines.launch
 
 class QuranManagementViewModel : ViewModel() {
 
-    private val localDataSource = DataSources.localBasedDataSource
-    private val repository = localDataSource.quranRepository
+    private val dataSource = DataSources.localBasedDataSource
+    private val repository = dataSource.quranRepository
 
     fun downloadQuran(editionId: String): LiveData<ProcessState<Unit>> {
         return repository.downloadQuranBook(editionId).asLiveData(Dispatchers.IO)
