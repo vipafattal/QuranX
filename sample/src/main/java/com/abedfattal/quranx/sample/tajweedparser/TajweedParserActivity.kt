@@ -7,8 +7,8 @@ import com.abedfattal.quranx.sample.QURAN_TAJWEED_EDITION
 import com.abedfattal.quranx.sample.R
 import com.abedfattal.quranx.sample.utils.observer
 import com.abedfattal.quranx.sample.utils.viewModelOf
-import com.abedfattal.quranx.tajweedpasrser.Tajweed
-import com.abedfattal.quranx.tajweedpasrser.model.MetaColors
+import com.abedfattal.quranx.tajweedparser.Tajweed
+import com.abedfattal.quranx.tajweedparser.model.MetaColors
 
 class TajweedParserActivity : AppCompatActivity() {
 

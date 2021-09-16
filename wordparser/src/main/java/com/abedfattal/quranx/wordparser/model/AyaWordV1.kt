@@ -1,3 +1,5 @@
+package com.abedfattal.quranx.wordparser.model
+
 /**
  * A model class for v1 extracting method @see [com.abedfattal.words_parser.WordByWordEnglish.getWordOfAyaV1]
  * which used as holder for text that is derivative from `quran-wordbyword` edition.

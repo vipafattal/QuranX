@@ -8,8 +8,8 @@ import com.abedfattal.quranx.sample.R
 import com.abedfattal.quranx.sample.tajweedparser.JuzViewModel
 import com.abedfattal.quranx.sample.utils.observer
 import com.abedfattal.quranx.sample.utils.viewModelOf
-import com.abedfattal.quranx.tajweedpasrser.Tajweed
-import com.abedfattal.quranx.tajweedpasrser.TajweedRules
+import com.abedfattal.quranx.tajweedparser.Tajweed
+import com.abedfattal.quranx.tajweedrules.TajweedRules
 
 class TajweedRulesActivity : AppCompatActivity() {
 

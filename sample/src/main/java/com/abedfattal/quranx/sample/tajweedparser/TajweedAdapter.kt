@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.abedfattal.quranx.core.model.Aya
 import com.abedfattal.quranx.sample.R
 import com.abedfattal.quranx.sample.utils.inflate
-import com.abedfattal.quranx.tajweedpasrser.Tajweed
+import com.abedfattal.quranx.tajweedparser.Tajweed
 
 class TajweedAdapter(private val surahAyaList: List<Aya>, private val tajweed: Tajweed) :
     RecyclerView.Adapter<TajweedAdapter.ItemHolder>() {

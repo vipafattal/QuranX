@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.abedfattal.quranx.core.model.Aya
 import com.abedfattal.quranx.sample.R
 import com.abedfattal.quranx.sample.tajweedrules.TajweedRulesActivity
-import com.abedfattal.quranx.tajweedpasrser.model.WordsWithRules
+import com.abedfattal.quranx.tajweedrules.model.WordsWithRules
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class TajweedRulesBottomSheet : BottomSheetDialogFragment() {

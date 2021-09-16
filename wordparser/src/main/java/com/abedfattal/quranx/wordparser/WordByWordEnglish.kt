@@ -1,7 +1,8 @@
 package com.abedfattal.quranx.wordparser
 
-import AyaWordV1
+
 import com.abedfattal.quranx.wordparser.WordByWordEnglish.getWordOfAyaV2
+import com.abedfattal.quranx.wordparser.model.AyaWordV1
 import com.abedfattal.quranx.wordparser.model.AyaWordV2
 
 /**

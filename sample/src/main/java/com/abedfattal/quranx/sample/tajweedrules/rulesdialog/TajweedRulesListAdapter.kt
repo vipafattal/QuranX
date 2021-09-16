@@ -4,11 +4,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.abedfattal.quranx.core.model.Aya
 import com.abedfattal.quranx.sample.R
 import com.abedfattal.quranx.sample.tajweedrules.rulesdialog.word.WordRulesListAdapter
 import com.abedfattal.quranx.sample.utils.inflate
-import com.abedfattal.quranx.tajweedpasrser.model.WordsWithRules
+import com.abedfattal.quranx.tajweedrules.model.WordsWithRules
 
 @Suppress("ReplaceGetOrSet")
 class TajweedRulesListAdapter(

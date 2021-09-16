@@ -8,7 +8,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.abedfattal.quranx.sample.R
 import com.abedfattal.quranx.sample.utils.inflate
-import com.abedfattal.quranx.tajweedpasrser.model.PartRule
+import com.abedfattal.quranx.tajweedrules.model.PartRule
 
 @Suppress("ReplaceGetOrSet")
 class WordRulesListAdapter(
