@@ -1,7 +1,7 @@
 package com.abedfattal.quranx.tajweedrules.model
 
 import com.abedfattal.quranx.tajweedparser.model.MetaColors
-import tajweedrules.R
+import com.abedfattal.quranx.tajweedrules.R
 
 
 data class RulesTypeList internal constructor(private val meta: MetaColors) {
