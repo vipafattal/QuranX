@@ -4,6 +4,7 @@ plugins {
     id 'org.jetbrains.dokka'
     id 'kotlin-kapt'
     id 'kotlinx-serialization'
+    id 'maven-publish'
 }
 android {
 
@@ -28,7 +29,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -58,4 +59,20 @@ dependencies {
     testImplementation tests.junit
     testImplementation tests.espresso_core
     androidTestImplementation tests.ext_junit
+}
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                // Applies the component for the release build variant.
+                from components.release
+
+                // You can then customize attributes of the publication as shown below.
+                groupId = 'com.abedfattal'
+                artifactId = 'quranx'
+                version = '1.0.0'
+            }
+        }
+    }
 }

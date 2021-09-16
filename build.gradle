@@ -108,6 +108,7 @@ allprojects {
 
 
 subprojects {
+
     // dokka and version configuration.
     afterEvaluate {
         if (tasks.findByName('dokkaHtmlPartial') == null) {
