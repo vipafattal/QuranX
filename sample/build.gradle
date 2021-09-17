@@ -49,8 +49,6 @@ dependencies {
     implementation coroutines.android
 
     implementation project(':core')
-    implementation 'com.github.vipafattal:QuranX:core:1.0.4'
-
     implementation project(path: ':tajweedrules')
     implementation project(path: ':tajweedparser')
     implementation project(path: ':wordparser')
