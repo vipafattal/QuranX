@@ -69,8 +69,8 @@ afterEvaluate {
                 from components.release
 
                 // You can then customize attributes of the publication as shown below.
-                groupId = 'com.abedfattal'
-                artifactId = 'quranx'
+                groupId = 'com.abedfattal.quranx'
+                artifactId = 'core'
                 version = '1.0.0'
             }
         }
