@@ -24,7 +24,7 @@ Once you have `TajweedRules`, you could call:
   val tajweed: Tajweed = Tajweed()
   val tajweedRules = TajweedRules(tajweed)
   
-  val rules : List<WordsWithRules> =  TajweedRulesActivity.tajweedRules.getRulesOfAya(ayaText)
+  val rules : List<WordsWithRules> =  tajweedRules.getRulesOfAya(ayaText)
  ```
 
 You can also list all supported rules see docs
