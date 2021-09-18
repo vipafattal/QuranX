@@ -46,3 +46,5 @@ implementation 'com.github.vipafattal.QuranX:tajweedparser:1.0.6'
 
 ```
 
+# Documentation
+https://vipafattal.github.io/QuranX/
