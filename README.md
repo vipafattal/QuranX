@@ -34,17 +34,17 @@ allprojects {
 add the dependency to the `build.gradle` app module:
 ```groovy
 // All modules
-implementation 'com.github.vipafattal:QuranX:1.0.6'
+implementation 'com.github.vipafattal:QuranX:1.0.8'
 
 // Or pick what you only needs:
 // Core module only.
-implementation 'com.github.vipafattal.QuranX:core:1.0.6'
+implementation 'com.github.vipafattal.QuranX:core:1.0.8'
 // Tajweed Processor module only.
-implementation 'com.github.vipafattal.QuranX:tajweedparser:1.0.6'
+implementation 'com.github.vipafattal.QuranX:tajweedparser:1.0.8'
 // Tajweed Rules module only.
-implementation 'com.github.vipafattal.QuranX:tajweedrules:1.0.6'
+implementation 'com.github.vipafattal.QuranX:tajweedrules:1.0.8'
 // WordByWord Processor module only.
-implementation 'com.github.vipafattal.QuranX:tajweedparser:1.0.6'
+implementation 'com.github.vipafattal.QuranX:tajweedparser:1.0.8'
 
 ```
 
