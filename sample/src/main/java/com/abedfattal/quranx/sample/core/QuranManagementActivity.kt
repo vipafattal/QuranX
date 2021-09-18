@@ -51,7 +51,7 @@ class QuranManagementActivity : AppCompatActivity(), AdapterView.OnItemSelectedL
                     is ProcessState.Loading -> getString(R.string.download_loading)
                     is ProcessState.Failed -> {
                         Log.d(getString(R.string.download_fail), downloadingProcess.reason!!)
-                        getString(R.string.download_fail) + downloadingProcess.friendlyMsg
+                        getString(R.string.download_fail) +  getString(downloadingProcess.friendlyMsg)
                     }
                     is ProcessState.Success -> getString(R.string.download_success)
 
@@ -70,7 +70,7 @@ class QuranManagementActivity : AppCompatActivity(), AdapterView.OnItemSelectedL
                 is ProcessState.Loading -> stateText.text = getString(R.string.lang_loading)
                 is ProcessState.Failed -> {
                     Log.d(getString(R.string.lang_fail), languageProcess.reason!!)
-                    stateText.text = getString(R.string.lang_fail) + languageProcess.friendlyMsg
+                    stateText.text = getString(R.string.lang_fail) + getString(languageProcess.friendlyMsg)
                 }
                 is ProcessState.Success -> {
 
@@ -101,7 +101,7 @@ class QuranManagementActivity : AppCompatActivity(), AdapterView.OnItemSelectedL
                     is ProcessState.Failed -> {
                         Log.d(getString(R.string.edition_fail), editionProcess.reason!!)
                         stateText.text =
-                            getString(R.string.edition_fail) + editionProcess.friendlyMsg
+                            getString(R.string.edition_fail) + getString(editionProcess.friendlyMsg)
                     }
                     is ProcessState.Success -> {
                         stateText.text = getString(R.string.edition_success)
