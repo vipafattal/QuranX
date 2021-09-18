@@ -5,10 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.abedfattal.quranx.sample.QURAN_TAJWEED_EDITION
 import com.abedfattal.quranx.sample.R
-import com.abedfattal.quranx.sample.tajweedparser.JuzViewModel
+import com.abedfattal.quranx.sample.tajweedprocessor.JuzViewModel
 import com.abedfattal.quranx.sample.utils.observer
 import com.abedfattal.quranx.sample.utils.viewModelOf
-import com.abedfattal.quranx.tajweedparser.Tajweed
+import com.abedfattal.quranx.tajweedprocessor.Tajweed
 import com.abedfattal.quranx.tajweedrules.TajweedRules
 
 class TajweedRulesActivity : AppCompatActivity() {

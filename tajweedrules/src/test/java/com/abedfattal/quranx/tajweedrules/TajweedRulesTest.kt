@@ -1,6 +1,5 @@
 package com.abedfattal.quranx.tajweedrules
 
-import com.abedfattal.quranx.tajweedparser.Tajweed
 import junit.framework.TestCase
 import org.hamcrest.CoreMatchers
 import org.hamcrest.MatcherAssert

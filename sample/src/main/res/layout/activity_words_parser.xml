@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="12dp"
-    tools:context=".wordparser.WordsParserActivity">
+    tools:context=".wordprocessor.WordsProcessorActivity">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardview"

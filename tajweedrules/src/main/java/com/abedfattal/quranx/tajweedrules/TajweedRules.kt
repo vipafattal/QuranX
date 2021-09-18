@@ -1,7 +1,6 @@
 package com.abedfattal.quranx.tajweedrules
 
-import com.abedfattal.quranx.tajweedparser.Tajweed
-import com.abedfattal.quranx.tajweedparser.model.MetaColors
+import com.abedfattal.quranx.tajweedprocessor.Tajweed
 import com.abedfattal.quranx.tajweedrules.model.PartRule
 import com.abedfattal.quranx.tajweedrules.model.RulesTypeList
 import com.abedfattal.quranx.tajweedrules.model.WordsWithRules

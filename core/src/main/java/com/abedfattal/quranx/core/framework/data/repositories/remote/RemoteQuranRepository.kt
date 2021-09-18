@@ -43,7 +43,7 @@ class RemoteQuranRepository internal constructor(
     /**
      * Use [getAya] to get single verse.
      *
-     * @sample com.abedfattal.quranx.sample.wordparser.VerseViewModel
+     * @sample com.abedfattal.quranx.sample.wordprocessor.VerseViewModel
 
      *
      * @param numberInMushaf represents the verse number in Quran.

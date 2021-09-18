@@ -81,7 +81,7 @@ class LocalBasedQuranRepository internal constructor(
     /**
      * Use [getJuz] to get all verses in single Quran juz from the database if only exists, otherwise will call the API service to provide the corresponds [Aya] list.
      *
-     *  @sample com.abedfattal.quranx.sample.tajweedparser.JuzViewModel
+     *  @sample com.abedfattal.quranx.sample.tajweedprocessor.JuzViewModel
      *
      * @param number represents the [Aya.juz] in Quran.
      * @param editionId represents the edition id of the Quran book.

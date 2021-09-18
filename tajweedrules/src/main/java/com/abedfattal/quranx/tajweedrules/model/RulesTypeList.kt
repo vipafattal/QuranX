@@ -1,10 +1,9 @@
 package com.abedfattal.quranx.tajweedrules.model
 
-import com.abedfattal.quranx.tajweedparser.model.MetaColors
+import com.abedfattal.quranx.tajweedprocessor.model.MetaColors
 import com.abedfattal.quranx.tajweedrules.R
 
-
-data class RulesTypeList internal constructor(private val meta: MetaColors) {
+internal data class RulesTypeList constructor(private val meta: MetaColors) {
     @JvmField
     val rulesMap = mapOf(
         'h' to TajweedRuleType(R.string.general_rules, R.string.tajweed_hamza_wasl, meta.hsl),
