@@ -2,34 +2,34 @@
 Tajweed Quran Parser for Android bassed on [quran-tajweed](http://api.alquran.cloud/v1/quran/quran-tajweed). 
 It helps to create colored text for Quran reciting rules.
 
+<p align="center">
+<img src="https://github.com/vipafattal/QuranX/blob/master/images/tajweeprocessor.png" width=35% >
+</p>
+
 # Setup
 Tajweed Quran Parser for Android bassed on [quran-tajweed](http://api.alquran.cloud/v1/quran/quran-tajweed)
 
-#### Usage
+# Usage
 
 The library is based on https://alquran.cloud/api, on edition `quran-tajweed`.
-Once you have text of `quran-tajweed` inside the app you can call `TajweedHelper.getStyledAyah(Aya.text)` to return a [Spannable](https://developer.android.com/reference/android/text/Spannable) text. Use TextView widgets with Spannable text.
+Once you have text of `quran-tajweed` inside the app you can call `TajweedHelper.getStyledWords(Aya.text)` to return a [Spannable](https://developer.android.com/reference/android/text/Spannable) text. YOu could use `TextView` with `Spannable` text.
 
 ```kotlin
+val tajweed = Tajweed()
 val ayaTextView: TextView = findViewById(R.id.ayahText)
-ayaTextView.text = TajweedHelper.getStyledAyah(aya.text)
+ayaTextView.text = tajweed.getStyledWords(aya.text)
 ```
 
 You can also overriding the properties color by creating a class of `MetaColors` and pass it to `Tajweed`:
+
 ```Kotlin
 val metaColors = MetaColors(hsl = "#FF6200EE", ikhafa = "#D50000")
 val tajweed = Tajweed(metaColors)
 ```
-
+There are many options you colud use, for more information, visit the [documentation](https://vipafattal.github.io/QuranX/tajweedprocessor/com.abedfattal.quranx.tajweedprocessor/-tajweed/index.html).
 
 # Full Example
-See the [app](https://github.com/vipafattal/QuranX/tree/master/sample/src/main/java/com/abedfattal/quranx/sample/tajweedparser) module for full example.
-
-You can also download the apk from this [link](https://drive.google.com/file/d/10EbERrszIuVqBfxIQkm5whGXcHjibpG5/view?usp=sharing).
-
-<p align="center">
-<img src="https://github.com/vipafattal/TajweedParser/blob/master/test.png" width=35% >
-</p>
+See the [app](https://github.com/vipafattal/QuranX/tree/master/sample/src/main/java/com/abedfattal/quranx/sample/tajweedprocessor) module for full example.
 
 # Styles
 This table of the Tajweed metas of the `quran-tajweed` (obtained from [link](https://github.com/vipafattal/alquran-tools/blob/master/docs/tajweed.md)):
@@ -37,7 +37,6 @@ This table of the Tajweed metas of the `quran-tajweed` (obtained from [link](htt
 # The  Library Functionality 
 This library takes the output of the Tajweed edition, and creates an Android `Spannalbe`, which is Widget friendly text.
 It uses the table below to parse what the API returns and converts it to something you can use with TextViews widgets.
-There are many options you colud use such as apply custom action on each meta, see the full list of functions at the [docs](https://vipafattal.github.io/QuranX/tajweedparser/com.abedfattal.quranx.tajweedparser/-tajweed/index.html).
 
 <table>
     <thead>
@@ -173,7 +172,7 @@ There are many options you colud use such as apply custom action on each meta, s
             </tbody>
 </table>
 
-for more information go to see the docs at [link1](https://github.com/islamic-network/alquran-tools/blob/master/docs/tajweed.md) and [link2](https://alquran.cloud/tajweed-guide).
+for more information about `quran-tajweed` edition see the docs at [link1](https://github.com/islamic-network/alquran-tools/blob/master/docs/tajweed.md) and [link2](https://alquran.cloud/tajweed-guide).
 
-# For listing rules meaning in each word
+# For listing rules in each word
 see [Tajweed Rules](https://github.com/vipafattal/QuranX/tree/master/tajweedrules).
