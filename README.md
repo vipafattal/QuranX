@@ -15,3 +15,34 @@ A library for listing Tajweed rules in words of Quran verses which is bassed on 
 ### 🌏 [WordByWord Processor](./wordsprocessor/)
 A library for listing Quran verses meaning and transliteration in other languages (English only).
 
+# Instalition
+
+#### Step 1
+add to your project build.gradle at the end of repositories
+```groovy
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+
+#### Step 2
+add the dependency to the `build.gradle` app module:
+```groovy
+// All modules
+implementation 'com.github.vipafattal:QuranX:1.0.6'
+
+// Or pick what you only needs:
+// Core module only.
+implementation 'com.github.vipafattal.QuranX:core:1.0.6'
+// Tajweed Processor module only.
+implementation 'com.github.vipafattal.QuranX:tajweedparser:1.0.6'
+// Tajweed Rules module only.
+implementation 'com.github.vipafattal.QuranX:tajweedrules:1.0.6'
+// WordByWord Processor module only.
+implementation 'com.github.vipafattal.QuranX:tajweedparser:1.0.6'
+
+```
+
