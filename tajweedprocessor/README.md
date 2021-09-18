@@ -1,4 +1,4 @@
-# Tajweed Parser
+# Tajweed Processor
 Tajweed Quran Parser for Android bassed on [quran-tajweed](http://api.alquran.cloud/v1/quran/quran-tajweed). 
 It helps to create colored text for Quran reciting rules.
 
