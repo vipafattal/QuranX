@@ -36,7 +36,8 @@ add the dependency to the `build.gradle` app module:
 // All modules
 implementation 'com.github.vipafattal:QuranX:1.0.8'
 
-// Or pick what you only needs:
+// Or pick the modules you only needs:
+
 // Core module only.
 implementation 'com.github.vipafattal.QuranX:core:1.0.8'
 // Tajweed Processor module only.
