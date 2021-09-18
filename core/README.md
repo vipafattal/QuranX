@@ -12,6 +12,9 @@ for more information visit the [documentation](https://vipafattal.github.io/Qura
 ### Note 
 You could fully rely remote data source, and ignore the local and local-basedsources.
 
+# Setup
+https://github.com/vipafattal/QuranX/blob/master/README.md#instalition
+
 # Sample
 The most of the [samples](https://github.com/vipafattal/QuranX/tree/master/sample/src/main/java/com/abedfattal/quranx/sample/) make use of the Core library, but you could see the an extended [sample](https://github.com/vipafattal/QuranX/tree/master/sample/src/main/java/com/abedfattal/quranx/sample/core) which provides an implementation for downloading a Quran book.
 
