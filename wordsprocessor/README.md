@@ -5,6 +5,9 @@ A library for listing Quran verses meaning and transliteration in other language
 <img src="https://github.com/vipafattal/QuranX/blob/master/images/wordsprocessor.png" width=35% />
 </p>
 
+# Setup
+https://github.com/vipafattal/QuranX/blob/master/README.md#instalition
+
 # Usage
 
 Using `WordByWord` is feirly simple, just decide which version you want to use: 
