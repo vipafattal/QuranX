@@ -8,7 +8,7 @@ A library for listing Tajweed rules in words of Quran verses which is bassed on 
 
 
 # Setup
-Tajweed Quran Parser for Android bassed on [quran-tajweed](http://api.alquran.cloud/v1/quran/quran-tajweed)
+https://github.com/vipafattal/QuranX/blob/master/README.md#instalition
 
 # Usage
 
