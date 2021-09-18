@@ -1,4 +1,4 @@
-package com.abedfattal.quranx.sample.wordprocessor.model
+package com.abedfattal.quranx.sample.wordsprocessor.model
 
 import com.abedfattal.quranx.core.model.Aya
 import com.abedfattal.quranx.wordsprocessor.model.AyaWordV2

@@ -11,13 +11,13 @@ import com.abedfattal.quranx.wordsprocessor.model.AyaWordV2
  * It's recommend to use [getWordOfAyaV2] method which is based on `quran-wordbyword-2` for better results and
  * also you get transliteration for out the box.
  *
- * @sample com.abedfattal.quranx.sample.wordprocessor.WordsParserActivity
+ * @sample com.abedfattal.quranx.sample.wordsprocessor.WordsParserActivity
  */
 object WordByWordEnglish {
     /**
      * It's the recommended method to extract words meaning and transliteration in English from [ayaText].
      *
-     * @sample com.abedfattal.quranx.sample.wordprocessor.VerseViewModel.getVerseWithTranslation
+     * @sample com.abedfattal.quranx.sample.wordsprocessor.VerseViewModel.getVerseWithTranslation
      *
      * @param ayaText must be derivative from `quran-wordbyword-2` edition otherwise it won't work.
      *

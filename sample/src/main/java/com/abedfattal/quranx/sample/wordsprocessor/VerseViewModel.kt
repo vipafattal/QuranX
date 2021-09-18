@@ -1,4 +1,4 @@
-package com.abedfattal.quranx.sample.wordprocessor
+package com.abedfattal.quranx.sample.wordsprocessor
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +9,7 @@ import com.abedfattal.quranx.core.model.ProcessState
 import com.abedfattal.quranx.core.utils.onSuccess
 import com.abedfattal.quranx.sample.QURAN_EDITION
 import com.abedfattal.quranx.sample.QURAN_WORDS_EDITION
-import com.abedfattal.quranx.sample.wordprocessor.model.VerseWithItsWord
+import com.abedfattal.quranx.sample.wordsprocessor.model.VerseWithItsWord
 import com.abedfattal.quranx.wordsprocessor.WordByWordEnglish
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.combine

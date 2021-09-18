@@ -1,4 +1,4 @@
-package com.abedfattal.quranx.sample.wordprocessor
+package com.abedfattal.quranx.sample.wordsprocessor
 
 import android.view.View
 import android.view.ViewGroup

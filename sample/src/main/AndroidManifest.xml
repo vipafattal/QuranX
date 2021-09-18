@@ -14,23 +14,25 @@
         android:theme="@style/Theme.MushafLibrary"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".wordprocessor.WordsProcessorActivity"
+            android:name=".wordsprocessor.WordsProcessorActivity"
             android:exported="true" >
-         <!-- <intent-filter>
+          <intent-filter>
               <action android:name="android.intent.action.MAIN" />
 
               <category android:name="android.intent.category.LAUNCHER" />
-          </intent-filter>-->
+          </intent-filter>
         </activity>
         <activity
             android:name=".core.QuranManagementActivity"
             android:exported="true">
 
+            <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            -->
         </activity>
         <activity
             android:name=".tajweedprocessor.TajweedProcessorActivity"
