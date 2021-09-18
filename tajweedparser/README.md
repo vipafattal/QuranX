@@ -20,7 +20,7 @@ val tajweed = Tajweed(metaColors)
 ```
 
 # Full Example
-See the [app](./sample/src/main/java/com/abedfattal/quranx/sample/tajweedparser) module for full example.
+See the [app](https://github.com/vipafattal/QuranX/tree/master/sample/src/main/java/com/abedfattal/quranx/sample/tajweedparser) module for full example.
 
 You can also download the apk from this [link](https://drive.google.com/file/d/10EbERrszIuVqBfxIQkm5whGXcHjibpG5/view?usp=sharing).
 
