@@ -7,7 +7,7 @@ It helps to create colored text for Quran reciting rules.
 </p>
 
 # Setup
-Tajweed Quran Parser for Android bassed on [quran-tajweed](http://api.alquran.cloud/v1/quran/quran-tajweed)
+https://github.com/vipafattal/QuranX/blob/master/README.md#instalition
 
 # Usage
 
