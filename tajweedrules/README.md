@@ -10,7 +10,7 @@ A library for listing Tajweed rules in words of Quran verses which is bassed on 
 # Setup
 Tajweed Quran Parser for Android bassed on [quran-tajweed](http://api.alquran.cloud/v1/quran/quran-tajweed)
 
-#### Usage
+# Usage
 
 Tajweed Rules dpended on `Tajweed` to create a custom action on words that list all rules in each word of the verse, so first make sure you have [Tajweed Processor](https://github.com/vipafattal/QuranX/tree/master/tajweedparser) in your app, Then pass your `Tajweed` object into `TajweedRules`:  
 
@@ -27,15 +27,11 @@ Once you have `TajweedRules`, you could call:
   val rules : List<WordsWithRules> =  tajweedRules.getRulesOfAya(ayaText)
  ```
 
-You can also list all supported rules see docs
-```Kotlin
-val metaColors = MetaColors(hsl = "#FF6200EE", ikhafa = "#D50000")
-val tajweed = Tajweed(metaColors)
-```
+You can also list all supported rules see [docs](https://vipafattal.github.io/QuranX/tajweedrules/com.abedfattal.quranx.tajweedrules/-tajweed-rules/index.html).
 
 # Full Example
 See the [tajweedrules sample](https://github.com/vipafattal/QuranX/tree/master/sample/src/main/java/com/abedfattal/quranx/sample/tajweedrules) for implementation example.
 
 
-# For listing rules meaning in each word
+# For coloring reciting rules see
 see [Tajweed Processor](https://github.com/vipafattal/QuranX/tree/master/tajweedprocessor).
