@@ -1,12 +1,14 @@
 # TajweedParser
-Tajweed Quran Parser for Android bassed on [quran-tajweed](http://api.alquran.cloud/v1/quran/quran-tajweed)
+Tajweed Quran Parser for Android bassed on [quran-tajweed](http://api.alquran.cloud/v1/quran/quran-tajweed). 
+It helps to create colored text for Quran reciting rules.
 
 # Setup
 Tajweed Quran Parser for Android bassed on [quran-tajweed](http://api.alquran.cloud/v1/quran/quran-tajweed)
 
 #### Usage
 
-The library is based on https://alquran.cloud/api, on edition `quran-tajweed`.Once you have `quran-tajweed` inside the app you can call `TajweedHelper.getStyledAyah(Aya.text)` to return a [Spannable](https://developer.android.com/reference/android/text/Spannable) text. Use TextView widgets with Spannable text.
+The library is based on https://alquran.cloud/api, on edition `quran-tajweed`.
+Once you have text of `quran-tajweed` inside the app you can call `TajweedHelper.getStyledAyah(Aya.text)` to return a [Spannable](https://developer.android.com/reference/android/text/Spannable) text. Use TextView widgets with Spannable text.
 
 ```kotlin
 val ayaTextView: TextView = findViewById(R.id.ayahText)
@@ -171,6 +173,5 @@ It uses the table below to parse what the API returns and converts it to somethi
 
 for more information go to see the docs at [link1](https://github.com/islamic-network/alquran-tools/blob/master/docs/tajweed.md) and [link2](https://alquran.cloud/tajweed-guide).
 
-# Credits
-
-Big thanks for [Meezaan](https://github.com/meezaan) for help and the useful API.
+# For listing rules meaning in each word
+see [Tajweed Rules](https://github.com/vipafattal/QuranX/tree/master/tajweedrules).
