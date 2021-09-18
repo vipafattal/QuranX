@@ -66,7 +66,7 @@ class Tajweed(val metaColors: MetaColors = MetaColors()) {
     /**
      * Applies color to each meta in ayah split in [rawAyah].
      *
-     * @sample com.abedfattal.quranx.sample.tajweedprocessor.TajweedParserActivity
+     * @sample com.abedfattal.quranx.sample.tajweedprocessor.TajweedProcessorActivity
      * @sample com.abedfattal.quranx.sample.tajweedprocessor.TajweedAdapter
      *
      */

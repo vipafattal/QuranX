@@ -1,5 +1,5 @@
 # Tajweed Rules
-A library for listing Tajweed rules in words of Quran verses which is bassed on [quran-tajweed](http://api.alquran.cloud/v1/quran/quran-tajweed) edition of alquran.cloud.
+A library for listing Tajweed rules in words of Quran verses which is based on [quran-tajweed](http://api.alquran.cloud/v1/quran/quran-tajweed) edition of alquran.cloud.
 
 <p align="center">
 <img src="https://github.com/vipafattal/QuranX/blob/master/images/tajweedrules1.png" width=35% />
@@ -12,7 +12,7 @@ https://github.com/vipafattal/QuranX/blob/master/README.md#instalition
 
 # Usage
 
-Tajweed Rules dpended on `Tajweed` to create a custom action on words that list all rules in each word of the verse, so first make sure you have [Tajweed Processor](https://github.com/vipafattal/QuranX/tree/master/tajweedparser) in your app, Then pass your `Tajweed` object into `TajweedRules`:  
+Tajweed Rules depended on `Tajweed` to create a custom action on words that list all rules in each word of the verse, so first make sure you have [Tajweed Processor](https://github.com/vipafattal/QuranX/tree/master/tajweedparser) in your app, Then pass your `Tajweed` object into `TajweedRules`:
 
 ```kotlin
  val tajweed: Tajweed = Tajweed()
@@ -33,5 +33,5 @@ You can also list all supported rules see [docs](https://vipafattal.github.io/Qu
 See the [sample](https://github.com/vipafattal/QuranX/tree/master/sample/src/main/java/com/abedfattal/quranx/sample/tajweedrules) for implementation example.
 
 
-# For coloring reciting rules see
+# For coloring
 see [Tajweed Processor](https://github.com/vipafattal/QuranX/tree/master/tajweedprocessor).

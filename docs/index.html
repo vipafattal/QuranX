@@ -21,6 +21,21 @@
             </div>
           </div>
           <div class="cover ">
+            <div class="cover ">
+              <h1 class="">QuranX</h1>
+              <p class="paragraph">A framework that helps android developers to build high performance, feature rich, and powerful Quran apps.</p>
+              <h3 class=""> Installation</h3>
+              <h4 class=""> Step 1</h4>
+              <p class="paragraph">add to your project build.gradle at the end of repositories:</p>
+              <div class="sample-container"><code class="" theme="idea">
+                  <pre>allprojects {<br>		repositories {<br>			...<br>			maven { url 'https://jitpack.io' }<br>		}<br>	}</pre>
+                </code></div>
+              <h4 class=""> Step 2</h4>
+              <p class="paragraph">add the dependency to the <code>build.gradle</code> app module:</p>
+              <div class="sample-container"><code class="" theme="idea">
+                  <pre>def quranx_version = &quot;1.0.8&quot;<br>// All modules<br>implementation &quot;com.github.vipafattal:QuranX:$quranx_version&quot;<br><br>// Or pick the modules you only needs:<br><br>// Core module only.<br>implementation &quot;com.github.vipafattal.QuranX:core:$quranx_version&quot;<br>// Tajweed Processor module only.<br>implementation &quot;com.github.vipafattal.QuranX:tajweedparser:$quranx_version&quot;<br>// Tajweed Rules module only.<br>implementation &quot;com.github.vipafattal.QuranX:tajweedrules:$quranx_version&quot;<br>// WordByWord Processor module only.<br>implementation &quot;com.github.vipafattal.QuranX:tajweedparser:$quranx_version&quot;</pre>
+                </code></div>
+            </div>
             <h2 class="">All modules:</h2>
             <div class="table"><a data-name="-387464810%2FMain%2F0" anchor-label="core" id="-387464810%2FMain%2F0" data-filterable-set=""></a>
               <div class="table-row">
@@ -28,7 +43,9 @@
                   <div class="w-100"><span class="inline-flex"><a href="core/index.html">core</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-387464810%2FMain%2F0"></span>
                         <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                       </span></span></div>
-                  <div><span class="brief-comment"></span></div>
+                  <div><span class="brief-comment">
+                      <p class="paragraph">A is the core that provides Quran data sources based on <a href="https://alquran.cloud/api">AlQuran.cloud</a> with stylish Kotlin architecture out of box, which provide data such as Quran, Tafseer, translation, transliteration, word by word, etc... In the core there are three options <a href="https://vipafattal.github.io/QuranX/core/com.abedfattal.quranx.core.framework.data/-data-sources/index.html">data sources</a>:</p>
+                    </span></div>
                 </div>
               </div>
 <a data-name="-1188430707%2FMain%2F0" anchor-label="tajweedprocessor" id="-1188430707%2FMain%2F0" data-filterable-set=""></a>
@@ -37,7 +54,9 @@
                   <div class="w-100"><span class="inline-flex"><a href="tajweedprocessor/index.html">tajweedprocessor</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1188430707%2FMain%2F0"></span>
                         <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                       </span></span></div>
-                  <div><span class="brief-comment"></span></div>
+                  <div><span class="brief-comment">
+                      <p class="paragraph">Tajweed Quran meta processor for Android based on <a href="http://api.alquran.cloud/v1/quran/quran-tajweed">quran-tajweed</a>. It helps to create colored text for Quran reciting rules.</p>
+                    </span></div>
                 </div>
               </div>
 <a data-name="-2118528312%2FMain%2F0" anchor-label="tajweedrules" id="-2118528312%2FMain%2F0" data-filterable-set=""></a>
@@ -46,7 +65,9 @@
                   <div class="w-100"><span class="inline-flex"><a href="tajweedrules/index.html">tajweedrules</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2118528312%2FMain%2F0"></span>
                         <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                       </span></span></div>
-                  <div><span class="brief-comment"></span></div>
+                  <div><span class="brief-comment">
+                      <p class="paragraph">A library for listing Tajweed rules in words of Quran verses which is based on <a href="http://api.alquran.cloud/v1/quran/quran-tajweed">quran-tajweed</a> edition of alquran.cloud.</p>
+                    </span></div>
                 </div>
               </div>
 <a data-name="1904893804%2FMain%2F0" anchor-label="wordsprocessor" id="1904893804%2FMain%2F0" data-filterable-set=""></a>
@@ -55,7 +76,9 @@
                   <div class="w-100"><span class="inline-flex"><a href="wordsprocessor/index.html">wordsprocessor</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1904893804%2FMain%2F0"></span>
                         <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                       </span></span></div>
-                  <div><span class="brief-comment"></span></div>
+                  <div><span class="brief-comment">
+                      <p class="paragraph">A library for listing Quran verses meaning and transliteration in other languages (English only). The library currently support these editions: <a href="https://api.alquran.cloud/v1/ayah/289/quran-wordbyword">WordByword by Tanzil.net</a> and <a href="https://api.alquran.cloud/v1/ayah/289/quran-wordbyword-2">WordByword by Dr. Shehnaz Shaikh</a>.</p>
+                    </span></div>
                 </div>
               </div>
             </div>

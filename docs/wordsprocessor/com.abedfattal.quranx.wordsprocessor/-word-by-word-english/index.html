@@ -29,7 +29,34 @@
             <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Sources">Sources</button><button class="section-tab" data-togglable="Samples">Samples</button></div>
             <div class="tabs-section-body">
               <h2 class="">Samples</h2>
-              <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Samples"><div class="content sourceset-depenent-content" data-active="" data-togglable=":wordsprocessor:dokkaHtmlPartial/release">com.abedfattal.quranx.sample.wordsprocessor.WordsParserActivity</div></div>
+              <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Samples"><div class="content sourceset-depenent-content" data-active="" data-togglable=":wordsprocessor:dokkaHtmlPartial/release"><div class="sample-container"><code class="runnablesample monospace" theme="idea"><pre>import android.os.Bundle
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
+import com.abedfattal.quranx.sample.R
+import com.abedfattal.quranx.sample.utils.observer
+import com.abedfattal.quranx.sample.utils.viewModelOf
+fun main() { 
+   //sampleStart 
+   class WordsProcessorActivity : AppCompatActivity() {
+
+    private val verseViewModel: VerseViewModel by lazy { viewModelOf() }
+
+    private val verseText: TextView by lazy { findViewById(R.id.verse_text) }
+    private val wordRecyclerView: RecyclerView by lazy { findViewById(R.id.words_recyclerview) }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_words_parser)
+
+        verseViewModel.getVerseWithTranslation(277).observer(this) {verseWithItsWords-&gt;
+            verseText.text = verseWithItsWords!!.verse.text
+            wordRecyclerView.adapter = WordsAdapter(verseWithItsWords.words)
+        }
+    }
+} 
+   //sampleEnd
+}</pre></code></div></div></div>
               <h2 class="">Functions</h2>
               <div class="table" data-togglable="Functions"><a data-name="1572618158%2FFunctions%2F-383481622" anchor-label="getWordOfAyaV1" id="1572618158%2FFunctions%2F-383481622" data-filterable-set=":wordsprocessor:dokkaHtmlPartial/release"></a>
                 <div class="table-row" data-filterable-current=":wordsprocessor:dokkaHtmlPartial/release" data-filterable-set=":wordsprocessor:dokkaHtmlPartial/release">

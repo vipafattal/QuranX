@@ -1,6 +1,6 @@
 # Core
 
-A is the core that provides Quran data sources bassed on [AlQuran.cloud](https://alquran.cloud/api) with stylish Kotlin aractucture out of box, which provide data such as Quran, Tafseer, translation, transaliteration, word by word, etc...
+A is the core that provides Quran data sources based on [AlQuran.cloud](https://alquran.cloud/api) with stylish Kotlin architecture out of box, which provide data such as Quran, Tafseer, translation, transliteration, word by word, etc...
 In the core there are three options [data sources](https://vipafattal.github.io/QuranX/core/com.abedfattal.quranx.core.framework.data/-data-sources/index.html):
 
 - Local data source, which performs local query to provides the data, see [LocalDataSource](https://vipafattal.github.io/QuranX/core/com.abedfattal.quranx.core.framework.data.sources/-local-data-source/index.html).
@@ -10,7 +10,7 @@ In the core there are three options [data sources](https://vipafattal.github.io/
 for more information visit the [documentation](https://vipafattal.github.io/QuranX/core/com.abedfattal.quranx.core.framework.data/index.html).
 
 ### Note 
-You could fully rely remote data source, and ignore the local and local-basedsources.
+You could fully rely remote data source, and ignore the local and local-based sources.
 
 # Setup
 https://github.com/vipafattal/QuranX/blob/master/README.md#instalition

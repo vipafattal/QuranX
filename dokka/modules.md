@@ -1,18 +1,33 @@
-# Tajweed Processor
-Tajweed Quran Parser for Android based on [quran-tajweed](http://api.alquran.cloud/v1/quran/quran-tajweed).
+# Module core
+A is the core that provides Quran data sources based on [AlQuran.cloud](https://alquran.cloud/api) with stylish Kotlin architecture out of box, which provide data such as Quran, Tafseer, translation, transliteration, word by word, etc...
+In the core there are three options [data sources](https://vipafattal.github.io/QuranX/core/com.abedfattal.quranx.core.framework.data/-data-sources/index.html):
+
+- Local data source, which performs local query to provides the data, see [LocalDataSource](https://vipafattal.github.io/QuranX/core/com.abedfattal.quranx.core.framework.data.sources/-local-data-source/index.html).
+- Remote data source, which performs queries on remote [server](https://alquran.cloud/api) to provides the data, see [RemoteDataSource](https://vipafattal.github.io/QuranX/core/com.abedfattal.quranx.core.framework.data.sources/-remote-data-source/index.html).
+- Local-based data source, which performs queries on remote only if the data is not available in the local source, see [LocalBasedDataSource](https://vipafattal.github.io/QuranX/core/com.abedfattal.quranx.core.framework.data.sources/-local-based-data-source/index.html).
+
+* For more information visit the [documentation](https://vipafattal.github.io/QuranX/core/com.abedfattal.quranx.core.framework.data/index.html).
+
+* Note that You could fully rely remote data source, and ignore the local and local-based sources.
+
+### Setup
+[https://github.com/vipafattal/QuranX/blob/master/README.md#instalition](https://github.com/vipafattal/QuranX/blob/master/README.md#instalition)
+
+### Sample
+The most of the [samples](https://github.com/vipafattal/QuranX/tree/master/sample/src/main/java/com/abedfattal/quranx/sample/) make use of the Core library, but you could see the an extended [sample](https://github.com/vipafattal/QuranX/tree/master/sample/src/main/java/com/abedfattal/quranx/sample/core) which provides an implementation for downloading a Quran book.
+
+
+# Module tajweedprocessor
+Tajweed Quran meta processor for Android based on [quran-tajweed](http://api.alquran.cloud/v1/quran/quran-tajweed).
 It helps to create colored text for Quran reciting rules.
 
-<p align="center">
-<img src="https://github.com/vipafattal/QuranX/blob/master/images/tajweedprocessor.png" width=35% >
-</p>
+### Setup
+[https://github.com/vipafattal/QuranX/blob/master/README.md#instalition](https://github.com/vipafattal/QuranX/blob/master/README.md#instalition)
 
-# Setup
-https://github.com/vipafattal/QuranX/blob/master/README.md#instalition
-
-# Usage
+### Usage
 
 The library is based on https://alquran.cloud/api, on edition `quran-tajweed`.
-Once you have text of `quran-tajweed` inside the app you can call `TajweedHelper.getStyledWords(Aya.text)` to return a [Spannable](https://developer.android.com/reference/android/text/Spannable) text. You could use `TextView` with `Spannable` text.
+Once you have text of `quran-tajweed` inside the app you can call `TajweedHelper.getStyledWords(Aya.text)` to return a [Spannable](https://developer.android.com/reference/android/text/Spannable) text. YOu could use `TextView` with `Spannable` text.
 
 ```kotlin
 val tajweed = Tajweed()
@@ -28,13 +43,13 @@ val tajweed = Tajweed(metaColors)
 ```
 There are many options you could use, for more information, visit the [documentation](https://vipafattal.github.io/QuranX/tajweedprocessor/com.abedfattal.quranx.tajweedprocessor/-tajweed/index.html).
 
-# Full Example
+### Full Example
 See the [sample](https://github.com/vipafattal/QuranX/tree/master/sample/src/main/java/com/abedfattal/quranx/sample/tajweedprocessor).
 
-# Styles
+### Styles
 This table of the Tajweed metas of the `quran-tajweed` (obtained from [link](https://github.com/vipafattal/alquran-tools/blob/master/docs/tajweed.md)):
 
-# The  Library Functionality 
+### The  Library Functionality
 This library takes the output of the Tajweed edition, and creates an Android `Spannable`, which is Widget friendly text.
 It uses the table below to parse what the API returns and converts it to something you can use with TextViews widgets.
 
@@ -174,5 +189,63 @@ It uses the table below to parse what the API returns and converts it to somethi
 
 for more information about `quran-tajweed` edition see the docs at [link1](https://github.com/islamic-network/alquran-tools/blob/master/docs/tajweed.md) and [link2](https://alquran.cloud/tajweed-guide).
 
-# For listing rules in each word
+## For listing rules in each word
 see [Tajweed Rules](https://github.com/vipafattal/QuranX/tree/master/tajweedrules).
+
+
+# Module tajweedrules
+A library for listing Tajweed rules in words of Quran verses which is based on [quran-tajweed](http://api.alquran.cloud/v1/quran/quran-tajweed) edition of alquran.cloud.
+
+### Setup
+[https://github.com/vipafattal/QuranX/blob/master/README.md#instalition](https://github.com/vipafattal/QuranX/blob/master/README.md#instalition)
+
+### Usage
+
+Tajweed Rules depended on `Tajweed` to create a custom action on words that list all rules in each word of the verse, so first make sure you have [Tajweed Processor](https://github.com/vipafattal/QuranX/tree/master/tajweedparser) in your app, Then pass your `Tajweed` object into `TajweedRules`:
+
+```kotlin
+ val tajweed: Tajweed = Tajweed()
+ val tajweedRules = TajweedRules(tajweed)
+```
+Once you have `TajweedRules`, you could call:
+
+``` Kotlin
+  val tajweed: Tajweed = Tajweed()
+  val tajweedRules = TajweedRules(tajweed)
+
+  val rules : List<WordsWithRules> =  tajweedRules.getRulesOfAya(ayaText)
+ ```
+
+You can also list all supported rules see [docs](https://vipafattal.github.io/QuranX/tajweedrules/com.abedfattal.quranx.tajweedrules/-tajweed-rules/index.html).
+
+### Full Example
+See the [sample](https://github.com/vipafattal/QuranX/tree/master/sample/src/main/java/com/abedfattal/quranx/sample/tajweedrules) for implementation example.
+
+
+### For coloring reciting rules see
+see [Tajweed Processor](https://github.com/vipafattal/QuranX/tree/master/tajweedprocessor).
+
+
+# Module wordsprocessor
+A library for listing Quran verses meaning and transliteration in other languages (English only). The library currently support these editions: [WordByword by Tanzil.net](https://api.alquran.cloud/v1/ayah/289/quran-wordbyword) and [WordByword by Dr. Shehnaz Shaikh](https://api.alquran.cloud/v1/ayah/289/quran-wordbyword-2).
+
+### Setup
+[https://github.com/vipafattal/QuranX/blob/master/README.md#instalition](https://github.com/vipafattal/QuranX/blob/master/README.md#instalition)
+
+### Usage
+
+Using `WordByWord` is fairly simple, just decide which version you want to use:
+
+* [WordByword v1](https://api.alquran.cloud/v1/ayah/289/quran-wordbyword) support only word meaning.
+* [WordByword v2](https://api.alquran.cloud/v1/ayah/289/quran-wordbyword-2) support words meaning and English transliteration.
+
+then call from `WordByWordEnglish` the corresponds function:
+
+```kotlin
+ val wordByWord: List<AyaWordV2> = WordByWordEnglish.getWordOfAyaV2(aya.text)
+```
+
+For more information visit the [documentation](https://vipafattal.github.io/QuranX/tajweedprocessor/index.html).
+
+### Full Example
+See the [sample](https://github.com/vipafattal/QuranX/tree/master/sample/src/main/java/com/abedfattal/quranx/sample/wordsprocessor) for implementation example.
