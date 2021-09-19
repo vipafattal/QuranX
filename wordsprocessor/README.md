@@ -5,10 +5,10 @@ A library for listing Quran verses meaning and transliteration in other language
 <img src="https://github.com/vipafattal/QuranX/blob/master/images/wordsprocessor.png" width=35% />
 </p>
 
-# Setup
+## Setup
 https://github.com/vipafattal/QuranX/blob/master/README.md#instalition
 
-# Usage
+## Usage
 
 Using `WordByWord` is fairly simple, just decide which version you want to use:
 
@@ -23,5 +23,5 @@ then call from `WordByWordEnglish` the corresponds function:
 
 For more information visit the [documentation](https://vipafattal.github.io/QuranX/tajweedprocessor/index.html).
 
-# Full Example
+## Full Example
 See the [sample](https://github.com/vipafattal/QuranX/tree/master/sample/src/main/java/com/abedfattal/quranx/sample/wordsprocessor) for implementation example.
