@@ -6,9 +6,8 @@ In the core there are three options [data sources](https://vipafattal.github.io/
 - Remote data source, which performs queries on remote [server](https://alquran.cloud/api) to provides the data, see [RemoteDataSource](https://vipafattal.github.io/QuranX/core/com.abedfattal.quranx.core.framework.data.sources/-remote-data-source/index.html).
 - Local-based data source, which performs queries on remote only if the data is not available in the local source, see [LocalBasedDataSource](https://vipafattal.github.io/QuranX/core/com.abedfattal.quranx.core.framework.data.sources/-local-based-data-source/index.html).
 
-* For more information visit the [documentation](https://vipafattal.github.io/QuranX/core/com.abedfattal.quranx.core.framework.data/index.html).
 
-* Note that You could fully rely remote data source, and ignore the local and local-based sources.
+### Note that you could rely fully on the remote data source, and safely ignore the local and the local-based data sources, for more information see the package [documentation](https://vipafattal.github.io/QuranX/core/com.abedfattal.quranx.core.framework.data/index.html).
 
 ### Setup
 [https://github.com/vipafattal/QuranX/blob/master/README.md#instalition](https://github.com/vipafattal/QuranX/blob/master/README.md#instalition)
@@ -27,7 +26,7 @@ It helps to create colored text for Quran reciting rules.
 ### Usage
 
 The library is based on https://alquran.cloud/api, on edition `quran-tajweed`.
-Once you have text of `quran-tajweed` inside the app you can call `TajweedHelper.getStyledWords(Aya.text)` to return a [Spannable](https://developer.android.com/reference/android/text/Spannable) text. YOu could use `TextView` with `Spannable` text.
+Once you have text of `quran-tajweed` inside the app you can call `TajweedHelper.getStyledWords(Aya.text)` to return a [Spannable](https://developer.android.com/reference/android/text/Spannable) text. You could use `TextView` with `Spannable` text.
 
 ```kotlin
 val tajweed = Tajweed()
