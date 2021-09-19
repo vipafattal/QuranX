@@ -1,7 +1,7 @@
 # QuranX
 [![](https://jitpack.io/v/vipafattal/QuranX.svg)](https://jitpack.io/#vipafattal/QuranX)
 
-A framework that helps android developers to build high-performance, feature-rich, and powerful Quran apps.
+A framework to help android developers to build high performance, feature-rich, and powerful Quran apps.
 
 Currently, QuranX contains:
 
