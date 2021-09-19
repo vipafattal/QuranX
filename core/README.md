@@ -9,8 +9,7 @@ In the core there are three options [data sources](https://vipafattal.github.io/
 
 for more information visit the [documentation](https://vipafattal.github.io/QuranX/core/com.abedfattal.quranx.core.framework.data/index.html).
 
-### Note 
-You could fully rely remote data source, and ignore the local and local-based sources.
+* Note that you could fully rely remote data source, and ignore the local and local-based sources.
 
 # Setup
 https://github.com/vipafattal/QuranX/blob/master/README.md#instalition
