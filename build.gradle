@@ -125,6 +125,8 @@ subprojects {
                 configureEach {
                     includes.from(rootProject.file('dokka/modules.md').path)
 
+                    //displayName.set(project.name[0].toUpperCase()+project.name.substring(1))
+
                     perPackageOption {
                         skipDeprecated.set(false)
                         skipEmptyPackages.set(true)
@@ -145,7 +147,6 @@ subprojects {
                     // Add sample from :sample module
                     samples.from(rootProject.file("sample/src/main/java/"))
 
-                    // Suppress a package
 
                     externalDocumentationLink {
                         url.set(new URL("https://developer.android.com/reference/"))
@@ -173,7 +174,6 @@ apply plugin: 'org.jetbrains.dokka'
 
 tasks.dokkaHtmlMultiModule.configure {
     // Used to prevent resolving package-lists online. When this option is set to true, only local files are resolved
-    //offlineMode = true
     outputDirectory = new File("${project.rootDir}/docs")
     includes.from(rootProject.file('dokka/root.md').path)
 }

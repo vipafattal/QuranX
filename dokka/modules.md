@@ -7,7 +7,7 @@ In the core there are three options [data sources](https://vipafattal.github.io/
 - Local-based data source, which performs queries on remote only if the data is not available in the local source, see [LocalBasedDataSource](https://vipafattal.github.io/QuranX/core/com.abedfattal.quranx.core.framework.data.sources/-local-based-data-source/index.html).
 
 
-### Note that you could rely fully on the remote data source, and safely ignore the local and the local-based data sources, for more information see the package [documentation](https://vipafattal.github.io/QuranX/core/com.abedfattal.quranx.core.framework.data/index.html).
+> Note that you could rely fully on the remote data source, and safely ignore the local and the local-based data sources, for more information see the package [documentation](https://vipafattal.github.io/QuranX/core/com.abedfattal.quranx.core.framework.data/index.html).
 
 ### Setup
 [https://github.com/vipafattal/QuranX/blob/master/README.md#instalition](https://github.com/vipafattal/QuranX/blob/master/README.md#instalition)
