@@ -7,15 +7,13 @@ In the core there are three options [data sources](https://vipafattal.github.io/
 - Remote data source, which performs queries on remote [server](https://alquran.cloud/api) to provides the data, see [RemoteDataSource](https://vipafattal.github.io/QuranX/core/com.abedfattal.quranx.core.framework.data.sources/-remote-data-source/index.html).
 - Local-based data source, which performs queries on remote only if the data is not available in the local source, see [LocalBasedDataSource](https://vipafattal.github.io/QuranX/core/com.abedfattal.quranx.core.framework.data.sources/-local-based-data-source/index.html).
 
-for more information visit the [documentation](https://vipafattal.github.io/QuranX/core/com.abedfattal.quranx.core.framework.data/index.html).
+### Note that you could fully rely on the remote data source, and safely ignore the local and the local-based data sources, for more information on Core library see the [documentation](https://vipafattal.github.io/QuranX/core/com.abedfattal.quranx.core.framework.data/index.html).
 
-### Note 
-You could fully rely remote data source, and ignore the local and local-based sources.
 
-# Setup
+## Setup
 https://github.com/vipafattal/QuranX/blob/master/README.md#instalition
 
-# Sample
+## Sample
 The most of the [samples](https://github.com/vipafattal/QuranX/tree/master/sample/src/main/java/com/abedfattal/quranx/sample/) make use of the Core library, but you could see the an extended [sample](https://github.com/vipafattal/QuranX/tree/master/sample/src/main/java/com/abedfattal/quranx/sample/core) which provides an implementation for downloading a Quran book.
 
 

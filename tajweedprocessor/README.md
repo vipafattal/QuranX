@@ -2,14 +2,14 @@
 Tajweed Quran Parser for Android based on [quran-tajweed](http://api.alquran.cloud/v1/quran/quran-tajweed).
 It helps to create colored text for Quran reciting rules.
 
-<p align="center">
+<p align="start">
 <img src="https://github.com/vipafattal/QuranX/blob/master/images/tajweedprocessor.png" width=35% >
 </p>
 
-# Setup
+## Setup
 https://github.com/vipafattal/QuranX/blob/master/README.md#instalition
 
-# Usage
+## Usage
 
 The library is based on https://alquran.cloud/api, on edition `quran-tajweed`.
 Once you have text of `quran-tajweed` inside the app you can call `TajweedHelper.getStyledWords(Aya.text)` to return a [Spannable](https://developer.android.com/reference/android/text/Spannable) text. You could use `TextView` with `Spannable` text.
@@ -28,15 +28,11 @@ val tajweed = Tajweed(metaColors)
 ```
 There are many options you could use, for more information, visit the [documentation](https://vipafattal.github.io/QuranX/tajweedprocessor/com.abedfattal.quranx.tajweedprocessor/-tajweed/index.html).
 
-# Full Example
+## Full Example
 See the [sample](https://github.com/vipafattal/QuranX/tree/master/sample/src/main/java/com/abedfattal/quranx/sample/tajweedprocessor).
 
-# Styles
+## Styles
 This table of the Tajweed metas of the `quran-tajweed` (obtained from [link](https://github.com/vipafattal/alquran-tools/blob/master/docs/tajweed.md)):
-
-# The  Library Functionality 
-This library takes the output of the Tajweed edition, and creates an Android `Spannable`, which is Widget friendly text.
-It uses the table below to parse what the API returns and converts it to something you can use with TextViews widgets.
 
 <table>
     <thead>
@@ -174,5 +170,9 @@ It uses the table below to parse what the API returns and converts it to somethi
 
 for more information about `quran-tajweed` edition see the docs at [link1](https://github.com/islamic-network/alquran-tools/blob/master/docs/tajweed.md) and [link2](https://alquran.cloud/tajweed-guide).
 
-# For listing rules in each word
+## The  Library Functionality 
+* This library takes the output of the Tajweed edition, and creates an Android `Spannable`, which is Widget friendly text.
+* It uses the table metas (identifiers) below to parse what the API returns and converts it to something you can use with TextViews widgets.
+
+## For listing rules in words
 see [Tajweed Rules](https://github.com/vipafattal/QuranX/tree/master/tajweedrules).
