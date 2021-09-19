@@ -7,10 +7,10 @@ A library for listing Tajweed rules in words of Quran verses which is based on [
 </p>
 
 
-# Setup
+## Setup
 https://github.com/vipafattal/QuranX/blob/master/README.md#instalition
 
-# Usage
+## Usage
 
 Tajweed Rules depended on `Tajweed` to create a custom action on words that list all rules in each word of the verse, so first make sure you have [Tajweed Processor](https://github.com/vipafattal/QuranX/tree/master/tajweedparser) in your app, Then pass your `Tajweed` object into `TajweedRules`:
 
@@ -29,9 +29,9 @@ Once you have `TajweedRules`, you could call:
 
 You can also list all supported rules see [docs](https://vipafattal.github.io/QuranX/tajweedrules/com.abedfattal.quranx.tajweedrules/-tajweed-rules/index.html).
 
-# Full Example
+## Full Example
 See the [sample](https://github.com/vipafattal/QuranX/tree/master/sample/src/main/java/com/abedfattal/quranx/sample/tajweedrules) for implementation example.
 
 
-# For coloring
+## For coloring
 see [Tajweed Processor](https://github.com/vipafattal/QuranX/tree/master/tajweedprocessor).
