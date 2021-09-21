@@ -48,6 +48,6 @@ implementation "com.github.vipafattal.QuranX:tajweedrules:$quranx_version"
 // WordByWord Processor module only.
 implementation "com.github.vipafattal.QuranX:tajweedparser:$quranx_version"
 ```
-
+> Note though the library is targeting JVM, and have minor dependency on Android it can be modified quit easly (Removing or Replacing Room Database and Strings Resources) to work where ever Kotlin compiler works (JVM, JS, LVVM...).
 # Documentation
 https://vipafattal.github.io/QuranX/
