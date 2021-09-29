@@ -1,33 +1,29 @@
 package com.abedfattal.quranx.core.framework.data.repositories
 
-import com.abedfattal.quranx.core.framework.data.repositories.local.LocalBookmarksRepository
-import com.abedfattal.quranx.core.framework.data.repositories.local.LocalEditionsRepository
-import com.abedfattal.quranx.core.framework.data.repositories.local.LocalLanguagesRepository
-import com.abedfattal.quranx.core.framework.data.repositories.local.LocalQuranRepository
+import com.abedfattal.quranx.core.framework.data.repositories.local.*
 import com.abedfattal.quranx.core.framework.data.repositories.localbased.LocalBasedEditionsRepository
 import com.abedfattal.quranx.core.framework.data.repositories.localbased.LocalBasedLanguagesRepository
 import com.abedfattal.quranx.core.framework.data.repositories.localbased.LocalBasedQuranRepository
 import com.abedfattal.quranx.core.framework.data.repositories.remote.RemoteEditionsRepository
 import com.abedfattal.quranx.core.framework.data.repositories.remote.RemoteLanguagesRepository
 import com.abedfattal.quranx.core.framework.data.repositories.remote.RemoteQuranRepository
-import com.abedfattal.quranx.core.framework.db.daos.BookmarksDao
-import com.abedfattal.quranx.core.framework.db.daos.EditionsDao
-import com.abedfattal.quranx.core.framework.db.daos.LanguagesDao
-import com.abedfattal.quranx.core.framework.db.daos.QuranDao
+import com.abedfattal.quranx.core.framework.db.daos.*
 import com.abedfattal.quranx.core.framework.di.Dependencies
 
 internal object RepositoriesBuilder {
     //Database Dao's
     private val quranDao: QuranDao by lazy { Dependencies.db.getQuranDao() }
     private val editionsDao: EditionsDao by lazy { Dependencies.db.getEditionsDao() }
-    private val LanguagesDao: LanguagesDao by lazy { Dependencies.db.getLanguagesDao() }
+    private val languagesDao: LanguagesDao by lazy { Dependencies.db.getLanguagesDao() }
     private val bookmarksDao: BookmarksDao by lazy { Dependencies.db.getBookmarksDao() }
+    private val downloadStateDao: DownloadStateDao by lazy { Dependencies.db.getDownloadState() }
 
     //LocalDataSource Repo's
     val localQuranRepository by lazy { LocalQuranRepository(quranDao) }
     val localEditionsRepository by lazy { LocalEditionsRepository(editionsDao) }
     val localBookmarksRepository by lazy { LocalBookmarksRepository(bookmarksDao) }
-    val localLanguagesRepository by lazy { LocalLanguagesRepository(LanguagesDao) }
+    val localLanguagesRepository by lazy { LocalLanguagesRepository(languagesDao) }
+    val localDownloadStateRepository by lazy { LocalDownloadStateRepository(downloadStateDao) }
 
     //RemoteDataSource Repo's
     val remoteQuranRepository by lazy { RemoteQuranRepository(Dependencies.api) }
@@ -39,7 +35,9 @@ internal object RepositoriesBuilder {
     val localBasedQuranRepository by lazy {
         LocalBasedQuranRepository(
             remoteQuranRepository,
-            localQuranRepository, localEditionsRepository,
+            localQuranRepository,
+            localEditionsRepository,
+            localDownloadStateRepository,
         )
     }
     val localBasedEditionsRepository by lazy {
@@ -50,8 +48,8 @@ internal object RepositoriesBuilder {
     }
     val localBasedLanguagesRepository by lazy {
         LocalBasedLanguagesRepository(
-            remoteLanguagesRepository,
             localLanguagesRepository,
+            remoteLanguagesRepository,
         )
     }
 

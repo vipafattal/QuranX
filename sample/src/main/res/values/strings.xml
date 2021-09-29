@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">QuranX</string>
+    <string name="samples">Samples</string>
     <string name="pick_language">Pick language:</string>
     <string name="pick_edition_type">Pick edition type:</string>
     <string name="pick_edition">Pick edition</string>

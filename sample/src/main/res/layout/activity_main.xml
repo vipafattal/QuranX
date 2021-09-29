@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical|center_horizontal"
+    tools:context=".MainActivity"
+    tools:ignore="HardcodedText,UsingOnClickInXml">
+
+    <com.google.android.material.button.MaterialButton
+        android:onClick="openSample"
+        android:id="@+id/core_sample_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Core"
+       />
+
+    <com.google.android.material.button.MaterialButton
+        android:onClick="openSample"
+        android:id="@+id/tajweed_sample_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TajweedProcessor"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:onClick="openSample"
+        android:id="@+id/tajweed_rule_sample_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TajweedRules"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:onClick="openSample"
+        android:id="@+id/words_sample_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WordsProcessor"
+   />
+</LinearLayout>

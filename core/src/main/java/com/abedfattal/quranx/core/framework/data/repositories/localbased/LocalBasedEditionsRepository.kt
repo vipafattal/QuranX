@@ -5,17 +5,15 @@ import com.abedfattal.quranx.core.framework.data.repositories.remote.RemoteEditi
 import com.abedfattal.quranx.core.model.Edition
 import com.abedfattal.quranx.core.model.ProcessState
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emitAll
-import kotlinx.coroutines.flow.flow
 
 
 /**
  * Use [LocalBasedEditionsRepository] to performs local queries as first priority on [Edition], by means if the queries don't local result it'll call remote methods to get data etc...
  */
 class LocalBasedEditionsRepository internal constructor(
-    private val remoteRepository: RemoteEditionsRepository,
-    private val editionsLocalRepo: LocalEditionsRepository,
-) {
+    private val remote: RemoteEditionsRepository,
+    private val local: LocalEditionsRepository,
+) : LocalBased() {
 
     /**
      * List all [Edition] by certain [Edition.type] from the database if only exists,
@@ -26,12 +24,12 @@ class LocalBasedEditionsRepository internal constructor(
      * @return a flow of a [ProcessState] that contains the [Edition] list,
      * and the [ProcessState] actually represents the remote process state rather then local process state.
      */
-    fun getEditionsByType(type: String): Flow<ProcessState<List<Edition>>> = flow {
-        val editions = editionsLocalRepo.getEditionsByType(type)
-        if (editions.isNotEmpty())
-            emit(ProcessState.Success(editions))
-        else
-            emitAll(remoteRepository.getEditionByType(type))
+    fun getEditionsByType(type: String): Flow<ProcessState<List<Edition>>> {
+        return caller(
+            local = { local.getEditionsByType(type) },
+            remote = { remote.getEditionsByType(type) },
+            onRemoteSuccess = { local.addAllEdition(it) },
+        )
     }
 
     /**
@@ -43,12 +41,12 @@ class LocalBasedEditionsRepository internal constructor(
      * @return a flow of a [ProcessState] that contains the [Edition] list,
      * and the [ProcessState] actually represents the remote process state rather then local process state.
      */
-    fun getEditionsByFormat(format: String): Flow<ProcessState<List<Edition>>> = flow {
-        val editions = editionsLocalRepo.getEditionsByFormat(format)
-        if (editions.isNotEmpty())
-            emit(ProcessState.Success(editions))
-        else
-            emitAll(remoteRepository.getEditionByType(format))
+    fun getEditionsByFormat(format: String): Flow<ProcessState<List<Edition>>> {
+        return caller(
+            local = { local.getEditionsByFormat(format) },
+            remote = { remote.getEditionsByFormat(format) },
+            onRemoteSuccess = { local.addAllEdition(it) },
+        )
     }
 
     /**
@@ -66,11 +64,13 @@ class LocalBasedEditionsRepository internal constructor(
         format: String,
         languageCode: String,
         type: String
-    ): Flow<ProcessState<List<Edition>>> = flow {
-        val editions = editionsLocalRepo.getEditions(format, languageCode, type)
-        if (editions.isNotEmpty())
-            emit(ProcessState.Success(editions))
-        else
-            emitAll(remoteRepository.getEditions(format, languageCode, type))
+    ): Flow<ProcessState<List<Edition>>> {
+        return caller(
+            local = { local.getEditions(format, languageCode, type) },
+            remote = { remote.getEditions(format, languageCode, type) },
+            onRemoteSuccess = { local.addAllEdition(it) },
+        )
     }
+
+
 }

@@ -25,7 +25,7 @@ class RemoteEditionsRepository internal constructor(
      *
      * @return [Edition] list only that confirms with [format].
      */
-    fun getEditionByFormat(format: String): Flow<ProcessState<List<Edition>>> {
+    fun getEditionsByFormat(format: String): Flow<ProcessState<List<Edition>>> {
         return when (format) {
             Edition.FORMAT_TEXT -> getTextEditions()
             Edition.FORMAT_AUDIO -> getAudioEditions()
@@ -56,7 +56,7 @@ class RemoteEditionsRepository internal constructor(
     }
 
     /**
-     * List all [Edition]'s type that can be used by [getEditionByType].
+     * List all [Edition]'s type that can be used by [getEditionsByType].
      */
     fun getAllEditionsType(): Flow<ProcessState<List<String>>> {
         return newRequest { api.getEditionsTypes() }.processTransform { it.editionsType }
@@ -68,7 +68,7 @@ class RemoteEditionsRepository internal constructor(
      *
      * @return [Edition] list only that confirms with [type].
      */
-    fun getEditionByType(type: String): Flow<ProcessState<List<Edition>>> {
+    fun getEditionsByType(type: String): Flow<ProcessState<List<Edition>>> {
         return newRequest {
             api.getEditionsByType(type)
         }.processTransform { it.editions }

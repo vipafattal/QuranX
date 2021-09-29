@@ -57,12 +57,23 @@ class LocalQuranRepository internal constructor(
     /**
      * List all saved verses with the corresponds editions.
      *
-     * @param editions represents the edition ids to query juz.
+     * @param editions represents the edition ids to query verses.
      *
      * @return [AyatWithEdition] list for all requested edition ids ([editions]).
      */
     suspend fun getAyatAllEditions(vararg editions: String): List<AyatWithEdition> {
         return quranDao.getAyatAllEditions(editions = editions)
+    }
+
+    /**
+     * List all saved verses with the corresponds single edition.
+     *
+     * @param edition represents the edition id to query juz.
+     *
+     * @return [AyaWithInfo] list that exist in specific edition.
+     */
+    suspend fun getAyatEditions(edition: String): List<AyaWithInfo> {
+        return quranDao.getAyatEdition(edition)
     }
 
     /**
@@ -233,8 +244,8 @@ class LocalQuranRepository internal constructor(
      *
      * @return [AyaWithInfo] list that exist that matches with query.
      */
-    suspend fun searchQuran(query: String, languageCode:String): List<AyatWithEdition> {
-        return quranDao.searchAllQuran("%$query%",languageCode)
+    suspend fun searchQuran(query: String, languageCode: String): List<AyatWithEdition> {
+        return quranDao.searchAllQuran("%$query%", languageCode)
     }
 
     /**
@@ -256,15 +267,11 @@ class LocalQuranRepository internal constructor(
      * @param quran the Quran data that you want to save. It's constructed by the API service see [RemoteQuranRepository.getQuranBook].
      */
     suspend fun addQuranBook(quran: Quran.QuranData) {
-
-        for (index in quran.surahs.indices) {
-            val quranCloudSurah = quran.surahs[index]
-
+        quran.surahs.forEach { quranCloudSurah ->
             val surahAyat = quranCloudSurah.ayat.onEach { aya ->
                 aya.surah_number = quranCloudSurah.number
                 aya.ayaEdition = quran.edition.id
             }
-
             addAyat(surahAyat)
             addSurah(quranCloudSurah.toSurah(quran.edition.id))
         }
@@ -301,7 +308,7 @@ class LocalQuranRepository internal constructor(
     /**
      * To delete a full Quran edition book see [LocalBasedQuranRepository.deleteQuranBook].
      */
-    internal suspend fun deleteQuranBook(editionId: String) {
+    suspend fun deleteQuranBook(editionId: String) {
         quranDao.deleteAyat(editionId)
     }
 }

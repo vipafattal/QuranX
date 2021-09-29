@@ -52,7 +52,7 @@ class RemoteQuranRepository internal constructor(
      * @return [Aya] a single verse.
      */
     fun getAya(numberInMushaf: Int, editionId: String): Flow<ProcessState<Aya>> {
-        return newRequest { api.getAya(numberInMushaf, editionId) }.processTransform { it.aya }
+        return newRequest { api.getAya(numberInMushaf, editionId) }.processTransform { it.aya.copy(ayaEdition = editionId) }
     }
 
 
@@ -65,8 +65,8 @@ class RemoteQuranRepository internal constructor(
      * @return [Aya] list for the whole Quran page.
      */
     fun getPage(number: Int, editionId: String): Flow<ProcessState<List<Aya>>> {
-        return newRequest { api.getPage(number, editionId) }.processTransform {
-            it.pageData.ayahs
+        return newRequest { api.getPage(number, editionId) }.processTransform {data->
+            data.pageData.ayahs.map { it.copy(ayaEdition = editionId) }
         }
     }
 
@@ -79,8 +79,8 @@ class RemoteQuranRepository internal constructor(
      * @return [Aya] list for the whole Quran juz.
      */
     fun getJuz(number: Int, editionId: String): Flow<ProcessState<List<Aya>>> {
-        return newRequest { api.getJuz(number, editionId) }.processTransform {
-            it.juzData.ayahs
+        return newRequest { api.getJuz(number, editionId) }.processTransform {data->
+            data.juzData.ayahs.map { it.copy(ayaEdition = editionId) }
         }
     }
 

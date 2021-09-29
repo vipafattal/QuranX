@@ -46,7 +46,7 @@ class QuranManagementActivity : AppCompatActivity(), AdapterView.OnItemSelectedL
         loadEditionsTypePicker()
 
         downloadButton.setOnClickListener {
-            quranViewModel.downloadQuran(selectedEdition!!).observer(this) { downloadingProcess ->
+            quranViewModel.getQuranBook(selectedEdition!!).observer(this) { downloadingProcess ->
                 stateText.text = when (downloadingProcess) {
                     is ProcessState.Loading -> getString(R.string.download_loading)
                     is ProcessState.Failed -> {

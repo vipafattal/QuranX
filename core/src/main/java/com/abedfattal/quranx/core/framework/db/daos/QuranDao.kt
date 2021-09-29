@@ -29,6 +29,9 @@ interface QuranDao {
     @Query("select * from $EDITIONS_TABLE  where id in (:editions)")
     suspend fun getAyatAllEditions(vararg editions: String): List<AyatWithEdition>
 
+    @Query("select * from $AYAT_TABLE  where ayaEdition = :edition")
+    suspend fun getAyatEdition(edition: String): List<AyaWithInfo>
+
     @Transaction
     @Query("select * from $EDITIONS_TABLE join $AYAT_TABLE on id = ayaEdition where id in (:editions) and juz = :juz")
     suspend fun getJuzAllEditions(juz: Int, vararg editions: String): List<AyatWithEdition>
