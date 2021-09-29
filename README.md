@@ -1,7 +1,7 @@
 # QuranX
 [![](https://jitpack.io/v/vipafattal/QuranX.svg)](https://jitpack.io/#vipafattal/QuranX)
 
-A framework that helps android developers to build high performance, feature rich, and powerful Quran apps.
+A framework to help android developers to build high performance, feature-rich, and powerful Quran apps.
 
 Currently, QuranX contains:
 
@@ -48,6 +48,6 @@ implementation "com.github.vipafattal.QuranX:tajweedrules:$quranx_version"
 // WordByWord Processor module only.
 implementation "com.github.vipafattal.QuranX:tajweedparser:$quranx_version"
 ```
-
+> Note though the library is targeting JVM, and have minor dependency on Android it can be modified quit easly (Removing or Replacing Room Database and Android Strings) to work where ever Kotlin compiler works (JVM, JS, LVVM).
 # Documentation
 https://vipafattal.github.io/QuranX/
