@@ -10,10 +10,6 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 internal class LocalDownloadStateRepository(private val downloadStateDao: DownloadStateDao) {
 
 
-    fun listenToDownloadStatesChanges(): Flow<List<DownloadState>> {
-        return downloadStateDao.listenToDownloadState().distinctUntilChanged()
-    }
-
     suspend fun getAllDownloadStates(): List<DownloadState> {
         return downloadStateDao.getAllDownloadState()
     }

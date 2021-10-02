@@ -1,6 +1,8 @@
 package com.abedfattal.quranx.core.framework.data.repositories.local
 
+import com.abedfattal.quranx.core.framework.data.repositories.localbased.LocalBasedQuranRepository
 import com.abedfattal.quranx.core.framework.db.daos.EditionsDao
+import com.abedfattal.quranx.core.model.DownloadState
 import com.abedfattal.quranx.core.model.Edition
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -16,13 +18,63 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 class LocalEditionsRepository internal constructor(private val editionsDao: EditionsDao) {
 
     /**
-     * List all [Edition] table changes, like when new [Edition] is added or removed from the table.
+     * Listen to all [Edition] table changes, like when new [Edition] is added or removed from the table.
      *
      * @return [Edition] list that is ordered ascending by [Edition.language].
      */
     fun listenToEditionChanges(): Flow<List<Edition>> {
         return editionsDao.listenToEditions().distinctUntilChanged()
     }
+
+
+    /**
+     * Listen to the [DownloadState] table to list [Edition] that only is [DownloadState.STATE_DOWNLOADED],
+     * this is helpful when downloading a full Quran book using [LocalBasedQuranRepository.downloadQuranBook].
+     *
+     * @param format optional parameter to filter by the edition format which can be either [Edition.FORMAT_AUDIO] or [Edition.FORMAT_TEXT].
+     * @param type optional parameter to filter by the edition type which can be any of [Edition.getAllEditionsTypes].
+     *
+     * @return [Edition] list that is downloaded and ordered ascending by [Edition.language].
+     * When [format] and [type] both are not provided will return all downloaded editions.
+     */
+    fun listenDownloadedEditions(
+        format: String? = null,
+        type: String? = null,
+    ): Flow<List<Edition>> {
+
+        return if (format == null || type == null) {
+            if (format == null && type == null)
+                editionsDao.listenToDownloadedEditions().distinctUntilChanged()
+            else if (format != null)
+                editionsDao.listenToDownloadedEditionsByFormat(format).distinctUntilChanged()
+            else
+                editionsDao.listenToDownloadedEditionsByType(type!!).distinctUntilChanged()
+        } else
+            editionsDao.listenToDownloadedEditions(format, type).distinctUntilChanged()
+    }
+
+    /**
+     * Get a list of [Edition] that only it's [DownloadState.state] is [DownloadState.STATE_DOWNLOADED],
+     * this is helpful when downloading a full Quran book using [LocalBasedQuranRepository.downloadQuranBook].
+     *
+     * @param format optional parameter to filter by the edition format which can be either [Edition.FORMAT_AUDIO] or [Edition.FORMAT_TEXT].
+     * @param type optional parameter to filter by the edition type which can be any of [Edition.getAllEditionsTypes].
+     *
+     * @return [Edition] list that is downloaded and ordered ascending by [Edition.language].
+     * When [format] and [type] both are not provided will return all downloaded editions.
+     */
+    suspend fun getDownloadedEditions(format: String? = null, type: String? = null): List<Edition> {
+        return if (format == null || type == null) {
+            if (format == null && type == null)
+                editionsDao.getDownloadedEditions()
+            else if (format != null)
+                editionsDao.getDownloadedEditionsByFormat(format)
+            else
+                editionsDao.getDownloadedEditionsType(type!!)
+        } else
+            editionsDao.getDownloadedEditions(format, type)
+    }
+
 
     /**
      * Get specific [Edition] by id. To list all [Edition] by ids see [getAllEditions].
