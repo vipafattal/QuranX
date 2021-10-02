@@ -14,8 +14,8 @@ internal class LocalDownloadStateRepository(private val downloadStateDao: Downlo
         return downloadStateDao.getAllDownloadState()
     }
 
-    suspend fun getDownloadState(): DownloadState? {
-        return downloadStateDao.getDownloadState()
+    suspend fun getDownloadState(id:String): DownloadState? {
+        return downloadStateDao.getDownloadState(id)
     }
 
 

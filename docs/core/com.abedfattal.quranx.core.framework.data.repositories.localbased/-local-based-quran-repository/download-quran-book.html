@@ -45,8 +45,8 @@ fun main() {
     private val dataSource = DataSources.localBasedDataSource
     private val repository = dataSource.quranRepository
 
-    fun getQuranBook(editionId: String): LiveData&lt;ProcessState&lt;Unit&gt;&gt; {
-        return repository.downloadQuranBook(editionId).asLiveData(Dispatchers.IO)
+    fun getQuranBook(editionId: String): LiveData&lt;ProcessState&lt;List&lt;AyaWithInfo&gt;&gt;&gt; {
+        return repository.getQuranBook(editionId).asLiveData(Dispatchers.IO)
     }
 
     fun deleteQuranEdition(editionId: String) {
@@ -54,6 +54,8 @@ fun main() {
             repository.deleteQuranBook(editionId,removeWithEditionInfo = false)
         }
     }
+
+
 } 
    //sampleEnd
 }</pre></code></div></div></div><h2 class="">Parameters</h2><div data-togglable="Parameters"><div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="Parameters"><div class="content sourceset-depenent-content" data-active="" data-togglable=":core:dokkaHtmlPartial/release"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":core:dokkaHtmlPartial/release" data-filterable-set=":core:dokkaHtmlPartial/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">id</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">represents the edition id of the Quran book to download.</p></div></div></div></div></div></div></div></div></div></div></div>

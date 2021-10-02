@@ -27,6 +27,7 @@ class QuranManagementActivity : AppCompatActivity(), AdapterView.OnItemSelectedL
     private val quranViewModel: QuranManagementViewModel by lazy { viewModelOf() }
 
     //Initializing views.
+    private val downloadedEditionsText: TextView by lazy { findViewById(R.id.downloaded_editions) }
     private val stateText: TextView by lazy { findViewById(R.id.state_text) }
     private val downloadButton: MaterialButton by lazy { findViewById(R.id.download_edition_button) }
     private val languagesPicker: Spinner by lazy { findViewById(R.id.languages_picker) }
@@ -44,6 +45,7 @@ class QuranManagementActivity : AppCompatActivity(), AdapterView.OnItemSelectedL
 
         loadLanguagesPicker()
         loadEditionsTypePicker()
+        initDownloadedEditionsView()
 
         downloadButton.setOnClickListener {
             quranViewModel.getQuranBook(selectedEdition!!).observer(this) { downloadingProcess ->
@@ -113,6 +115,13 @@ class QuranManagementActivity : AppCompatActivity(), AdapterView.OnItemSelectedL
             }
 
         editionPicker.onItemSelectedListener = this
+    }
+
+
+    private fun initDownloadedEditionsView() {
+        editionViewModel.listAllDownloadedEditions().observer(this) { editions->
+            downloadedEditionsText.text = editions.joinToString { it.name }
+        }
     }
 
     /**

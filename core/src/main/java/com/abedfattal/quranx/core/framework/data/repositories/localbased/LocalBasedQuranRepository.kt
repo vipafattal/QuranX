@@ -49,7 +49,7 @@ class LocalBasedQuranRepository internal constructor(
         }.processTransform {  }
 
     fun getQuranBook(editionId: String): Flow<ProcessState<List<AyaWithInfo>>> = flow {
-        val downloadState = downloadStateRepository.getDownloadState()
+        val downloadState = downloadStateRepository.getDownloadState(editionId)
         if (downloadState != null && downloadState.state == DownloadState.STATE_DOWNLOADED) {
             val ayat = quranLocalRepository.getAyatEditions(editionId)
             emit(ProcessState.Success(ayat))

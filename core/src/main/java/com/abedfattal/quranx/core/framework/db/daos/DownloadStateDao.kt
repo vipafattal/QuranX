@@ -17,8 +17,8 @@ interface DownloadStateDao {
     @Query("select * from $DOWNLOAD_STATE_TABLE")
     suspend fun getAllDownloadState(): List<DownloadState>
 
-    @Query("select * from $DOWNLOAD_STATE_TABLE")
-    suspend fun getDownloadState(): DownloadState?
+    @Query("select * from $DOWNLOAD_STATE_TABLE where download_state_id == :id")
+    suspend fun getDownloadState(id: String): DownloadState?
 
     @Insert
     suspend fun addDownloadState(state: DownloadState)

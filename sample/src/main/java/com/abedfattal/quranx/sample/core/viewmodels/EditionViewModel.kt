@@ -10,12 +10,15 @@ import kotlinx.coroutines.Dispatchers
 
 class EditionViewModel : ViewModel() {
 
-    private val dataSource = DataSources.localBasedDataSource
-    private val repository = dataSource.editionsRepository
+    private val localBasedRepository = DataSources.localBasedDataSource.editionsRepository
+    private val localOnlyRepository = DataSources.localDataSource.editionsRepository
 
     fun getEditionsByType(language: String, type: String): LiveData<ProcessState<List<Edition>>> {
-        return repository.getEditions(format = Edition.FORMAT_TEXT, language, type)
+        return localBasedRepository.getEditions(format = Edition.FORMAT_TEXT, language, type)
             .asLiveData(Dispatchers.IO)
     }
 
+    fun listAllDownloadedEditions(): LiveData<List<Edition>> {
+        return localOnlyRepository.listenDownloadedEditions().asLiveData(Dispatchers.IO)
+    }
 }
