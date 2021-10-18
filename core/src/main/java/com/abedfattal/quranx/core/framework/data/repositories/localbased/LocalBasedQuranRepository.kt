@@ -1,12 +1,10 @@
 package com.abedfattal.quranx.core.framework.data.repositories.localbased
 
-import com.abedfattal.quranx.core.framework.api.models.Quran
 import com.abedfattal.quranx.core.framework.data.repositories.local.LocalDownloadStateRepository
 import com.abedfattal.quranx.core.framework.data.repositories.local.LocalEditionsRepository
 import com.abedfattal.quranx.core.framework.data.repositories.local.LocalQuranRepository
 import com.abedfattal.quranx.core.framework.data.repositories.remote.RemoteQuranRepository
 import com.abedfattal.quranx.core.model.*
-import com.abedfattal.quranx.core.utils.processTransform
 import kotlinx.coroutines.flow.*
 
 /**
@@ -32,10 +30,10 @@ class LocalBasedQuranRepository internal constructor(
      *
      * @return a flow of a [ProcessState] that actually represents the remote process state rather then local process state.
      */
-    fun downloadQuranBook(id: String): Flow<DownloadingState<Unit>> = flow<DownloadingState<Unit>>{
+    fun downloadQuranBook(id: String): Flow<DownloadingProcess<Unit>> = flow<DownloadingProcess<Unit>>{
          remoteRepository.getQuranBook(id).onEach { process ->
             if (process is ProcessState.Success && process.data != null) {
-                emit(DownloadingState.Saving())
+                emit(DownloadingProcess.Saving())
                 val quran = process.data
                 quranLocalRepository.addQuranBook(quran)
                 editionsLocalRepository.addEdition(quran.edition)
@@ -45,23 +43,23 @@ class LocalBasedQuranRepository internal constructor(
                     quran.edition.id,
                     DownloadState.STATE_DOWNLOADED,
                 )
-                emit(DownloadingState.Success())
+                emit(DownloadingProcess.Success())
             } else
-                emit(process.transformProcessType<Unit>().toDownloadState())
+                emit(process.transformProcessType<Unit>().toDownloadProcess())
         }
     }
 
-    fun getQuranBook(editionId: String): Flow<DownloadingState<List<AyaWithInfo>>> = flow {
+    fun getQuranBook(editionId: String): Flow<DownloadingProcess<List<AyaWithInfo>>> = flow {
         val downloadState = downloadStateRepository.getDownloadState(editionId)
         if (downloadState != null && downloadState.state == DownloadState.STATE_DOWNLOADED) {
             val ayat = quranLocalRepository.getAyatEditions(editionId)
-            emit(ProcessState.Success(ayat).toDownloadState())
+            emit(ProcessState.Success(ayat).toDownloadProcess())
         } else {
             emitAll(
                 downloadQuranBook(editionId).map { process ->
-                    if (process is DownloadingState.Success) {
+                    if (process is DownloadingProcess.Success) {
                         val ayat = quranLocalRepository.getAyatEditions(editionId)
-                        DownloadingState.Success(ayat)
+                        DownloadingProcess.Success(ayat)
                     } else
                         process.transformProcessType()
                 }

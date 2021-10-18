@@ -2,7 +2,6 @@ package com.abedfattal.quranx.core.model
 
 import androidx.annotation.StringRes
 import com.abedfattal.quranx.core.utils.processTransform
-import java.lang.IllegalStateException
 
 /**
  * A wrapper class for processes that can [Loading], [Success], or [Failed].
@@ -46,12 +45,12 @@ sealed class ProcessState<T> {
         }
     }
 
-    fun toDownloadState(): DownloadingState<T> {
+    fun toDownloadProcess(): DownloadingProcess<T> {
          return when (this) {
-            is Loading -> DownloadingState.Loading()
-            is Pending -> DownloadingState.Pending()
-            is Success -> DownloadingState.Success(data)
-            is Failed -> DownloadingState.Failed(reason, friendlyMsg)
+            is Loading -> DownloadingProcess.Loading()
+            is Pending -> DownloadingProcess.Pending()
+            is Success -> DownloadingProcess.Success(data)
+            is Failed -> DownloadingProcess.Failed(reason, friendlyMsg)
         }
     }
 }
