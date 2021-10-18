@@ -1,5 +1,6 @@
 package com.abedfattal.quranx.core.utils
 
+import com.abedfattal.quranx.core.model.DownloadingProcess
 import com.abedfattal.quranx.core.model.ProcessState
 import kotlinx.coroutines.flow.*
 
@@ -30,3 +31,4 @@ inline val <reified T> Flow<ProcessState<T>>.onSuccess: Flow<T?>
                 emit(it.data as? T)
         }
     }
+

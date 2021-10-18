@@ -16,6 +16,7 @@
 
     <string name="download_loading">Loading: Downloading Edition</string>
     <string name="download_fail">Failed on: Downloading Edition </string>
-    <string name="download_success">Success: Downloading Edition</string>
+    <string name="download_saving">Saving: Saving Edition</string>
+    <string name="download_success">Success: Edition</string>
     <string name="rules_in_verse">Rules in verse</string>
 </resources>

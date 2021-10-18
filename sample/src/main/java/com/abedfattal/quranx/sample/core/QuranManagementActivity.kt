@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.abedfattal.quranx.core.model.DownloadingProcess
 import com.abedfattal.quranx.core.model.Edition
 import com.abedfattal.quranx.core.model.ProcessState
 import com.abedfattal.quranx.sample.R
@@ -50,12 +51,13 @@ class QuranManagementActivity : AppCompatActivity(), AdapterView.OnItemSelectedL
         downloadButton.setOnClickListener {
             quranViewModel.getQuranBook(selectedEdition!!).observer(this) { downloadingProcess ->
                 stateText.text = when (downloadingProcess) {
-                    is ProcessState.Loading -> getString(R.string.download_loading)
-                    is ProcessState.Failed -> {
+                    is DownloadingProcess.Loading -> getString(R.string.download_loading)
+                    is DownloadingProcess.Failed -> {
                         Log.d(getString(R.string.download_fail), downloadingProcess.reason!!)
                         getString(R.string.download_fail) +  getString(downloadingProcess.friendlyMsg)
                     }
-                    is ProcessState.Success -> getString(R.string.download_success)
+                    is DownloadingProcess.Saving -> getString(R.string.download_saving)
+                    is DownloadingProcess.Success -> getString(R.string.download_success)
 
 
                     else -> throw IllegalStateException()
