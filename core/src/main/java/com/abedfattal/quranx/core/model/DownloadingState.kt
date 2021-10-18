@@ -2,7 +2,6 @@ package com.abedfattal.quranx.core.model
 
 import androidx.annotation.StringRes
 import com.abedfattal.quranx.core.utils.processTransform
-import java.lang.IllegalStateException
 
 /**
  * A wrapper class for processes that can [Loading], [Success], or [Failed].
@@ -11,47 +10,44 @@ import java.lang.IllegalStateException
  *
  * The type [T] represents the data type of the current process.
  */
-sealed class ProcessState<T> {
+sealed class DownloadingState<T>  {
 
     /**
      * [Pending] mean's the process hasn't started yet.
      */
-    class Pending<T> : ProcessState<T>()
+    class Pending<T> : DownloadingState<T>()
 
     /**
      * [Loading] mean's the process loading data. e.g. waiting for remote API response.
      */
-    class Loading<T> : ProcessState<T>()
+    class Loading<T> : DownloadingState<T>()
+
+    /**
+     * [Saving] mean's the process data is being saved in local.
+     */
+    class Saving<T> : DownloadingState<T>()
 
     /**
      * When the process [Success] it should hold [data]. e.g. remote API response data.
      */
-    data class Success<T>(val data: T?) : ProcessState<T>()
+    data class Success<T>(val data: T? = null) : DownloadingState<T>()
 
     /**
      * When the process [Failed] for a [reason] you can use [friendlyMsg] to show the user a msg why it's failed.
      */
-    data class Failed<T>(val reason: String?, @StringRes val friendlyMsg: Int) : ProcessState<T>()
+    data class Failed<T>(val reason: String?, @StringRes val friendlyMsg: Int) : DownloadingState<T>()
 
     /**
      * Used by library to transform the current process [T] type to another.
      * @see processTransform
      */
-    fun <T> transformProcessType(): ProcessState<T> {
+    fun <T> transformProcessType(): DownloadingState<T> {
         return when (this) {
             is Loading -> Loading()
             is Pending -> Pending()
+            is Saving -> Saving()
             is Success -> Success(null)
             is Failed -> Failed(reason, friendlyMsg)
-        }
-    }
-
-    fun toDownloadState(): DownloadingState<T> {
-         return when (this) {
-            is Loading -> DownloadingState.Loading()
-            is Pending -> DownloadingState.Pending()
-            is Success -> DownloadingState.Success(data)
-            is Failed -> DownloadingState.Failed(reason, friendlyMsg)
         }
     }
 }

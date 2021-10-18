@@ -32,10 +32,10 @@ class LocalBasedQuranRepository internal constructor(
      *
      * @return a flow of a [ProcessState] that actually represents the remote process state rather then local process state.
      */
-    fun downloadQuranBook(id: String): Flow<ProcessState<Unit>> =
-        remoteRepository.getQuranBook(id).onEach { process ->
+    fun downloadQuranBook(id: String): Flow<DownloadingState<Unit>> = flow<DownloadingState<Unit>>{
+         remoteRepository.getQuranBook(id).onEach { process ->
             if (process is ProcessState.Success && process.data != null) {
-
+                emit(DownloadingState.Saving())
                 val quran = process.data
                 quranLocalRepository.addQuranBook(quran)
                 editionsLocalRepository.addEdition(quran.edition)
@@ -45,20 +45,23 @@ class LocalBasedQuranRepository internal constructor(
                     quran.edition.id,
                     DownloadState.STATE_DOWNLOADED,
                 )
-            }
-        }.processTransform {  }
+                emit(DownloadingState.Success())
+            } else
+                emit(process.transformProcessType<Unit>().toDownloadState())
+        }
+    }
 
-    fun getQuranBook(editionId: String): Flow<ProcessState<List<AyaWithInfo>>> = flow {
+    fun getQuranBook(editionId: String): Flow<DownloadingState<List<AyaWithInfo>>> = flow {
         val downloadState = downloadStateRepository.getDownloadState(editionId)
         if (downloadState != null && downloadState.state == DownloadState.STATE_DOWNLOADED) {
             val ayat = quranLocalRepository.getAyatEditions(editionId)
-            emit(ProcessState.Success(ayat))
+            emit(ProcessState.Success(ayat).toDownloadState())
         } else {
             emitAll(
                 downloadQuranBook(editionId).map { process ->
-                    if (process is ProcessState.Success) {
+                    if (process is DownloadingState.Success) {
                         val ayat = quranLocalRepository.getAyatEditions(editionId)
-                        ProcessState.Success(ayat)
+                        DownloadingState.Success(ayat)
                     } else
                         process.transformProcessType()
                 }

@@ -33,7 +33,7 @@ allprojects {
 #### Step 2
 add the dependency to the `build.gradle` app module:
 ```groovy
-def quranx_version = "1.0.10"
+def quranx_version = "1.0.11"
 // All modules
 implementation "com.github.vipafattal:QuranX:$quranx_version"
 
