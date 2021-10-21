@@ -31,7 +31,7 @@ class LocalBasedQuranRepository internal constructor(
      * @return a flow of a [ProcessState] that actually represents the remote process state rather then local process state.
      */
     fun downloadQuranBook(id: String): Flow<DownloadingProcess<Unit>> = flow<DownloadingProcess<Unit>>{
-         remoteRepository.getQuranBook(id).onEach { process ->
+         remoteRepository.getQuranBook(id).collect { process ->
             if (process is ProcessState.Success && process.data != null) {
                 emit(DownloadingProcess.Saving())
                 val quran = process.data
