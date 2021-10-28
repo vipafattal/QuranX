@@ -1,14 +1,15 @@
 package com.abedfattal.quranx.core.framework.di
 
 import androidx.room.Room
-import com.abedfattal.quranx.core.ReadLibrary
+import com.abedfattal.quranx.core.QuranXCore
 import com.abedfattal.quranx.core.framework.api.QURAN_CLOUD_BASE_URL
 import com.abedfattal.quranx.core.framework.api.QuranCloudAPI
-import com.abedfattal.quranx.core.framework.db.*
+import com.abedfattal.quranx.core.framework.db.LibraryDatabase
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.File
 import java.util.concurrent.TimeUnit
 
 /** @suppress */
@@ -35,11 +36,13 @@ internal object Dependencies {
 
 
     val db: LibraryDatabase by lazy {
-        Room.databaseBuilder(
-            ReadLibrary.app,
+        val databaseBuilder = Room.databaseBuilder(
+            QuranXCore.app,
             LibraryDatabase::class.java,
-            LIBRARY_DATABASE_NAME
-        ).build()
+            QuranXCore.configuration.databaseName
+        )
+        QuranXCore.configuration.prepackagedDatabase?.let { databaseBuilder.createFromAsset(it) }
+        databaseBuilder.build()
     }
 
 }

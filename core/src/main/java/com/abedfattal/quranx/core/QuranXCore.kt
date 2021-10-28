@@ -2,6 +2,7 @@ package com.abedfattal.quranx.core
 
 import android.annotation.SuppressLint
 import android.content.Context
+import com.abedfattal.quranx.core.framework.db.DBConfiguration
 
 
 /**
@@ -11,12 +12,17 @@ import android.content.Context
  *
  * */
 @SuppressLint("StaticFieldLeak")
-object ReadLibrary {
+object QuranXCore {
 
     internal lateinit var app: Context
         private set
 
-    fun init(mContext: Context) {
+    internal lateinit var configuration: DBConfiguration
+        private set
+
+
+    fun init(mContext: Context, dbConfig:DBConfiguration? =null ) {
         app = mContext
+        configuration = dbConfig ?: DBConfiguration()
     }
 }

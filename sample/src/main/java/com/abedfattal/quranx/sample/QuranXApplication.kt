@@ -1,11 +1,13 @@
 package com.abedfattal.quranx.sample
 
 import android.app.Application
-import com.abedfattal.quranx.core.ReadLibrary
+import com.abedfattal.quranx.core.QuranXCore
+import com.abedfattal.quranx.core.framework.db.DBConfiguration
 
 class QuranXApplication  : Application() {
     override fun onCreate() {
         super.onCreate()
-        ReadLibrary.init(this)
+        val databaseConfig = DBConfiguration(databaseName = "sample-db",prepackagedDatabase = "default-mushaf-db")
+        QuranXCore.init(this,databaseConfig)
     }
 }

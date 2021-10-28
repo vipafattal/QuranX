@@ -6,13 +6,21 @@ import androidx.room.Query
 import androidx.room.Transaction
 import com.abedfattal.quranx.core.framework.db.AYAT_TABLE
 import com.abedfattal.quranx.core.framework.db.BOOKMARKS_TABLE
+import com.abedfattal.quranx.core.framework.db.EDITIONS_TABLE
 import com.abedfattal.quranx.core.model.AyaWithInfo
 import com.abedfattal.quranx.core.model.Bookmark
+import com.abedfattal.quranx.core.model.Edition
 import kotlinx.coroutines.flow.Flow
 
 /** @suppress */
 @Dao
 interface BookmarksDao {
+
+    @Query("select * from $EDITIONS_TABLE join $BOOKMARKS_TABLE on id = bookmark_editionId order by type ASC")
+    fun listenToEditionBookmarks(): Flow<List<Edition>>
+
+    @Query("select * from $EDITIONS_TABLE join $BOOKMARKS_TABLE on id = bookmark_editionId order by type ASC")
+    suspend fun getBookmarkedEditions(): List<Edition>
 
     @Query("select * from $AYAT_TABLE join $BOOKMARKS_TABLE on bookmark_editionId = ayaEdition order by ayaNumberInMushaf ASC")
     fun listenToBookmarks(): Flow<List<AyaWithInfo>>
@@ -34,7 +42,7 @@ interface BookmarksDao {
 
     @Transaction
     @Query("select * from $AYAT_TABLE join $BOOKMARKS_TABLE on bookmark_editionId = ayaEdition where bookmark_editionId ==:editionId and bookmark_ayaNumber == :ayaNumberInMushaf")
-    suspend fun getAyaBookmarkStatus(ayaNumberInMushaf: Int,editionId: String): AyaWithInfo?
+    suspend fun getAyaBookmarkStatus(ayaNumberInMushaf: Int, editionId: String): AyaWithInfo?
 
 
     @Insert
