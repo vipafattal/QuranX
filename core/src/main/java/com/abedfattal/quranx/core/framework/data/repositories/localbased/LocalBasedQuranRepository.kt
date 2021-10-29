@@ -78,7 +78,7 @@ class LocalBasedQuranRepository internal constructor(
      */
     fun getAya(numberInMushaf: Int, editionId: String): Flow<ProcessState<Aya>> {
         return callerItem(
-            local = { quranLocalRepository.getAya(numberInMushaf, editionId) },
+            local = { quranLocalRepository.getAya(numberInMushaf, editionId)?.aya },
             remote = { remoteRepository.getAya(numberInMushaf, editionId) },
             onRemoteSuccess = { quranLocalRepository.addAya(it) },
         )
