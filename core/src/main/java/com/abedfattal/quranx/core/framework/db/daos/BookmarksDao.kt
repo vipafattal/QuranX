@@ -25,6 +25,12 @@ interface BookmarksDao {
     @Query("select * from $AYAT_TABLE join $BOOKMARKS_TABLE on bookmark_editionId = ayaEdition order by ayaNumberInMushaf ASC")
     fun listenToBookmarks(): Flow<List<AyaWithInfo>>
 
+    @Transaction
+    @Query("select * from $AYAT_TABLE join $BOOKMARKS_TABLE on bookmark_editionId = ayaEdition where ayaEdition in (:editions) and surah_number = :surahNumber order by ayaEdition ASC")
+    fun listenToSurahAyatByEdition(
+         surahNumber: Int,vararg editions: String,
+    ): Flow<List<AyaWithInfo>>
+
     @Query("select * from $AYAT_TABLE join $BOOKMARKS_TABLE on bookmark_editionId = ayaEdition where bookmark_editionId = :editionId order by ayaNumberInMushaf ASC")
     fun listenToEditionBookmarks(editionId: String): Flow<List<AyaWithInfo>>
 
