@@ -21,7 +21,7 @@ class LocalQuranRepository internal constructor(
     /**
      * Get all saved verses in Surah by [surahNumber] that confirms with specific [Edition.id].
      */
-    suspend fun getAyatBySurah(editionId: String, surahNumber: Int): List<Aya> {
+    suspend fun getAyatBySurah(editionId: String, surahNumber: Int): List<AyaWithInfo> {
         return quranDao.getSurahAyatByEdition(editionId, surahNumber)
     }
 
@@ -49,8 +49,8 @@ class LocalQuranRepository internal constructor(
 
         return AyatWithTafseer(
             null,
-            tafseerList = data.firstOrNull { it.edition.id == tafseerEdition }?.ayat,
-            quranList = data.firstOrNull { it.edition.id == quranEdition }?.ayat,
+            tafseerList = data.firstOrNull { it.edition.id == tafseerEdition },
+            quranList = data.firstOrNull { it.edition.id == quranEdition },
         )
     }
 
@@ -205,7 +205,7 @@ class LocalQuranRepository internal constructor(
      * @return [Aya] single that exist in specific edition,
      * if no verse exist in database the query will return null.
      */
-    suspend fun getAya(numberInMushaf: Int, editionId: String): Aya? {
+    suspend fun getAya(numberInMushaf: Int, editionId: String): AyaWithInfo? {
         return quranDao.getAyaByEdition(numberInMushaf, editionId)
     }
 

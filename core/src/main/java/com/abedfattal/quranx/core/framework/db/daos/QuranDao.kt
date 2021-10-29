@@ -20,17 +20,17 @@ interface QuranDao {
     suspend fun getSurahByEdition(editionId: String, surahNumber: Int): Surah?
 
     @Query("select * from $AYAT_TABLE  where ayaEdition =:editionId and surah_number = :surahNumber")
-    suspend fun getSurahAyatByEdition(editionId: String, surahNumber: Int): List<Aya>
+    suspend fun getSurahAyatByEdition(editionId: String, surahNumber: Int): List<AyaWithInfo>
 
     @Query("select * from $AYAT_TABLE  where ayaEdition =:editionId and ayaNumberInMushaf = :number")
-    suspend fun getAyaByEdition(number: Int, editionId: String): Aya?
+    suspend fun getAyaByEdition(number: Int, editionId: String): AyaWithInfo?
+
+    @Query("select * from $AYAT_TABLE  where ayaEdition = :edition")
+    suspend fun getAyatEdition(edition: String): List<AyaWithInfo>
 
     @Transaction
     @Query("select * from $EDITIONS_TABLE  where id in (:editions)")
     suspend fun getAyatAllEditions(vararg editions: String): List<AyatWithEdition>
-
-    @Query("select * from $AYAT_TABLE  where ayaEdition = :edition")
-    suspend fun getAyatEdition(edition: String): List<AyaWithInfo>
 
     @Transaction
     @Query("select * from $EDITIONS_TABLE join $AYAT_TABLE on id = ayaEdition where id in (:editions) and juz = :juz")

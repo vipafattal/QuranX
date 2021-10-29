@@ -5,6 +5,6 @@ package com.abedfattal.quranx.core.model
  */
 data class AyatWithTafseer(
     var surah: Surah?,
-    val tafseerList: List<Aya>?,
-    val quranList: List<Aya>?
+    val tafseerList: AyatWithEdition?,
+    val quranList: AyatWithEdition?
 )
