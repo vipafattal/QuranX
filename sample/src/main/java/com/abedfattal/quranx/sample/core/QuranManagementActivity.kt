@@ -51,22 +51,6 @@ class QuranManagementActivity : AppCompatActivity(), AdapterView.OnItemSelectedL
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quran_management)
 
-        DataSources.localDataSource.quranRepository.listenToSurahBookmarksChanges(
-            "quran-simple",
-            "",
-            1
-        ).asLiveData(Dispatchers.IO).observe(this) {
-            Log.d("DDDDDD", this.toString())
-            lifecycleScope.launch(Dispatchers.IO) {
-                delay(1000)
-                val bookmark = Random.nextInt(1, 100)
-                DataSources.localDataSource.bookmarksRepository.updateBookmarkStatus(
-                    bookmark,
-                    "quran-simple",
-                    true
-                )
-            }
-        }
 
         loadLanguagesPicker()
         loadEditionsTypePicker()
