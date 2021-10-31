@@ -27,37 +27,6 @@ class LocalBookmarksRepository internal constructor(private val bookmarksDao: Bo
     /**
      * Listen for bookmarks table changes, like when new [Bookmark] is added or removed from the table, see [updateBookmarkStatus].
      *
-     * @return [AyaWithInfo] list contains only the bookmarked verses and ordered ascending by [Aya.number].
-     */
-    fun listenToSurahBookmarksChanges(
-        tafseerEdition: String,
-        quranEdition: String,
-        surahNumber: Int
-    ): Flow<AyatInfoWithTafseer> {
-
-        require(quranEdition != tafseerEdition)
-
-       return bookmarksDao.listenToSurahAyatByEdition(surahNumber, tafseerEdition, quranEdition).transform { ayatWithTafseer ->
-                val dataSize = ayatWithTafseer.size
-                val firstList = ayatWithTafseer.subList(0, dataSize / 2)
-                var quranList: List<AyaWithInfo> = emptyList()
-                var tafseerList: List<AyaWithInfo> = emptyList()
-                if (firstList.getOrNull(0) != null) {
-                    if (firstList[0].aya.ayaEdition == quranEdition) {
-                        quranList = ayatWithTafseer.subList(0, dataSize / 2)
-                        tafseerList = ayatWithTafseer.subList(dataSize / 2, dataSize)
-                    } else {
-                        tafseerList = ayatWithTafseer.subList(0, dataSize / 2)
-                        quranList = ayatWithTafseer.subList(dataSize / 2, dataSize)
-                    }
-                }
-                emit(AyatInfoWithTafseer(null,tafseerList, quranList))
-            }.distinctUntilChanged()
-    }
-
-    /**
-     * Listen for bookmarks table changes, like when new [Bookmark] is added or removed from the table, see [updateBookmarkStatus].
-     *
      * @return [Edition] info list contains only the bookmarked edition ordered ascending by [Edition.type].
      */
     fun listenToBookmarksEditionChanges(): Flow<List<Edition>> {

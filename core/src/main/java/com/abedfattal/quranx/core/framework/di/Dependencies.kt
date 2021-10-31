@@ -41,7 +41,9 @@ internal object Dependencies {
             LibraryDatabase::class.java,
             QuranXCore.configuration.databaseName
         )
-        QuranXCore.configuration.prepackagedDatabase?.let { databaseBuilder.createFromAsset(it) }
+        QuranXCore.configuration.prepackagedDatabase?.let {
+            databaseBuilder.createFromAsset(it)
+        }
         databaseBuilder.build()
     }
 

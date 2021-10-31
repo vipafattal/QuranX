@@ -5,9 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.abedfattal.quranx.core.framework.data.DataSources
-import com.abedfattal.quranx.core.model.AyaWithInfo
-import com.abedfattal.quranx.core.model.DownloadingProcess
-import com.abedfattal.quranx.core.model.ProcessState
+import com.abedfattal.quranx.core.model.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -15,6 +13,7 @@ class QuranManagementViewModel : ViewModel() {
 
     private val dataSource = DataSources.localBasedDataSource
     private val repository = dataSource.quranRepository
+
 
     fun getQuranBook(editionId: String): LiveData<DownloadingProcess<Unit>> {
         return repository.downloadQuranBook(editionId).asLiveData(Dispatchers.IO)

@@ -8,6 +8,7 @@ import com.abedfattal.quranx.core.model.Aya
 import com.abedfattal.quranx.core.model.AyaWithInfo
 import com.abedfattal.quranx.core.model.AyatWithEdition
 import com.abedfattal.quranx.core.model.Surah
+import kotlinx.coroutines.flow.Flow
 
 /** @suppress */
 @Dao
@@ -35,6 +36,12 @@ interface QuranDao {
     @Transaction
     @Query("select * from $EDITIONS_TABLE join $AYAT_TABLE on id = ayaEdition where id in (:editions) and juz = :juz")
     suspend fun getJuzAllEditions(juz: Int, vararg editions: String): List<AyatWithEdition>
+
+    @Transaction
+    @Query("select * from $AYAT_TABLE where ayaEdition in (:editions) and surah_number = :surahNumber order by ayaEdition ASC")
+    fun listenToSurahAyatByEdition(
+        surahNumber: Int,vararg editions: String,
+    ): Flow<List<AyaWithInfo>>
 
     @Transaction
     @Query("select * from $EDITIONS_TABLE join $AYAT_TABLE on id = ayaEdition where id in (:editions) and surah_number = :surahNumber")

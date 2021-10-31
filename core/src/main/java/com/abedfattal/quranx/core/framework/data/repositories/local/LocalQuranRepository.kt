@@ -5,6 +5,10 @@ import com.abedfattal.quranx.core.framework.data.repositories.localbased.LocalBa
 import com.abedfattal.quranx.core.framework.data.repositories.remote.RemoteQuranRepository
 import com.abedfattal.quranx.core.framework.db.daos.QuranDao
 import com.abedfattal.quranx.core.model.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.transform
+
 
 /**
  * Use [LocalQuranRepository] to save and apply local queries on [Aya] table .
@@ -90,6 +94,37 @@ class LocalQuranRepository internal constructor(
             juz,
             editions = editions
         )
+    }
+
+    /**
+     * Listen for bookmarks table changes, like when new [Bookmark] is added or removed from the table, see [updateBookmarkStatus].
+     *
+     * @return [AyaWithInfo] list contains only the bookmarked verses and ordered ascending by [Aya.number].
+     */
+    fun listenToSurahBookmarksChanges(
+        tafseerEdition: String,
+        quranEdition: String,
+        surahNumber: Int
+    ): Flow<AyatInfoWithTafseer> {
+
+        require(quranEdition != tafseerEdition)
+
+        return quranDao.listenToSurahAyatByEdition(surahNumber, tafseerEdition, quranEdition).transform { ayatWithTafseer ->
+            val dataSize = ayatWithTafseer.size
+            val firstList = ayatWithTafseer.subList(0, dataSize / 2)
+            var quranList: List<AyaWithInfo> = emptyList()
+            var tafseerList: List<AyaWithInfo> = emptyList()
+            if (firstList.getOrNull(0) != null) {
+                if (firstList[0].aya.ayaEdition == quranEdition) {
+                    quranList = ayatWithTafseer.subList(0, dataSize / 2)
+                    tafseerList = ayatWithTafseer.subList(dataSize / 2, dataSize)
+                } else {
+                    tafseerList = ayatWithTafseer.subList(0, dataSize / 2)
+                    quranList = ayatWithTafseer.subList(dataSize / 2, dataSize)
+                }
+            }
+            emit(AyatInfoWithTafseer(null,tafseerList, quranList))
+        }.distinctUntilChanged()
     }
 
     /**

@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import com.abedfattal.quranx.core.framework.data.DataSources
 import com.abedfattal.quranx.core.model.DownloadingProcess
 import com.abedfattal.quranx.core.model.Edition
 import com.abedfattal.quranx.core.model.ProcessState
@@ -19,6 +21,10 @@ import com.abedfattal.quranx.sample.core.viewmodels.QuranManagementViewModel
 import com.abedfattal.quranx.sample.utils.observer
 import com.abedfattal.quranx.sample.utils.viewModelOf
 import com.google.android.material.button.MaterialButton
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlin.random.Random
 
 class QuranManagementActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
