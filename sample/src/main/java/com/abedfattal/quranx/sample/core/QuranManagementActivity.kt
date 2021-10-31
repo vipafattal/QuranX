@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import com.abedfattal.quranx.core.framework.data.DataSources
 import com.abedfattal.quranx.core.model.DownloadingProcess
@@ -50,6 +51,23 @@ class QuranManagementActivity : AppCompatActivity(), AdapterView.OnItemSelectedL
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quran_management)
 
+        DataSources.localDataSource.quranRepository.listenToSurahBookmarksChanges(
+            "quran-simple",
+            "",
+            1
+        ).asLiveData(Dispatchers.IO).observe(this) {
+            Log.d("DDDDDD", this.toString())
+            lifecycleScope.launch(Dispatchers.IO) {
+                delay(1000)
+                val bookmark = Random.nextInt(1, 100)
+                DataSources.localDataSource.bookmarksRepository.updateBookmarkStatus(
+                    bookmark,
+                    "quran-simple",
+                    true
+                )
+            }
+        }
+
         loadLanguagesPicker()
         loadEditionsTypePicker()
         initDownloadedEditionsView()
@@ -60,7 +78,7 @@ class QuranManagementActivity : AppCompatActivity(), AdapterView.OnItemSelectedL
                     is DownloadingProcess.Loading -> getString(R.string.download_loading)
                     is DownloadingProcess.Failed -> {
                         Log.d(getString(R.string.download_fail), downloadingProcess.reason!!)
-                        getString(R.string.download_fail) +  getString(downloadingProcess.friendlyMsg)
+                        getString(R.string.download_fail) + getString(downloadingProcess.friendlyMsg)
                     }
                     is DownloadingProcess.Saving -> getString(R.string.download_saving)
                     is DownloadingProcess.Success -> getString(R.string.download_success)
@@ -80,7 +98,8 @@ class QuranManagementActivity : AppCompatActivity(), AdapterView.OnItemSelectedL
                 is ProcessState.Loading -> stateText.text = getString(R.string.lang_loading)
                 is ProcessState.Failed -> {
                     Log.d(getString(R.string.lang_fail), languageProcess.reason!!)
-                    stateText.text = getString(R.string.lang_fail) + getString(languageProcess.friendlyMsg)
+                    stateText.text =
+                        getString(R.string.lang_fail) + getString(languageProcess.friendlyMsg)
                 }
                 is ProcessState.Success -> {
 
@@ -127,7 +146,7 @@ class QuranManagementActivity : AppCompatActivity(), AdapterView.OnItemSelectedL
 
 
     private fun initDownloadedEditionsView() {
-        editionViewModel.listAllDownloadedEditions().observer(this) { editions->
+        editionViewModel.listAllDownloadedEditions().observer(this) { editions ->
             downloadedEditionsText.text = editions.joinToString { it.name }
         }
     }

@@ -101,7 +101,7 @@ class LocalQuranRepository internal constructor(
      *
      * @return [AyaWithInfo] list contains only the bookmarked verses and ordered ascending by [Aya.number].
      */
-    fun listenToSurahBookmarksChanges(
+    fun listenToSurahChanges(
         tafseerEdition: String,
         quranEdition: String,
         surahNumber: Int
@@ -124,6 +124,21 @@ class LocalQuranRepository internal constructor(
                 }
             }
             emit(AyatInfoWithTafseer(null,tafseerList, quranList))
+        }.distinctUntilChanged()
+    }
+    /**
+     * Listen for bookmarks table changes, like when new [Bookmark] is added or removed from the table, see [updateBookmarkStatus].
+     *
+     * @return [AyaWithInfo] list contains only the bookmarked verses and ordered ascending by [Aya.number].
+     */
+    fun listenToSurahChanges(
+        edition: String,
+        surahNumber: Int
+    ): Flow<AyatInfoWithTafseer> {
+
+        return quranDao.listenToSurahAyatByEdition(surahNumber, edition).transform { ayatWithTafseer ->
+
+            emit(AyatInfoWithTafseer(null,null, ayatWithTafseer))
         }.distinctUntilChanged()
     }
 
