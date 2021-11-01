@@ -26,8 +26,8 @@ data class AyaWithInfo(
     )
     val edition: Edition,
     @Relation(
-        parentColumn = "ayaEdition",
-        entityColumn = "bookmark_editionId",
+        parentColumn = "ayaNumberInMushaf",
+        entityColumn = "bookmark_ayaNumber",
         entity = Bookmark::class
     )
     val bookmark: Bookmark?

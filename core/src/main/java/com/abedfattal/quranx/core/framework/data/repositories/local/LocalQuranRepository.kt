@@ -137,7 +137,6 @@ class LocalQuranRepository internal constructor(
     ): Flow<AyatInfoWithTafseer> {
 
         return quranDao.listenToSurahAyatByEdition(surahNumber, edition).transform { ayatWithTafseer ->
-
             emit(AyatInfoWithTafseer(null,null, ayatWithTafseer))
         }.distinctUntilChanged()
     }
