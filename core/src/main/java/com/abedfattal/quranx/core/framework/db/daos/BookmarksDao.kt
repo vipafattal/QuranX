@@ -1,9 +1,6 @@
 package com.abedfattal.quranx.core.framework.db.daos
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Transaction
+import androidx.room.*
 import com.abedfattal.quranx.core.framework.db.AYAT_TABLE
 import com.abedfattal.quranx.core.framework.db.BOOKMARKS_TABLE
 import com.abedfattal.quranx.core.framework.db.EDITIONS_TABLE
@@ -45,7 +42,7 @@ interface BookmarksDao {
     suspend fun getAyaBookmarkStatus(ayaNumberInMushaf: Int, editionId: String): AyaWithInfo?
 
 
-    @Insert
+    @Insert(onConflict=OnConflictStrategy.IGNORE)
     suspend fun addBookmark(bookmark: Bookmark)
 
     @Query("delete from $BOOKMARKS_TABLE where bookmark_editionId == :editionId and bookmark_ayaNumber == :ayaNumber")
