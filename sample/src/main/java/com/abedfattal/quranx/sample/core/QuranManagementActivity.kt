@@ -51,6 +51,21 @@ class QuranManagementActivity : AppCompatActivity(), AdapterView.OnItemSelectedL
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quran_management)
 
+        DataSources.localDataSource.quranRepository.listenToSurahChanges(
+            "quran-tajweed",
+            1
+        ).asLiveData(Dispatchers.IO).observe(this) {
+            Log.d("DDDDDD", it.toString())
+            lifecycleScope.launch(Dispatchers.IO) {
+                val bookmark = 4
+                DataSources.localDataSource.bookmarksRepository.updateBookmarkStatus(
+                    bookmark,
+                    "quran-tajweed",
+                    true
+                )
+            }
+        }
+
         loadLanguagesPicker()
         loadEditionsTypePicker()
         initDownloadedEditionsView()

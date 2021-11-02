@@ -39,7 +39,7 @@ interface QuranDao {
     suspend fun getJuzAllEditions(juz: Int, vararg editions: String): List<AyatWithEdition>
 
     @Transaction
-    @Query("select * from $AYAT_TABLE LEFT JOIN $BOOKMARKS_TABLE on bookmark_editionId = ayaEdition where ayaEdition in (:editions) and surah_number = :surahNumber order by ayaEdition ASC")
+    @Query("select * from $AYAT_TABLE where surah_number = :surahNumber and ayaEdition in (:editions) order by ayaEdition ASC")
     fun listenToSurahAyatByEdition(
         surahNumber: Int,vararg editions: String,
     ): Flow<List<AyaWithInfo>>
