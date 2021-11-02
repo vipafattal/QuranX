@@ -19,18 +19,18 @@ interface BookmarksDao {
     @Query("select * from $EDITIONS_TABLE join $BOOKMARKS_TABLE on id = bookmark_editionId order by type ASC")
     suspend fun getBookmarkedEditions(): List<Edition>
 
-    @Query("select * from $AYAT_TABLE join $BOOKMARKS_TABLE on bookmark_editionId = ayaEdition order by ayaNumberInMushaf ASC")
+    @Query("select * from $AYAT_TABLE join $BOOKMARKS_TABLE on bookmark_editionId = ayaEdition where bookmark_ayaNumber = ayaNumberInMushaf order by ayaNumberInMushaf ASC")
     fun listenToBookmarks(): Flow<List<AyaWithInfo>>
 
     @Query("select * from $AYAT_TABLE join $BOOKMARKS_TABLE on bookmark_editionId = ayaEdition where bookmark_editionId = :editionId order by ayaNumberInMushaf ASC")
     fun listenToEditionBookmarks(editionId: String): Flow<List<AyaWithInfo>>
 
     @Transaction
-    @Query("select * from $AYAT_TABLE join $BOOKMARKS_TABLE on bookmark_editionId = ayaEdition order by ayaNumberInMushaf ASC")
+    @Query("select * from $AYAT_TABLE join $BOOKMARKS_TABLE on bookmark_editionId = ayaEdition where bookmark_ayaNumber == ayaNumberInMushaf order by ayaNumberInMushaf ASC")
     suspend fun getAllBookmarkedAyat(): List<AyaWithInfo>
 
     @Transaction
-    @Query("select * from $AYAT_TABLE join $BOOKMARKS_TABLE on bookmark_editionId = ayaEdition where bookmark_editionId == :editionId order by ayaNumberInMushaf ASC")
+    @Query("select * from $AYAT_TABLE join $BOOKMARKS_TABLE on bookmark_editionId = ayaEdition where bookmark_ayaNumber == ayaNumberInMushaf and bookmark_editionId == :editionId order by ayaNumberInMushaf ASC")
     suspend fun getBookmarkedAyatInEdition(editionId: String): List<AyaWithInfo>
 
     @Transaction
