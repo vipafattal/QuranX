@@ -51,6 +51,10 @@ class QuranManagementActivity : AppCompatActivity(), AdapterView.OnItemSelectedL
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quran_management)
 
+        DataSources.localDataSource.bookmarksRepository.listenToBookmarksChanges().asLiveData(Dispatchers.IO).observe(this) {
+            Log.d("DDDDDD", it.toString())
+        }
+
         loadLanguagesPicker()
         loadEditionsTypePicker()
         initDownloadedEditionsView()

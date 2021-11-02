@@ -15,7 +15,7 @@ data class AyaWithInfo(
     @Embedded
     val aya: Aya,
     @Relation(
-        parentColumn = "numberInSurah",
+        parentColumn = "surah_number",
         entityColumn = "surahNumberInMushaf"
     )
     var surah: Surah?,
