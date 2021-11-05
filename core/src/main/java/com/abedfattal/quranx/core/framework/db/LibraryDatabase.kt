@@ -2,10 +2,12 @@ package com.abedfattal.quranx.core.framework.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.abedfattal.quranx.core.framework.db.daos.*
 import com.abedfattal.quranx.core.model.*
 
 /** @suppress */
+@TypeConverters(DateConverter::class)
 @Database(
     entities = [Aya::class, Edition::class, Surah::class, Bookmark::class, Language::class,DownloadState::class],
     version = DATA_VERSION,
