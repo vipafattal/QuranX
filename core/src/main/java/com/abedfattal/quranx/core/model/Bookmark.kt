@@ -6,6 +6,10 @@ import com.abedfattal.quranx.core.framework.db.BOOKMARKS_TABLE
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import com.abedfattal.quranx.core.framework.data.repositories.local.LocalBookmarksRepository
+import com.abedfattal.quranx.core.utils.DateSerializer
+import kotlinx.serialization.Transient
+import java.util.*
+
 /**
  * The base model for querying bookmarked verses.
  * @see [LocalBookmarksRepository].
@@ -20,10 +24,20 @@ data class Bookmark(
     val editionId: String,
     @ColumnInfo(name = "bookmark_ayaNumber")
     val ayaNumber: Int,
+    @ColumnInfo(name = "bookmark_date")
+    @Serializable(with = DateSerializer::class)
+    val date: Date,
+    @ColumnInfo(name = "bookmark_type")
+    val type:String,
+    @ColumnInfo(name = "bookmark_is_dirty")
+    val isDirty:Boolean =true
 ) {
+    @Transient
+    var lastUpdate: Date? = null
     /**
      * Convert the current [Bookmark] object into json [String].
      */
+
     fun toJson() = Json.encodeToString(serializer(), this)
 
     companion object {

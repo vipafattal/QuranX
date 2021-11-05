@@ -1,10 +1,13 @@
 package com.abedfattal.quranx.core.framework.data.repositories.local
 
 import com.abedfattal.quranx.core.framework.db.daos.BookmarksDao
-import com.abedfattal.quranx.core.model.*
+import com.abedfattal.quranx.core.model.Aya
+import com.abedfattal.quranx.core.model.AyaWithInfo
+import com.abedfattal.quranx.core.model.Bookmark
+import com.abedfattal.quranx.core.model.Edition
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.transform
+import java.util.*
 
 
 /**
@@ -105,9 +108,22 @@ class LocalBookmarksRepository internal constructor(private val bookmarksDao: Bo
     suspend fun updateBookmarkStatus(
         ayaNumber: Int,
         editionId: String,
+        editionType: String,
         isAdd: Boolean
     ) {
-        if (isAdd) bookmarksDao.addBookmark(Bookmark(editionId, ayaNumber))
+        if (isAdd) bookmarksDao.addBookmark(Bookmark(editionId, ayaNumber, Date(),editionType))
         else bookmarksDao.removeBookmark(ayaNumber, editionId)
+    }
+
+    suspend fun updateDirtyState(bookmark: Bookmark, newDirtyState: Boolean) {
+        bookmarksDao.updateBookmark(bookmark.copy(isDirty = newDirtyState))
+    }
+
+    suspend fun getDirtyBookmarked(): List<Bookmark> {
+        return bookmarksDao.getDirtyBookmarks()
+    }
+
+    suspend fun restBookmarks() {
+        bookmarksDao.removeAllBookmarked()
     }
 }
