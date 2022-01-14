@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/read_library_appbar_card"
+        android:layout_width="match_parent"
+        android:theme="@style/AppTheme"
+        android:layout_height="?actionBarSize"
+        tools:layout_height="56dp"
+        app:cardBackgroundColor="?android:colorBackground"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="0dp">
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+                app:titleTextAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                app:title="@string/Library"
+                android:id="@+id/search_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:popupTheme="@style/popupMenu"
+              />
+
+      <!--  <include
+                android:id="@+id/go_premium_button"
+
+                android:padding="7dp"
+                android:layout_marginHorizontal="12dp"
+                android:layout_gravity="center_vertical|end"
+                layout="@layout/layout_go_premium"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />-->
+
+
+    </FrameLayout>
+</com.google.android.material.card.MaterialCardView>

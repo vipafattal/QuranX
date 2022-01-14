@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="download_app_via">حمل التطبيق عبر الغوغل بلاي</string>
+    <string name="app_version">رقم نسخة المكتبة V1.0</string>
+
+    <string name="shortcut_created">تم إنشاء الإختصار</string>
+    <string name="home">الرئيسية</string>
+    <string name="search">البحث</string>
+    <string name="activity">النشاط</string>
+    <string name="more">المزيد</string>
+    <string name="radio">إذاعة</string>
+    <string name="reciter">قارئ</string>
+    <string name="radios">الإذاعات الحية</string>
+    <string name="reciters">القرائ</string>
+    <string name="recent_play">أخر التشغيلات</string>
+    <string name="listenTo">إستماع</string>
+    <string name="play_media">تشغيل</string>
+    <string name="share">مشاركة</string>
+    <string name="tools_surah_al_anam">الفاتحة</string>
+    <string name="tools_reciter_maharialafasy">عبدالباسط عبدالصمد</string>
+    <string name="share_surah">مشاركة رابط السورة</string>
+    <string name="search_hint">أكتب أسماً…</string>
+    <string name="account_creation_summry">سجل الدخول لإنشاء واسترجاع قائمة التشغيل الخاصة بك</string>
+    <string name="share_playlist">مشاركة قائمة التشغيل</string>
+    <string name="playlists">قوائم التشغيل</string>
+    <string name="no_saved_playlist_yet">لا يوجد قوائم تشغيل محفوظة بعد</string>
+    <string name="history_is_empty">السجل فارغ</string>
+    <string name="download_all">تحميل الكل</string>
+    <string name="privacy_and_details"><![CDATA[الخصوصية والتفاصيل]]></string>
+    <string name="data_disclaimer">تنازلات</string>
+    <string name="appearance_settings">إعدادت المظهر</string>
+
+    <string name="disclaimer_summery_mp3_quran">جميع البيانات الصوتية للتطبيق تم الحصول عليه من موقع \'mp3quran.net\' وتتوقف صحة
+        البيانات على عاتق الموقع، فإن فريق تطوير تطبيق Mushaf Cloud غير مسوؤل عن أي خطأ في صوتيات، في حال وجد خظأ في البيانات الرجاء الإعلام
+    </string>
+    <string name="word_summery">نسأل الله أن يتقبل هذا العمل المتواضع الذي قصدنا به نفع المسلمين في كل مكان ويجعله سبباً
+        في رد النار ودخول الجنة لكل فرد عمل على تطوير التطبيق أو ساعد في إنجازه
+    </string>
+    <string name="word">كلمة</string>
+    <string name="about">حول</string>
+    <string name="open_source_license">تراخيص البرامج مفتوحة المصدر</string>
+    <string name="unknown_error">حدث خطأ غير معروف في الإتصال</string>
+    <string name="no_internet">لا يوجد إتصال في الإنترنت</string>
+    <string name="timout">إنتهت مهلة الإتصال</string>
+    <string name="connection_reset">خطأ في الإتصال</string>
+    <string name="connection_error">خطأ في الإتصال</string>
+    <string name="error_getting_user_playlist">حدث خطأ أنثاء محاولة الحصول على قوائم التشغيل الخاصة بك</string>
+    <string name="app_language">تغير لغة التطبيق</string>
+    <string name="account_details">تفاصيل الحساب</string>
+    <string name="account_privacy_text">نحتاج إلى حساب لحفظ قوائم التشغيل الخاصة بك في السحابة حتى تتمكن من استعادتها إذا قمت بتغيير جهازك أو قمت بإلغاء تثبيت التطبيق.\nنحن لا نستخدم أي بيانات شخصية (مثل كلمات المرور وتاريخ الميلاد والجنس …)، إننا نستخدم حسابك بشكل مجهول لتقديم خدمات سحابية.</string>
+    <string name="sign_out">تسجيل الخروج</string>
+    <string name="action_can_t_be_undo">لا يمكن التراجع عن هذا الإجراء</string>
+    <string name="need_account">أنت بحاجة إلى حساب لإنشاء قائمة تشغيل</string>
+    <string name="no_user_name">لا يوجد أسم مستخدم</string>
+    <string name="cancelled">إلغي</string>
+    <string name="email">البريد الإلكتروني</string>
+    <string name="username">أسم المستخدم</string>
+    <string name="account_privacy_policy">سياسة خصوصية الحساب</string>
+    <string name="add_to_home_screen">إضافة إختصار إلى الشاشة الرئيسية</string>
+    <string name="buffering">جاري التحميل…</string>
+    <string name="nothing_to_play">لا يوجد شيئ لتشغيله</string>
+    <string name="name">االاسم</string>
+    <string name="add_to_playlist">إضافة إلى قائمة التشغيل</string>
+    <string name="cancel">إلغاء</string>
+    <string name="save">حفظ</string>
+    <string name="saved">تم الحفظ</string>
+    <string name="failed_creating_list">فشل إنشاء قائمة التشغيل</string>
+    <string name="playlist">قائمة التشغيل</string>
+    <string name="delete_playlist">حذف قائمة التشغيل</string>
+    <string name="deleted">تم الحذف</string>
+    <string name="changes_saved">تم حفظ التغيرات</string>
+
+    <string name="remove_from_playlist">إزالة من قائمة التشغيل</string>
+    <string name="new_playlist">قائمة تشغيل جديدة</string>
+    <string name="new_item">إنشاء</string>
+    <string name="no_saved_playlist">ليست هناك قائمة تشغيل محفوظة</string>
+    <string name="failed">فشلت العملية</string>
+    <string name="download">تحميل</string>
+    <string name="downloaded">تم تحميل</string>
+    <string name="downloads">التنزيلات</string>
+    <string name="retry">إعادة المحاولة</string>
+    <string name="cancel_downloaded">إلغاء التحميل</string>
+    <string name="select_playlist">حدد قائمة التشغيل</string>
+    <string name="history">السجلّ</string>
+    <string name="failed_updating_playlist">فشل تحديث قائمة التشغيل!</string>
+    <string name="download_started">بدأ التنزيل…</string>
+    <string name="play_all">تشغيل الكل</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="already_downloading_surah">جاري تحميل السورة</string>
+    <string name="connection_error_full_msg">تحقق من بيانات هاتفك المحمول أو Wi-Fi وحاول مرة أخرى ، إذا استمرت المشكلة يرجى الاتصال بالدعم</string>
+    <string name="no_media_downloaded">لا يوجد صوتيات محملة بعد</string>
+    <string name="sign_in">تسجيل الدخول</string>
+    <string name="you_haven_t_signed_in_yet">لم تقم بتسجيل الدخول بعد</string>
+    <string name="signed_in">تم التسجيل الدخول</string>
+    <string name="hi">مرحباً</string>
+    <string name="choose_language_from">يرجى اختيار لغة التطبيق من القائمة التالية.</string>
+    <string name="language_not_fully_supported_notify">اللغة الغير مدعومة بالكامل سوف تتبع للغة النظام.</string>
+    <string name="language_not_supported">غير مدعومة بالكامل</string>
+    <string name="select_a_language">أختيار لغة:</string>
+    <string name="let_start">لنبدأ إستماع</string>
+    <string name="playlist_name">أسم قائمة التشغيل</string>
+    <string name="pause_media">إيقاف</string>
+    <string name="service_not_available">الخدمة غير متاحة</string>
+    <string name="no_book_added">لم يتم إضافة أي كتاب بعد</string>
+    <string name="add_book">إضافة كتاب</string>
+    <string name="aya_number">رقم الآية</string>
+    <string name="tafseer">تفسير</string>
+    <string name="page">الصفحة</string>
+    <string name="aya">الآية</string>
+    <string name="juz">الجزء</string>
+    <string name="bookmark_remove">حذف العلام</string>
+    <string name="quran">القرآن</string>
+
+    <string name="translation">الترجمة</string>
+    <string name="tansliteration">اللفظ</string>
+    <string name="translate">ترجمة</string>
+    <string name="downloading_please_wait">جاري التحميل الرجاء الإنتظار</string>
+    <string name="downloading">جار تحميل…</string>
+    <string name="download_completed">أكتمل التحميل</string>
+    <string name="choose_surah">أختر سورة</string>
+    <string name="manage_library">إدارة المكتبة</string>
+    <string name="Library">المكتبة</string>
+    <string name="please_wait">الرجاء إنتظار</string>
+    <string name="deleting">جاري الحذف…</string>
+    <string name="disclaimer_summery">جميع بيانات التطبيق تم الحصول عليه من موقع \'alquran.cloud\' وتتوقف صحة
+        البيانات على عاتق الموقع، فإن فريق تطوير تطبيق Mushaf غير مسوؤل عن أي خطأ في بيانات الترجمة والتفسير، في حال وجد خظأ في البيانات الرجاء الإعلام
+    </string>
+    <string name="already_added">السورة موجودة في هذه القائمة</string>
+    <string name="subs_not_supported">الخدمة غير متاحة قم بتحديث غوغل بلاي</string>
+    <string name="error_already_subscibed">خطأ أنت مشترك مسبقاُ</string>
+    <string name="payment_verification_error">فشل التحقق من عملية الشراء</string>
+    <string name="get_premium">إحصل على إشتراك</string>
+
+    <string name="premium_title_1">مزامنة قوائم التشغيل، سجل التشغيلات، والمفضلات مع كل الأجهزة</string>
+    <string name="premium_title_2">مكتبة بلا قيود</string>
+    <string name="premium_title_3">إختصارت في كل مكان</string>
+    <string name="premium_title_4">إدعم مهمتنا</string>
+
+    <string name="premium_content_1">أنشاء حساباً وقم بمزامنة حميع نشاطاتك وإعداتك مع جميع الأجهزة المسجلة بنفس الحساب</string>
+    <string name="premium_content_2">تحميل وقراءة كتب بلا قيود</string>
+    <string name="premium_content_3">إنشاء إختصارت لقوائم التشغيل ولكتبك ولقرائك المفضلين وأستمع إليهم دون الحاجة لفتح التطبيق</string>
+    <string name="premium_content_4">مهمتنا هي إنشاء تطبيقات لخدمة المسلمين واللغة العربية والتي هي خالية من الإعلانات لضمان خلوها من أي إعلانات سيئة ذات محتوى غير لائق بتطبيق إسلامي</string>
+    <string name="undo">تراجع</string>
+    <string name="requires_subscription">الميزة تتطلب إشتراك</string>
+    <string name="shortcuts_require_subs">إنشاء الإختصارات يتطلب إشتراك</string>
+    <string name="download_all_surahs">تحميل كل السور؟</string>
+    <string name="comma">،</string>
+    <string name="saving_data">جاري حفظ الملفات…</string>
+    <string name="audio_permission">لا يمكن حفظ ملفات الصوت بدون الصلاحيات</string>
+    <string name="advanced">إعدادت متقدمة</string>
+    <string name="Theme">التصميم</string>
+    <string name="theme_light">فاتح</string>
+    <string name="theme_dark">داكن</string>
+    <string name="theme_by_battery">حسب ميزة "توفير شحن البطارية"</string>
+    <string name="theme_by_system">حسب إعدادت النظام</string>
+
+</resources>

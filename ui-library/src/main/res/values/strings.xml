@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="delete_edition">Delete Book</string>
+    <string name="preview_quran" translatable="false">الم 1 ذَلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ هُدًى لِلْمُتَّقِينَ 2 الَّذِينَ يُؤْمِنُونَ بِالْغَيْبِ وَيُقِيمُونَ الصَّلَاةَ وَمِمَّا رَزَقْنَاهُمْ يُنْفِقُونَ 3</string>
+    <string name="preview_translation">In the name of God, The Most Gracious, The Dispenser of Grace:</string>
+
+    <string name="small_font_size">Small</string>
+    <string name="medium_font_size">Medium</string>
+    <string name="large_font_size">Large</string>
+    <string name="x_large_font_size">Very Large</string>
+
+    <string name="font_size_key">Font size</string>
+    <string name="translation_with_aya">Display verses with translation</string>
+    <string name="arabic_numbers">Show Arabic numbers</string>
+    <string name="reading">Reading Settings</string>
+
+    <string name="previewing_text">Text preview</string>
+    <string name="more_books_subscription">Subscription required to download more books</string>
+    <string name="books_require_update">Some books have critical updated, so you need to re-download them</string>
+    <string name="downloaded_books_update">Downloaded books require an update</string>
+    <string name="ok">OK</string>
+    <string name="colors_mean">Colors meaning</string>
+
+    <string name="ayah_copied_popup">Verse coped</string>
+    <string name="share_ayah_text">Share verse</string>
+    <string name="choose_quran_edition">Choose Quran Edition</string>
+    <string name="quran_translation_summary">Set the version of Quran to be displayed with translation in the library.</string>
+    <string name="set_quran_edition">Change translation Quran edition</string>
+    <string name="choose_theme">Choose Theme</string>
+    <string name="not_downloaded_edtion">Book not Downloaded</string>
+
+    <string name="no_bookmarks">No Bookmarks Saved Yet</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="books">Books</string>
+
+</resources>

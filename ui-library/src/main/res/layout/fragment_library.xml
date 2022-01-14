@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:theme="@style/AppTheme">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/empty_data_text"
+            style="@style/AppTheme.Text.HeadLine1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/no_book_added"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_items_library"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="15"
+            tools:listitem="@layout/item_library" />
+    </RelativeLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/add_item_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/fab_extended_height"
+        android:layout_margin="12dp"
+        android:text="@string/add_book"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        app:backgroundTint="@color/colorAccent"
+        app:elevation="@dimen/fab_elevation"
+        app:icon="@drawable/ic_library_add"
+        app:iconTint="#fff"
+        app:layout_anchor="@+id/recycler_items_library"
+        app:layout_anchorGravity="right|bottom" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

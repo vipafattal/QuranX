@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="download_app_via">Download the app via GooglePlay</string>
+    <string name="app_version">Library Version 1.0</string>
+
+    <string name="facebook_app_id" translatable="false">245217256790818</string>
+    <string name="facebook_login_protocol_scheme" translatable="false">fb245217256790818</string>
+
+    <string name="facebook_application_id" translatable="false">245217256790818</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb245217256790818</string>
+
+    <string name="playback_channel_name" translatable="false">Playback</string>
+    <string name="xplayer_description" translatable="false">Xplayer Description</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="reciters">Reciters</string>
+    <string name="listenTo">Listen</string>
+    <string name="radios">Live Broadcasts</string>
+    <string name="radio">Live Broadcast</string>
+    <string name="reciter">Reciter</string>
+    <string name="add_to_home_screen">Add to home screen</string>
+    <string name="shortcut_created">Shortcut created</string>
+    <string name="buffering">buffering…</string>
+    <string name="nothing_to_play">Nothing To Play</string>
+    <string name="name">Name</string>
+    <string name="play_media">Play</string>
+    <string name="add_to_playlist">Add to playlist</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="saved">Saved</string>
+    <string name="failed_creating_list">Failed creating playlist</string>
+    <string name="home">Home</string>
+    <string name="playlists">Playlists</string>
+    <string name="playlist">Playlist</string>
+    <string name="delete_playlist">Delete playlist</string>
+    <string name="changes_saved">Changes Saved</string>
+    <string name="deleted">Deleted</string>
+    <string name="remove_from_playlist">Remove from playlist</string>
+    <string name="new_playlist">New playlist</string>
+    <string name="new_item">New</string>
+    <string name="no_saved_playlist">No Saved Playlist</string>
+    <string name="failed">Failed</string>
+    <string name="download">Download</string>
+    <string name="downloaded">Downloaded</string>
+    <string name="downloads">Downloads</string>
+    <string name="retry">Retry</string>
+    <string name="connection_error">Connection Error</string>
+    <string name="connection_error_full_msg">Check your mobile data or Wi-Fi and try again, if the problem persists contact support.</string>
+    <string name="no_media_downloaded">No media has been downloaded yet</string>
+    <string name="sign_in">Sign in</string>
+    <string name="you_haven_t_signed_in_yet">You haven\'t signed in yet</string>
+    <string name="signed_in">Singed in</string>
+    <string name="hi">Welcome</string>
+    <string name="download_started">Downloading started…</string>
+    <string name="tools_surah_al_anam" >Al-An\'am</string>
+    <string name="tools_reciter_maharialafasy" >Mahari Alafasy</string>
+    <string name="cancel_downloaded">Cancel downloaded</string>
+    <string name="select_playlist">Select Playlist</string>
+    <string name="history">History</string>
+    <string name="failed_updating_playlist">Failed updating playlist!</string>
+    <string name="search">Search</string>
+    <string name="activity">Activity</string>
+    <string name="more">More</string>
+    <string name="play_all">Play all</string>
+    <string name="already_downloading_surah">Surah is Already Downloading</string>
+    <string name="recent_play">Recent Play</string>
+    <string name="share">Share</string>
+    <string name="share_surah">Share Surah Link with</string>
+    <string name="share_playlist">Share Playlist</string>
+    <string name="search_hint">Type Name…</string>
+    <string name="account_creation_summry">Sign in to create and retrieve your playlist</string>
+    <string name="no_saved_playlist_yet">No saved playlist yet!</string>
+    <string name="history_is_empty">History is empty</string>
+    <string name="download_all">Download All</string>
+    <string name="privacy_and_details">Privacy &amp; Open Source</string>
+    <string name="data_disclaimer">Disclaimer</string>
+    <string name="disclaimer_summery_mp3_quran">All audio data is retrieved from \'mp3quran.net\' and it\'s their responsibility to verify the data validity so the app developer team of Mushaf Cloud is not responsible for any
+        mistake or incorrectness in the provided audios in the app, please if you find any error please report them.</string>
+    <string name="word_summery">May Allah accept this humble work, which was done in good faith to benefit Muslims
+        wherever they are. We also hope to make it a reason to save us from the punishment of the Hellfire, and may
+        Allah grant those who participated in developing the application or helped accomplishing it, the Paradise.</string>
+    <string name="about">About</string>
+    <string name="word">A Statement</string>
+    <string name="open_source_license">Open Source License</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="no_internet">No internet connection</string>
+    <string name="timout">Connection Timeout</string>
+    <string name="connection_reset">Connection reset</string>
+    <string name="error_getting_user_playlist">An error occurred while getting your playlists</string>
+    <string name="app_language">Change App Language</string>
+    <string name="account_details">Account Details</string>
+    <string name="appearance_settings">Appearance Settings</string>
+    <string name="email">Email</string>
+    <string name="username">User name</string>
+    <string name="account_privacy_policy">Account Privacy Policy</string>
+    <string name="account_privacy_text">We need an account to save your playlist into the cloud so you can restore them if you change your device or uninstalled the app, we don\'t collect any personal data (such as passwords, birth date, sex…).\nWe use your account anonymously to serve cloud-based features.</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="action_can_t_be_undo">This action can\'t be undo</string>
+    <string name="login">Login</string>
+    <string name="need_account">You need account to create playlist</string>
+    <string name="no_user_name">No user name</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="choose_language_from">Please choose your language from the list below.</string>
+    <string name="language_not_fully_supported_notify">Not fully supported languages follow your system language</string>
+    <string name="select_a_language">Please select a language:</string>
+    <string name="let_start">Let\'s Play</string>
+    <string name="playlist_name">Playlist Name</string>
+    <string name="pause_media">Pause</string>
+    <string name="service_not_available">Service not available</string>
+    <string name="language_not_supported">Not Fully Supported</string>
+    <string name="no_book_added">No Any Books Added Yet</string>
+    <string name="add_book">Add Book</string>
+    <string name="aya_number">Aya number</string>
+    <string name="tafseer">Tafseer</string>
+    <string name="page">page</string>
+    <string name="juz">Juz\'</string>
+    <string name="aya">Aya</string>
+    <string name="remove_bookmark">Bookmark removed</string>
+
+    <string name="translation">Translation</string>
+    <string name="tansliteration">Transliteration</string>
+    <string name="translate">Translate</string>
+    <string name="downloading_please_wait">Downloading Please Wait</string>
+    <string name="downloading">Downloading…</string>
+    <string name="deleting">Deleting…</string>
+    <string name="download_completed">Download completed</string>
+    <string name="choose_surah">Choose Surah</string>
+    <string name="manage_library">Manage Library</string>
+    <string name="Library">Library</string>
+    <string name="please_wait">Please Wait</string>
+    <string name="disclaimer_summery">All data is retrieved from \'alquran.cloud\' and it\'s their responsibility to verify the data validity so the app developer team of Mushaf is not responsible for any
+        mistake or incorrectness in the provided data in the app, please if you find any error please report them.
+    </string>
+    <string name="already_added">Surah is already in playlist</string>
+    <string name="subs_not_supported">Subscription not available update Google Play</string>
+    <string name="error_already_subscibed">Error you already subscribed</string>
+    <string name="payment_verification_error">Verification error</string>
+    <string name="get_premium">Get Premium</string>
+
+
+    <string name="premium_title_1">Sync Playlists, Favorites, History Across Devices</string>
+    <string name="premium_title_2">Unlimited Library</string>
+    <string name="premium_title_3">Shortcuts Every Where</string>
+    <string name="premium_title_4">Support Our Mission</string>
+
+
+    <string name="premium_content_1">Create one account and sync all your settings across all devices with same account</string>
+    <string name="premium_content_2">Download and read with unlimited books in library</string>
+    <string name="premium_content_3">Create shortcuts to play your playlists and your favourite reciter without opening the app</string>
+    <string name="premium_content_4">Creating apps to serve Muslims and Arabic language that is free of ads to ensure our apps doesn\'t show bad (Haram) content</string>
+    <string name="quran">Quran</string>
+
+    <string name="undo">Undo</string>
+    <string name="requires_subscription">Feature requires subscription</string>
+    <string name="shortcuts_require_subs">shortcuts require subscription</string>
+    <string name="download_all_surahs">Download All Surahs?</string>
+    <string name="comma">,</string>
+    <string name="saving_data">Saving data…</string>
+    <string name="audio_permission">Cannot save audio files without the requested permission</string>
+    <string name="advanced">Advanced</string>
+    <string name="Theme">Theme</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_by_battery">Set by Battery Saver</string>
+    <string name="theme_by_system">Set by System</string>
+
+</resources>
+

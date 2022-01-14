@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <color name="colorPrimary">#121314</color>
+    <color name="colorPrimaryDark">#0A0A0A</color>
+    <color name="colorAccent">#EC2A39</color>
+    <color name="colorAccentDark">#F65E7C</color>
+    <color name="colorDone">#FF039BE5</color>
+    <color name="colorAccentLight">#271D1E</color>
+    <color name="colorLightTransparent">#66F1304D</color>
+    <color name="appBackgroundColor">#121314</color>
+    <color name="lightBackgroundColor">#3E2E30</color>
+
+    <color name="textColor">#FFFFFF</color>
+    <color name="textColorWithBackground">#888888</color>
+
+    <color name="colorNormalText">#F4F4F4</color>
+
+    <color name="colorSecondaryItems">#312F2F</color>
+    <color name="colorReciterItem">#121314</color>
+    <color name="colorFavouriteItemStroke">#312F2F</color>
+    <color name="colorPlayerHeader">#0E0F10</color>
+    <color name="colorControlNormal">#fff</color>
+    <color name="libraryItemBg">#121314</color>
+    <color name="colorCloseImageBg">#A6070707</color>
+
+    <!--  <color name="black">#000000</color>
+      <color name="snow">#fbf8f8</color>
+      <color name="manatee">#95989a</color>
+      <color name="outerspace">#414243</color>
+      <color name="sealbrown">#301a1a</color>
+      <color name="amaranth">#f1304d</color>
+      <color name="dimgray">#707070</color>
+      <color name="manatee_1">#9a9090</color>
+      <color name="mediumjunglegreen">#2d2d2e</color>
+      <color name="white">#ffffff</color>
+      <color name="awesomepink">#ff1744</color>-->
+</resources>
+

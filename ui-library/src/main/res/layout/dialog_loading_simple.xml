@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="360dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center"
+        android:layout_margin="12dp"
+        android:theme="@style/AppTheme"
+        android:minHeight="180dp"
+        app:cardBackgroundColor="?android:colorBackground"
+        app:cardCornerRadius="12dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="360dp"
+            android:minHeight="180dp"
+            android:layout_height="match_parent"
+            android:minWidth="360dp"
+            android:padding="12dp">
+
+        <TextView
+                android:id="@+id/simple_loading_text"
+                style="@style/AppTheme.Text.HeadLine3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/downloading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="@string/please_wait"
+                android:textColor="@color/colorTextSecondary"
+                app:layout_constraintStart_toStartOf="@+id/simple_loading_text"
+                app:layout_constraintTop_toBottomOf="@+id/simple_loading_text" />
+
+        <ProgressBar
+                android:id="@+id/syncing_progress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_gravity="center"
+                android:indeterminateOnly="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.55"
+                tools:targetApi="lollipop" />
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/cancel_button"
+                style="@style/AppTheme.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

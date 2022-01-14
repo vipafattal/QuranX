@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="preview_translation"> أي الجزاء وهو يوم القيامة، وخص بالذكر لأنه لا ملك ظاهرًا فيه لأحد إلا الله تعالى بدليل «لمن الملك اليوم؟ لله» ومن قرأ مالك فمعناه الأمر كله في يوم القيامة أو هو موصوف بذلك دائمًا «كغافر الذنب» فصح وقوعه صفة لمعرفة.",</string>
+
+    <string name="delete_edition">حذف الكتاب</string>
+    <string name="medium_font_size">متوسط</string>
+    <string name="large_font_size">كبير</string>
+    <string name="x_large_font_size">كبير جداً</string>
+    <string name="small_font_size">صغير</string>
+
+    <string name="arabic_numbers">عرض أرقام عربية</string>
+    <string name="translation_with_aya">عرض ترجمة/تفسير مع الآية</string>
+    <string name="font_size_key">حجم الخط</string>
+    <string name="reading">إعدادت القراءة</string>
+    <string name="previewing_text">معاينة للنص</string>
+    <string name="more_books_subscription">تحتاج إلى أشتراك لتحميل مزيد من الكتب</string>
+    <string name="books_require_update">بعض الكتب طرأ عليها تحديث هام، لذا يلزم إعادة تحمليها</string>
+    <string name="downloaded_books_update">تتطلب بعض الكتب المحملة تحديثًا</string>
+    <string name="ok">حسناً</string>
+    <string name="colors_mean">دلالة الألوان</string>
+
+    <string name="ayah_copied_popup">تم نسخةالآية</string>
+    <string name="share_ayah_text">مشاركة الآية</string>
+    <string name="choose_quran_edition">اختر نسخة قرآن</string>
+    <string name="quran_translation_summary">اختيار نسخة القران التي سوف تظهر مع التفسير/الترجمة في المكتبة أثناء القراءة.</string>
+    <string name="set_quran_edition">تغير نسخة القرآن الظهر في التفسير</string>
+    <string name="choose_theme">أختيار التصميم</string>
+    <string name="not_downloaded_edtion">الكتاب غير محمل</string>
+    <string name="bookmarks">العلامات</string>
+    <string name="no_bookmarks">لا يوجد علامات مرجعية محفوظة</string>
+    <string name="books">الكتُب</string>
+
+</resources>

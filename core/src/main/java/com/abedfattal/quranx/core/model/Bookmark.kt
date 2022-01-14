@@ -2,12 +2,13 @@ package com.abedfattal.quranx.core.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import com.abedfattal.quranx.core.framework.db.BOOKMARKS_TABLE
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
+import androidx.room.PrimaryKey
 import com.abedfattal.quranx.core.framework.data.repositories.local.LocalBookmarksRepository
+import com.abedfattal.quranx.core.framework.db.BOOKMARKS_TABLE
 import com.abedfattal.quranx.core.utils.DateSerializer
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
+import kotlinx.serialization.json.Json
 import java.util.*
 
 /**
@@ -18,22 +19,31 @@ import java.util.*
  * @property ayaNumber represents verse number in Quran ([Aya.number]).
  */
 @Serializable
-@Entity(tableName = BOOKMARKS_TABLE, primaryKeys = ["bookmark_editionId", "bookmark_ayaNumber"])
+@Entity(tableName = BOOKMARKS_TABLE)
 data class Bookmark(
+    @PrimaryKey
+    @ColumnInfo(name = "bookmark_id")
+    val id: String = "",
     @ColumnInfo(name = "bookmark_editionId")
-    val editionId: String,
+    val editionId: String = "",
     @ColumnInfo(name = "bookmark_ayaNumber")
-    val ayaNumber: Int,
+    val ayaNumber: Int = -1,
     @ColumnInfo(name = "bookmark_date")
     @Serializable(with = DateSerializer::class)
-    val date: Date,
+    val date: Date? = null,
     @ColumnInfo(name = "bookmark_type")
-    val type:String,
+    val type: String = "",
     @ColumnInfo(name = "bookmark_is_dirty")
-    val isDirty:Boolean =true
+    var isDirty: Boolean = true,
+    @ColumnInfo(name = "bookmark_is_deleted")
+    val isDeleted: Boolean = false,
+    @ColumnInfo(name = "bookmark_user_id")
+    var userId: String = "",
+    @Serializable(with = DateSerializer::class)
+    var lastUpdate: Date? = null,
 ) {
-    @Transient
-    var lastUpdate: Date? = null
+
+
     /**
      * Convert the current [Bookmark] object into json [String].
      */

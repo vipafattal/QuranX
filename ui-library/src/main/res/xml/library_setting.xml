@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/reading">
+
+        <Preference
+                android:key="@string/font_size_key"
+                android:summary="@string/medium_font_size"
+                android:title="@string/font_size_key" />
+
+        <SwitchPreferenceCompat
+                android:defaultValue="true"
+                android:key="@string/translation_with_aya"
+                android:title="@string/translation_with_aya" />
+
+        <Preference
+                android:dependency="@string/translation_with_aya"
+                android:key="@string/set_quran_edition"
+                android:summary="@string/quran_translation_summary"
+                android:title="@string/set_quran_edition" />
+
+        <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="@string/arabic_numbers"
+                android:title="@string/arabic_numbers" />
+
+    </PreferenceCategory>
+
+
+    <PreferenceCategory android:title="@string/privacy_and_details">
+
+        <Preference
+                android:key="@string/data_disclaimer"
+                android:summary="@string/disclaimer_summery_mp3_quran"
+                android:title="@string/data_disclaimer" />
+
+        <Preference
+                android:key="@string/open_source_license"
+                android:title="@string/open_source_license" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/about">
+        <Preference
+                android:summary="@string/app_version"
+                android:title="@string/app_name" />
+        <Preference
+                android:summary="@string/word_summery"
+                android:title="@string/word" />
+        <Preference />
+        <Preference />
+    </PreferenceCategory>
+
+</PreferenceScreen>
