@@ -22,6 +22,8 @@ data class Language(
      */
     fun toJson() = Json.encodeToString(serializer(), this)
 
+    fun isArabic() = code == "ar"
+
     /**
      * Get the localized name of the current language [code].
      */

@@ -1,0 +1,93 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlinx-serialization'
+    id 'kotlin-kapt'
+    id "androidx.navigation.safeargs.kotlin"
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+        vectorDrawables.useSupportLibrary = true
+
+    }
+    androidExtensions {
+        experimental = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation kt.core
+    implementation kt.serialization
+
+    implementation coroutines.core
+    implementation coroutines.android
+    implementation coroutines.playservice
+
+    implementation androidm.appcompat
+    implementation androidm.recyclerview
+    implementation androidm.material
+    implementation androidm.constraintlayout
+    implementation androidm.preference
+
+    implementation roomDB.core
+    implementation roomDB.ktx
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    kapt roomDB.kapt
+
+    implementation retrofit.core
+    implementation retrofit.converter
+    implementation retrofit.interceptor
+
+    implementation koin.core
+    implementation koin.android
+
+    implementation lifecycle.viewmodel
+    implementation lifecycle.livedata
+
+
+    implementation navigation.fragment
+    implementation navigation.ui
+
+    implementation frameworks.sdp
+    implementation frameworks.ssp
+    implementation frameworks.flex
+
+    implementation project(":ui-common")
+
+    //QuranX
+    api project(":core")
+    api project(":wordsprocessor")
+    api project(":tajweedprocessor")
+    api project(":tajweedrules")
+
+    implementation 'com.github.vipafattal:KotlinRecycler:1.2.1'
+
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:orientation="vertical"
+    tools:theme="@style/AppTheme">
+
+    <include
+        android:id="@+id/layout"
+        layout="@layout/toolbar_library" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/library_tabs"
+            style="@style/TabsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="?actionBarSize"
+            android:layout_gravity="start"
+            android:background="@color/appBackgroundColor"
+            android:textAlignment="viewStart"
+            app:tabGravity="start"
+            app:tabIndicatorHeight="4dp"
+            app:tabMode="fixed"
+            app:tabPaddingBottom="2dp"
+            app:tabPaddingTop="8dp" />
+
+        <ImageView
+            android:id="@+id/librarySettingsButton"
+            android:layout_width="@dimen/_28sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginHorizontal="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="7dp"
+            app:srcCompat="@drawable/ic_settings"
+            app:tint="@color/colorTextSecondary" />
+
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"
+        android:layout_marginTop="0.8dp"
+        android:background="@color/colorSecondaryItems" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/library_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:colorBackground"
+        android:orientation="horizontal" />
+</LinearLayout>

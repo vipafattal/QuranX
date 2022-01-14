@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_height="wrap_content"
+        app:cardElevation="0dp"
+        android:clickable="true"
+        app:cardCornerRadius="5dp"
+        android:focusable="true"
+        android:id="@+id/item_bookmark_root_view"
+        app:cardBackgroundColor="@android:color/transparent"
+        android:background="?attr/selectableItemBackground" android:layout_marginLeft="3dp">
+<RelativeLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+    <ImageButton
+            android:id="@+id/remove_bookmark"
+            android:layout_marginEnd="5dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/ic_remove_outline"
+            tools:src="@drawable/ic_remove_outline"
+            android:background="?selectableItemBackgroundBorderless"
+            android:layout_width="@dimen/iconButtonSize"
+            android:layout_height="@dimen/iconButtonSize"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+        <TextView
+                android:id="@+id/surah_name_bookmark"
+                style="@style/AppTheme.Text.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                tools:text="Surat Al-Bagarah" />
+
+        <TextView
+                android:id="@+id/info_bookmark"
+                style="@style/AppTheme.Text.Secondary1.Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                tools:text="page 3, juz'1, ayah 7" />
+
+
+    </LinearLayout>
+</RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

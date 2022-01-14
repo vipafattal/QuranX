@@ -53,7 +53,11 @@ data class Surah(
      *
      * @see [LocaleListCompat.getDefault]
      */
-    fun getLocalizedName(local: Locale): String = if (!local.isArabic) name else englishName
+    fun getLocalizedName(language: Language): String =
+        if (language.isArabic()) name else englishName
+
+    fun getLocalizedName(locale: Locale): String = if (!locale.isArabic)
+        name else englishName
 
     companion object {
         /**

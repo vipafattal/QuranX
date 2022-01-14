@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/emptyDataText"
+        android:layout_width="match_parent"
+        android:layout_margin="26dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        style="@style/AppTheme.Text.HeadLine1"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+        tools:text="@string/no_book_added" />

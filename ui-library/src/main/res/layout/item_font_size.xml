@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="24dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical"
+        android:theme="@style/AppTheme">
+
+    <LinearLayout
+            android:id="@+id/textSizeRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center">
+
+        <TextView
+                android:id="@+id/textSizeName"
+                style="@style/AppTheme.Text.HeadLine3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="?android:textColor"
+                android:textSize="19sp"
+                tools:text="@string/medium_font_size" />
+
+        <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/selectedTextSizeRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:checked="true" />
+    </LinearLayout>
+
+    <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="?android:colorBackground"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="12dp"
+            app:cardCornerRadius="0dp"
+            app:cardElevation="8dp"
+            app:cardUseCompatPadding="true"
+            tools:cardUseCompatPadding="false">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <TextView
+                        style="@style/QuranicText"
+                        android:id="@+id/quranTextViewSize"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        tools:text="@string/preview_quran" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:lineSpacingExtra="2.5dp"
+                        android:lineSpacingMultiplier="1.2"
+                        android:layout_marginTop="12dp"
+                        android:id="@+id/translationTextViewSize"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="@string/preview_translation" />
+
+                <TextView
+                        style="@style/AppTheme.Text.Secondary2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:padding="8dp"
+                        android:text="@string/previewing_text"
+                        android:textColor="@color/colorTextSecondary"
+                        tools:text="Preview Quran Text" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>

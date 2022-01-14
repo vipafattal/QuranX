@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <color name="colorPrimary">#2D2D2E</color>
+    <color name="colorPrimaryDark">#121314</color>
+    <color name="colorAccent">#ff0026</color>
+    <color name="colorAccentDark">#C6072C</color>
+    <color name="colorDone">#FF039BE5</color>
+    <color name="colorAccentLight">#FFE7EB</color>
+    <color name="appBackgroundColor">#FFFFFF</color>
+    <color name="lightBackgroundColor">#E5CCD0</color>
+    <color name="textColor">#000000</color>
+    <color name="textColorWithBackground">#EDE9E9</color>
+    <color name="colorLightTransparent">#66F1304D</color>
+    <color name="colorTextSecondary">#757575</color>
+    <color name="colorTextSecondaryDarkBackground">#9E9D9D</color>
+    <color name="colorPlayerItem">#E6FFFFFF</color>
+    <color name="colorSecondaryItems">#C5C5C5</color>
+    <color name="colorNormalText">#232323</color>
+    <color name="touchColor">#F0C6C6C6</color>
+    <color name="colorSecondaryTab">#65191818</color>
+    <color name="colorPlayerTransparent">#739E9E9E</color>
+    <color name="colorCloseImageBg">#EDEBEB</color>
+    <color name="colorReciterItem">#121314</color>
+    <color name="colorFavouriteItemStroke">#9E002E</color>
+    <color name="colorMediaItemBg">#121314</color>
+    <color name="colorPlayerHeader">#FBFBFB</color>
+    <color name="colorControlNormal">#121314</color>
+    <color name="colorDialogBackground">#72000000</color>
+    <color name="libraryItemBg">#2D2D2E</color>
+    <color name="colorWarning">#FFAB00</color>
+    <color name="transparent">#00000000</color>
+
+    <!--  <color name="black">#000000</color>
+      <color name="snow">#fbf8f8</color>
+      <color name="manatee">#95989a</color>
+      <color name="outerspace">#414243</color>
+      <color name="sealbrown">#301a1a</color>
+      <color name="amaranth">#f1304d</color>
+      <color name="dimgray">#707070</color>
+      <color name="manatee_1">#9a9090</color>
+      <color name="mediumjunglegreen">#2d2d2e</color>
+      <color name="white">#ffffff</color>
+      <color name="awesomepink">#ff1744</color>-->
+</resources>
+

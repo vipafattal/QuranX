@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     defaultConfig {
         applicationId "com.abedfattal.mushaf_library"
-        minSdkVersion 16
-        targetSdkVersion 30
+        minSdkVersion 21
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
@@ -34,7 +34,6 @@ android {
 
 dependencies {
 
-    implementation kt.core
     implementation androidm.appcompat
     implementation androidm.material
     implementation androidm.constraintlayout
@@ -47,6 +46,7 @@ dependencies {
 
     //ViewModel + LiveData
     implementation lifecycle.viewmodel
+
     implementation lifecycle.livedata
     implementation lifecycle.runtime
 

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+            android:id="@+id/tajweedRulesInfo"
+            android:icon="@drawable/ic_info"
+            android:title="@string/mududd_rules"
+            app:showAsAction="ifRoom" />
+
+    <item
+            android:title="@string/tajweed_rules"
+            app:showAsAction="never" />
+
+    <group
+            android:id="@+id/tajweedGroupCheckbox"
+            android:checkableBehavior="all">
+        <item
+                android:id="@+id/mududCheckBox"
+                android:title="@string/mududd_rules"
+                app:actionViewClass="android.widget.CheckBox"
+                app:showAsAction="never" />
+        <item
+                android:id="@+id/noonCheckBox"
+                android:title="@string/noon_rules"
+                app:actionViewClass="android.widget.CheckBox"
+                app:showAsAction="never" />
+
+        <item
+                android:id="@+id/mimmCheckBox"
+                android:title="@string/mimm_rules"
+                app:actionViewClass="android.widget.CheckBox"
+                app:showAsAction="never" />
+        <item
+                android:id="@+id/qalaqahCheckBox"
+                android:title="@string/qalaqah_rules"
+                app:actionViewClass="android.widget.CheckBox"
+                app:showAsAction="never" />
+        <item
+                android:id="@+id/idghamCheckBox"
+                android:title="@string/idgham_rules"
+                app:actionViewClass="android.widget.CheckBox"
+                app:showAsAction="never" />
+
+    </group>
+
+
+</menu>

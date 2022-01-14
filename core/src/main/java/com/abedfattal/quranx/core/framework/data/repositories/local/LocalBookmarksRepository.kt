@@ -19,7 +19,7 @@ import java.util.*
 class LocalBookmarksRepository internal constructor(private val bookmarksDao: BookmarksDao) {
 
     /**
-     * Listen for bookmarks table changes, like when new [Bookmark] is added or removed from the table, see [updateBookmarkStatus].
+     * Listen for bookmarks table changes, like when new [Bookmark] is added or removed from the table.
      *
      * @return [AyaWithInfo] list contains only the bookmarked verses and ordered ascending by [Aya.number].
      */
@@ -28,7 +28,7 @@ class LocalBookmarksRepository internal constructor(private val bookmarksDao: Bo
     }
 
     /**
-     * Listen for bookmarks table changes, like when new [Bookmark] is added or removed from the table, see [updateBookmarkStatus].
+     * Listen for bookmarks table changes, like when new [Bookmark] is added or removed from the table.
      *
      * @return [Edition] info list contains only the bookmarked edition ordered ascending by [Edition.type].
      */
@@ -46,7 +46,7 @@ class LocalBookmarksRepository internal constructor(private val bookmarksDao: Bo
     }
 
     /**
-     * Listen for bookmarks table changes in specific edition, like when new [Bookmark] add or removed from the table, see [updateBookmarkStatus].
+     * Listen for bookmarks table changes in specific edition, like when new [Bookmark] add or removed from the table.
      *
      * @return [AyaWithInfo] list contains only the bookmarked verses and ordered ascending by [Aya.number].
      */
@@ -105,14 +105,31 @@ class LocalBookmarksRepository internal constructor(private val bookmarksDao: Bo
      * @param editionId which represents the verse edition to bookmark.
      * @param isAdd which determines to add the following bookmark info or remove from the table.
      */
-    suspend fun updateBookmarkStatus(
+    suspend fun addBookmark(
         ayaNumber: Int,
         editionId: String,
         editionType: String,
-        isAdd: Boolean
+        userId: String
     ) {
-        if (isAdd) bookmarksDao.addBookmark(Bookmark(editionId, ayaNumber, Date(),editionType))
-        else bookmarksDao.removeBookmark(ayaNumber, editionId)
+        bookmarksDao.addBookmark(
+            Bookmark(
+                id = UUID.randomUUID().toString(),
+                editionId = editionId,
+                ayaNumber = ayaNumber,
+                type = editionType,
+                date = Date(),
+                lastUpdate = Date(),
+                userId = userId
+            )
+        )
+    }
+
+    suspend fun addBookmark(bookmark: Bookmark) {
+        bookmarksDao.addBookmark(bookmark)
+    }
+
+    suspend fun updateBookmark(bookmark: Bookmark) {
+        bookmarksDao.updateBookmark(bookmark)
     }
 
     suspend fun updateDirtyState(bookmark: Bookmark, newDirtyState: Boolean) {

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="QuranicText">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="fontFamily">@font/kitab_bold</item>
+        <item name="android:lineSpacingExtra">1.15dp</item>
+        <item name="android:lineSpacingMultiplier">1.25</item>
+    </style>
+    <style name="AppTheme.Text" parent="@style/TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/open_sans_regular</item>
+        <item name="android:textColor">@color/textColor</item>
+    </style>
+
+    <style name="AppTheme.Text.HeadLine1">
+        <item name="fontFamily">@font/open_sans_bold</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="AppTheme.Text.HeadLine2">
+        <item name="android:textSize">23sp</item>
+    </style>
+    <style name="AppTheme.Text.HeadLine2.bold">
+        <item name="fontFamily">@font/open_sans_bold</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+    <style name="AppTheme.Text.HeadLine3">
+        <item name="android:textSize">20sp</item>
+    </style>
+    <style name="AppTheme.Text.HeadLine3.bold">
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">@font/open_sans_bold</item>
+    </style>
+
+    <style name="AppTheme.Text.HeadLine4">
+        <item name="android:textSize">19sp</item>
+        <item name="fontFamily">@font/open_sans_semibold</item>
+
+    </style>
+
+    <style name="AppTheme.Text.Body1">
+        <item name="fontFamily">@font/open_sans_regular</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="AppTheme.Text.Body1.bold">
+        <item name="fontFamily">@font/open_sans_bold</item>
+    </style>
+
+
+    <style name="AppTheme.Text.Body2.bold">
+        <item name="fontFamily">@font/open_sans_bold</item>
+    </style>
+
+    <style name="AppTheme.Text.Body3">
+        <item name="android:textSize">13sp</item>
+        <item name="fontFamily">@font/open_sans_semibold</item>
+    </style>
+
+    <style name="AppTheme.Text.Secondary1">
+        <item name="android:textColorSecondary">@color/colorTextSecondary</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
+    </style>
+
+    <style name="AppTheme.Text.Secondary1.Bold">
+        <item name="fontFamily">@font/open_sans_semibold</item>
+        <item name="android:textColorSecondary">@color/colorTextSecondary</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
+    </style>
+
+    <style name="AppTheme.Text.Secondary2">
+        <item name="android:textColorSecondary">@color/colorTextSecondary</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="AppTheme.Text.Secondary2.Bold">
+        <item name="fontFamily">@font/open_sans_semibold</item>
+    </style>
+    <style name="AppTheme.Text.Secondary2.Italic">
+        <item name="fontFamily">@font/open_sans_italic</item>
+    </style>
+
+    <style name="AppTheme.Text.Secondary3">
+        <item name="android:textColorSecondary">@color/colorTextSecondary</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+    <style name="AppTheme.Text.Secondary3.Bold">
+        <item name="fontFamily">@font/open_sans_semibold</item>
+    </style> <style name="AppTheme.Text.Body2">
+        <item name="android:textSize">16sp</item>
+</style>
+
+</resources>

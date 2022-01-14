@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.appbar.AppBarLayout
+        android:background="@color/appBackgroundColor"
+        android:id="@+id/actionbarManageLibrary"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:elevation="0dp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+     >
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_manage_library"
+            android:layout_height="?actionBarSize"
+            android:layout_width="match_parent"
+            app:navigationIcon="@drawable/ic_back_arrow"
+            app:title="@string/manage_library"
+            app:titleTextAppearance="@style/AppTheme.Text.HeadLine2" />
+</com.google.android.material.appbar.AppBarLayout>
