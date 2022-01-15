@@ -79,7 +79,7 @@ dependencies {
     implementation frameworks.ssp
     implementation frameworks.flex
 
-    implementation project(":ui-common")
+    api project(":ui-common")
 
     //QuranX
     api project(":core")
