@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="library_drawer_img" format="reference"/>
+    <attr name="book_shortcut_img" format="reference"/>
+    <attr name="google_play_app_link" format="string"/>
+    <attr name="app_name" format="string"/>
+</resources>

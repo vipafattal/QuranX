@@ -12,9 +12,14 @@ import com.abedfattal.quranx.ui.common.extensions.stringer
 
 object TextActionUtil {
 
-    fun copyToClipboard(activity: Activity, text: String, @StringRes copyingMessage: Int) {
+    fun copyToClipboard(
+        activity: Activity,
+        appName: String,
+        text: String,
+        @StringRes copyingMessage: Int
+    ) {
         val cm = activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        val clip = ClipData.newPlainText(activity.getString(CommonUI.appInfo.appName), text)
+        val clip = ClipData.newPlainText(appName, text)
         cm.setPrimaryClip(clip)
         Toast.makeText(
             activity, copyingMessage,
@@ -22,9 +27,14 @@ object TextActionUtil {
         ).show()
     }
 
-    fun shareText(context: Context, text: String, @StringRes shareTitle: Int) {
+    fun shareText(
+        context: Context,
+        googlePlayLink: String,
+        text: String,
+        @StringRes shareTitle: Int
+    ) {
         val shareableText =
-            text + stringer(R.string.download_app_via) + "  " + CommonUI.appInfo.googlePlayLink
+            text + stringer(R.string.download_app_via) + "  " + googlePlayLink
         shareViaIntent(context, shareableText, shareTitle)
     }
 

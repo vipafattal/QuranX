@@ -8,6 +8,7 @@ import androidx.core.os.bundleOf
 import com.abedfattal.quranx.core.model.Edition
 import com.abedfattal.quranx.ui.common.CommonUI
 import com.abedfattal.quranx.ui.common.ShortcutHelper
+import com.abedfattal.quranx.ui.common.extensions.valueOfAttribute
 import com.abedfattal.quranx.ui.common.models.ShortcutDetails
 import com.abedfattal.quranx.ui.library.R
 import com.abedfattal.quranx.ui.library.ReadLibrary
@@ -19,13 +20,18 @@ class EditionShortcut(private val edition: Edition, private val context: Context
     private val name = edition.name
 
     fun create() {
-        val shortcutDetails = ShortcutDetails(identifier, name, R.drawable.ic_shortcut_book)
+        val shortcutDetails = ShortcutDetails(
+            id = identifier,
+            label = name,
+            icon = context.valueOfAttribute(R.attr.book_shortcut_img)
+        )
         ShortcutHelper.create(context, shortcutDetails, createShortcutIntent())
     }
 
 
     fun addToDynamicShortcut() {
-        val shortcutDetails = ShortcutDetails(identifier, name, R.drawable.ic_shortcut_book)
+
+        val shortcutDetails = ShortcutDetails(identifier, name, context.valueOfAttribute(R.attr.book_shortcut_img))
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             ShortcutHelper.createDynamicShortcut(
@@ -42,7 +48,7 @@ class EditionShortcut(private val edition: Edition, private val context: Context
         }
     }
 
-    private fun createShortcutIntent() = Intent(context, Class.forName(ReadLibrary.appInfo.mainActivityPath)).apply {
+    private fun createShortcutIntent() = Intent(context, Class.forName(ReadLibrary.mainActivityPath)).apply {
         putExtras(edition.toJsonBundle())
     }
 }

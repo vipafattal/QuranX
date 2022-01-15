@@ -16,6 +16,7 @@ import com.abedfattal.quranx.ui.common.createPopup
 import com.abedfattal.quranx.ui.common.dp
 import com.abedfattal.quranx.ui.common.extensions.drawableOf
 import com.abedfattal.quranx.ui.common.extensions.stringer
+import com.abedfattal.quranx.ui.common.extensions.valueOfAttribute
 import com.abedfattal.quranx.ui.common.extensions.view.gone
 import com.abedfattal.quranx.ui.common.extensions.view.invisible
 import com.abedfattal.quranx.ui.common.extensions.view.visible
@@ -161,21 +162,30 @@ class ViewHolderBuilder(
             createPopup(R.menu.popup_more_aya_options) { id ->
 
                 val text = convertTranslationToShare(quranicAya, tafseerAya)
-
+                val appName = context.getString(context.valueOfAttribute(R.attr.app_name))
+                val googlePlayLink =
+                    context.getString(context.valueOfAttribute(R.attr.google_play_app_link))
                 if (id == R.id.copyAyaText) {
                     if (quranicAya?.ayaEdition == QURAN_TAJWEED_ID)
                         copyToClipboard(
-                            context as Activity,
-                            tajweed.getAyahWithoutStyle(text),
-                            R.string.ayah_copied_popup
+                            activity = context as Activity,
+                            appName = appName,
+                            text = tajweed.getAyahWithoutStyle(text),
+                            copyingMessage = R.string.ayah_copied_popup
                         )
                     else
                         copyToClipboard(
-                            context as Activity,
-                            text,
-                            R.string.ayah_copied_popup
+                            activity = context as Activity,
+                            appName = appName,
+                            text = text,
+                            copyingMessage = R.string.ayah_copied_popup
                         )
-                } else shareText(context, text, R.string.share_ayah_text)
+                } else shareText(
+                    context,
+                    googlePlayLink = googlePlayLink,
+                    text = text,
+                    shareTitle = R.string.share_ayah_text
+                )
             }
         }
 

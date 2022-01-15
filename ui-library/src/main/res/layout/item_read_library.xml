@@ -120,7 +120,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/second_text_readlibrary"
-            app:srcCompat="@drawable/ic_more" />
+            app:srcCompat="@drawable/ic_more_hor" />
 
     <ImageView
             android:id="@+id/bookmarkAyaButton"

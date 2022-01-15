@@ -39,10 +39,11 @@ dependencies {
     implementation androidm.constraintlayout
     implementation "androidx.activity:activity-ktx:$activity_version"
 
-    implementation project(path: ':core')
-    implementation project(path: ':tajweedrules')
-    implementation project(path: ':tajweedprocessor')
-    implementation project(path: ':wordsprocessor')
+    implementation project(':core')
+    implementation project(':tajweedrules')
+    implementation project(':tajweedprocessor')
+    implementation project(':wordsprocessor')
+    implementation project(':ui-library')
 
     //ViewModel + LiveData
     implementation lifecycle.viewmodel
