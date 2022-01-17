@@ -2,6 +2,7 @@ package com.abedfattal.quranx.ui.library.ui.simpleLoading
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModelProvider
 import com.abedfattal.quranx.ui.common.BaseDialog
 import com.abedfattal.quranx.ui.common.extensions.animateText
 import com.abedfattal.quranx.ui.common.extensions.textButtonDisabled
@@ -9,13 +10,13 @@ import com.abedfattal.quranx.ui.common.extensions.textButtonEnabled
 import com.abedfattal.quranx.ui.common.extensions.view.onClick
 import com.abedfattal.quranx.ui.library.R
 import kotlinx.android.synthetic.main.dialog_loading_simple.*
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class SimpleLoadingDialog : BaseDialog() {
 
     override val isCancelableDialog: Boolean = false
-    private val loadingViewModel: LoadingViewModel by sharedViewModel()
-
+    private val loadingViewModel: LoadingViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(LoadingViewModel::class.java)
+    }
     override val layoutId: Int = R.layout.dialog_loading_simple
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

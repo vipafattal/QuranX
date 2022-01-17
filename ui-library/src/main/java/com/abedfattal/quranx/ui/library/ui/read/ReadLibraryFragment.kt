@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.abedfattal.quranx.core.model.Edition
@@ -31,14 +32,15 @@ import com.abedfattal.quranx.ui.library.ui.settings.LibraryPreferences
 import com.abedfattal.quranx.ui.library.utils.EN_WORD_BY_WORD
 import com.abedfattal.quranx.ui.library.utils.QURAN_TAJWEED_ID
 import kotlinx.android.synthetic.main.fragment_read_library.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
 class ReadLibraryFragment : Fragment() {
 
-    private val readLibraryViewModel: ReadLibraryViewModel by viewModel()
-    private val bookmarksViewModel: BookmarksViewModel by viewModel()
-    private val preferences: AppPreferences by lazy { AppPreferences("appTemp",requireContext())}
+    private val readLibraryViewModel: ReadLibraryViewModel by lazy {
+        ViewModelProvider(this).get(ReadLibraryViewModel::class.java)
+    }
+    private val bookmarksViewModel by lazy { BookmarksViewModel.get(this) }
+    private val preferences: AppPreferences by lazy { AppPreferences("appTemp", requireContext()) }
     private var scrollAyahPosition = 0
     private var previewingSurahIndex = 0
     private lateinit var surahsDrawerAdapter: SurahsDrawerAdapter

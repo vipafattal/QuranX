@@ -3,6 +3,7 @@ package com.abedfattal.quranx.ui.library.ui.settings
 import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModelProvider
 import com.abedfattal.quranx.core.model.Edition
 import com.abedfattal.quranx.ui.common.BaseDialog
 import com.abedfattal.quranx.ui.common.extensions.view.invisible
@@ -11,12 +12,13 @@ import com.abedfattal.quranx.ui.library.R
 import com.abedfattal.quranx.ui.library.models.EditionDownloadState
 import com.google.android.material.radiobutton.MaterialRadioButton
 import kotlinx.android.synthetic.main.dialog_tanslation_quran_edition.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class TranslationQuranEditionDialog : BaseDialog() {
 
-    private val translationQuranViewModel: TranslationQuranViewModel by viewModel()
+    private val translationQuranViewModel: TranslationQuranViewModel by lazy {
+        ViewModelProvider(this).get(TranslationQuranViewModel::class.java)
+    }
     override val layoutId: Int = R.layout.dialog_tanslation_quran_edition
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -70,7 +72,8 @@ class TranslationQuranEditionDialog : BaseDialog() {
             if (!quranEditions[editionIndex].isDownloaded) {
                 requireView().findViewById<MaterialRadioButton>(checkedId).isChecked = false
                 LibraryPreferences.setTranslationQuranEdition(quranEditions[editionIndex].edition)
-                Toast.makeText(requireContext(), R.string.not_downloaded_edtion,Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), R.string.not_downloaded_edtion, Toast.LENGTH_LONG)
+                    .show()
             } else
                 dismiss()
         }

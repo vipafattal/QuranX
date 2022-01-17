@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,8 +27,6 @@ import kotlinx.android.synthetic.main.toolbar_manage_library.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 @Suppress("UNCHECKED_CAST")
@@ -35,8 +34,12 @@ class ManageLibraryFragment : Fragment() {
 
 
     private val parentActivity: AppCompatActivity by lazy { requireActivity() as AppCompatActivity }
-    private val manageLibraryViewModel: ManageLibraryViewModel by viewModel()
-    private val loadingViewModel: LoadingViewModel by sharedViewModel()
+    private val manageLibraryViewModel: ManageLibraryViewModel by lazy {
+        ViewModelProvider(this).get(ManageLibraryViewModel::class.java)
+    }
+    private val loadingViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(LoadingViewModel::class.java)
+    }
     private lateinit var editionAdpater: ManageLibraryAdapter
     private lateinit var connectionView: ConnectionView
 

@@ -4,8 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import com.abedfattal.quranx.ui.common.CommonUI
 import com.abedfattal.quranx.ui.common.preferences.AppPreferences
-import com.abedfattal.quranx.ui.library.framework.di.KoinModules
-import org.koin.core.context.loadKoinModules
 
 
 @SuppressLint("StaticFieldLeak")
@@ -23,12 +21,8 @@ object ReadLibrary {
         app = context
         this.mainActivityPath = mainActivityPath
         CommonUI.init(context)
-        initInjection()
     }
 
-    private fun initInjection() {
-        loadKoinModules(KoinModules.modules)
-    }
 
     const val MANAGE_LIBRARY_FRAGMENT = 0
     const val READ_LIBRARY_FRAGMENT = 1

@@ -3,6 +3,7 @@ package com.abedfattal.quranx.ui.library.ui.settings.textSize
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModelProvider
 import com.abedfattal.quranx.ui.common.BaseBottomSheet
 import com.abedfattal.quranx.ui.common.extensions.view.gone
 import com.abedfattal.quranx.ui.common.extensions.view.onClick
@@ -10,7 +11,6 @@ import com.abedfattal.quranx.ui.common.extensions.view.visible
 import com.abedfattal.quranx.ui.library.R
 import com.abedfattal.quranx.ui.library.ui.settings.LibraryPreferences
 import kotlinx.android.synthetic.main.dialog_font_size.*
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class TextSizeBottomSheet : BaseBottomSheet() {
 
@@ -28,7 +28,9 @@ class TextSizeBottomSheet : BaseBottomSheet() {
     }
 
     override val layoutId: Int = R.layout.dialog_font_size
-    private val textSizeViewModel: TextSizeViewModel by sharedViewModel()
+    private val textSizeViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(TextSizeViewModel::class.java)
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

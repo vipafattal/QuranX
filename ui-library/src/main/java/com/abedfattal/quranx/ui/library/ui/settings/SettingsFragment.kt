@@ -1,6 +1,7 @@
 package com.abedfattal.quranx.ui.library.ui.settings
 
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
 import androidx.preference.CheckBoxPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -10,11 +11,12 @@ import com.abedfattal.quranx.ui.common.onPreferencesClick
 import com.abedfattal.quranx.ui.library.R
 import com.abedfattal.quranx.ui.library.ui.settings.textSize.TextSizeBottomSheet
 import com.abedfattal.quranx.ui.library.ui.settings.textSize.TextSizeViewModel
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class SettingsFragment : PreferenceFragmentCompat(), Preference.OnPreferenceChangeListener {
 
-    private val textSizeViewModel by sharedViewModel<TextSizeViewModel>()
+    private val textSizeViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(TextSizeViewModel::class.java)
+    }
 
     override fun onPreferenceChange(preference: Preference, newValue: Any): Boolean {
         newValue as Boolean

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,12 +14,13 @@ import com.abedfattal.quranx.ui.common.extensions.view.*
 import com.abedfattal.quranx.ui.library.R
 import com.abedfattal.quranx.ui.library.ui.read.ReadLibraryViewModel
 import kotlinx.android.synthetic.main.fragment_library.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class LibraryBooksFragment : Fragment() {
 
-    private val readLibraryViewModel: ReadLibraryViewModel by viewModel()
+    private val readLibraryViewModel: ReadLibraryViewModel by lazy {
+        ViewModelProvider(this).get(ReadLibraryViewModel::class.java)
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -38,13 +40,18 @@ class LibraryBooksFragment : Fragment() {
             else if (layoutManager.findFirstVisibleItemPosition() < 1) add_item_fab.extend()
         }
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-           return inflater.inflate(R.layout.fragment_library, container, false) //getPersistentView(inflater, container)
+        return inflater.inflate(
+            R.layout.fragment_library,
+            container,
+            false
+        ) //getPersistentView(inflater, container)
 
     }
 
@@ -54,8 +61,7 @@ class LibraryBooksFragment : Fragment() {
             if (quranEditions.isNotEmpty()) {
                 empty_data_text?.gone()
                 recycler_items_library?.adapter = LibraryBooksAdapter(quranEditions)
-            }
-            else
+            } else
                 empty_data_text?.visible()
         }
     }

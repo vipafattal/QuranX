@@ -65,9 +65,6 @@ dependencies {
     implementation retrofit.converter
     implementation retrofit.interceptor
 
-    implementation koin.core
-    implementation koin.android
-
     implementation lifecycle.viewmodel
     implementation lifecycle.livedata
 

@@ -1,14 +1,12 @@
 package com.abedfattal.quranx.ui.library.ui.bookmarks
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.abedfattal.quranx.core.framework.data.DataSources
 import com.abedfattal.quranx.core.model.AyaWithInfo
 import com.abedfattal.quranx.core.model.Bookmark
 import com.abedfattal.quranx.core.model.Edition
 import com.abedfattal.quranx.ui.library.ReadLibrary
+import com.abedfattal.quranx.ui.library.ui.simpleLoading.LoadingViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -48,5 +46,8 @@ class BookmarksViewModel : ViewModel() {
                 bookmarksRepository.updateBookmark(bookmark.copy(isDeleted = true, isDirty = true, lastUpdate = Date()))
 
         }
+    }
+    companion object {
+        fun get(owner:ViewModelStoreOwner )= ViewModelProvider(owner).get(BookmarksViewModel::class.java)
     }
 }

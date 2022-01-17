@@ -17,12 +17,11 @@ import kotlinx.android.synthetic.main.fragment_bookmark.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 open class BookmarkFragment : Fragment() {
 
-    private val bookmarksViewModel: BookmarksViewModel by viewModel()
+    private val bookmarksViewModel by lazy { BookmarksViewModel.get(this) }
 
     @FunctionalInterface
     interface BookmarkRefreshListener {
