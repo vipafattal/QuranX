@@ -13,8 +13,8 @@ object ReadLibrary {
         private set
 
     internal val appPreferences: AppPreferences by lazy { AppPreferences(context = app) }
-    var userId: String? = null
-    var mainActivityPath: String = ""
+    internal var userId: String? = null
+    internal var mainActivityPath: String = ""
         private set
 
     fun init(context: Context, mainActivityPath: String) {

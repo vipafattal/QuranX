@@ -309,6 +309,10 @@ class LocalQuranRepository internal constructor(
         return quranDao.searchQuranByEdition("%$query%", editionId)
     }
 
+    fun searchQuranByEditionWithChanges(query: String, editionId: String): Flow<List<AyaWithInfo>> {
+        return quranDao.searchQuranByEditionWithChanges("%$query%", editionId)
+    }
+
     /**
      * Save Quran edition.
      * When you want to download a full Quran edition ([Surah], and all verses [Aya]), you should use [LocalBasedQuranRepository.downloadQuranBook].

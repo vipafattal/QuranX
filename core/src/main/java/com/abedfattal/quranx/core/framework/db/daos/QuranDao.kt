@@ -2,7 +2,6 @@ package com.abedfattal.quranx.core.framework.db.daos
 
 import androidx.room.*
 import com.abedfattal.quranx.core.framework.db.AYAT_TABLE
-import com.abedfattal.quranx.core.framework.db.BOOKMARKS_TABLE
 import com.abedfattal.quranx.core.framework.db.EDITIONS_TABLE
 import com.abedfattal.quranx.core.framework.db.SURAHS_TABLE
 import com.abedfattal.quranx.core.model.Aya
@@ -41,7 +40,7 @@ interface QuranDao {
     @Transaction
     @Query("select * from $AYAT_TABLE where surah_number = :surahNumber and ayaEdition in (:editions) order by ayaEdition ASC")
     fun listenToSurahAyatByEdition(
-        surahNumber: Int,vararg editions: String,
+        surahNumber: Int, vararg editions: String,
     ): Flow<List<AyaWithInfo>>
 
 
@@ -94,6 +93,10 @@ interface QuranDao {
     @Transaction
     @Query("select * from $AYAT_TABLE where ayaEdition = :editionId and text like :query")
     suspend fun searchQuranByEdition(query: String, editionId: String): List<AyaWithInfo>
+
+    @Transaction
+    @Query("select * from $AYAT_TABLE where ayaEdition = :editionId and text like :query")
+    fun searchQuranByEditionWithChanges(query: String, editionId: String): Flow<List<AyaWithInfo>>
 
     @Transaction
     @Query("select * from $EDITIONS_TABLE join $AYAT_TABLE on id = ayaEdition where language =:language and text like :query")

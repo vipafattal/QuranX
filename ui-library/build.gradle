@@ -48,17 +48,16 @@ dependencies {
 
     implementation coroutines.core
     implementation coroutines.android
-    implementation coroutines.playservice
 
     implementation androidm.appcompat
     implementation androidm.recyclerview
     implementation androidm.material
     implementation androidm.constraintlayout
     implementation androidm.preference
+    implementation androidm.refresher
 
     implementation roomDB.core
     implementation roomDB.ktx
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     kapt roomDB.kapt
 
     implementation retrofit.core
@@ -76,13 +75,13 @@ dependencies {
     implementation frameworks.ssp
     implementation frameworks.flex
 
-    api project(":ui-common")
 
     //QuranX
     api project(":core")
     api project(":wordsprocessor")
     api project(":tajweedprocessor")
     api project(":tajweedrules")
+    api project(":ui-common")
 
     implementation 'com.github.vipafattal:KotlinRecycler:1.2.1'
 

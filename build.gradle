@@ -57,7 +57,6 @@ buildscript {
         coroutines = [
                 core       : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version",
                 android    : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version",
-                playservice: "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$coroutines_version"
         ]
 
         retrofit = [
