@@ -7,6 +7,7 @@ import com.abedfattal.quranx.core.framework.db.DOWNLOAD_STATE_TABLE
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 
+
 /** @suppress **/
 @Serializable
 @Entity(tableName = DOWNLOAD_STATE_TABLE)

@@ -70,6 +70,15 @@ data class Edition(
             }
     }
 
+    /**
+     * @return Edition name depending on the current device [Locale].
+     *
+     * @see [LocaleListCompat.getDefault]
+     */
+    fun getLocalizedName(local: Locale): String {
+        return if (local.isArabic) name
+        else englishName
+    }
 
     companion object {
 

@@ -37,7 +37,7 @@ dependencies {
     implementation kt.ktx
 
     //QuranX
-    api project(":core")
+    implementation project(":core")
     implementation androidm.refresher
     implementation androidm.appcompat
     implementation androidm.material

@@ -56,7 +56,7 @@ interface QuranDao {
     suspend fun getPageAllEditions(page: Int, vararg editions: String): List<AyatWithEdition>
 
     @Transaction
-    @Query("select * from $EDITIONS_TABLE join $AYAT_TABLE on id = ayaEdition where id in (:editions) and ayaNumberInMushaf = :ayaNumberInMushaf")
+    @Query("select * from $EDITIONS_TABLE join $AYAT_TABLE on id = ayaEdition where ayaEdition in (:editions) and ayaNumberInMushaf = :ayaNumberInMushaf")
     suspend fun getAyaAllEditions(
         ayaNumberInMushaf: Int,
         vararg editions: String

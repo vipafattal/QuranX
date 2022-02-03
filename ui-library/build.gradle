@@ -77,11 +77,11 @@ dependencies {
 
 
     //QuranX
-    api project(":core")
-    api project(":wordsprocessor")
-    api project(":tajweedprocessor")
-    api project(":tajweedrules")
-    api project(":ui-common")
+    implementation project(":core")
+    implementation project(":wordsprocessor")
+    implementation project(":tajweedprocessor")
+    implementation project(":tajweedrules")
+    implementation project(":ui-common")
 
     implementation 'com.github.vipafattal:KotlinRecycler:1.2.1'
 

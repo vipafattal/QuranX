@@ -30,24 +30,22 @@ class LocalBasedQuranRepository internal constructor(
      *
      * @return a flow of a [ProcessState] that actually represents the remote process state rather then local process state.
      */
-    fun downloadQuranBook(id: String): Flow<DownloadingProcess<Unit>> = flow<DownloadingProcess<Unit>>{
+    fun downloadQuranBook(id: String): Flow<DownloadingProcess<Unit>> = flow {
          remoteRepository.getQuranBook(id).collect { process ->
             if (process is ProcessState.Success && process.data != null) {
                 emit(DownloadingProcess.Saving())
                 val quran = process.data
                 quranLocalRepository.addQuranBook(quran)
                 editionsLocalRepository.addEdition(quran.edition)
-
                 //Set this edition as downloaded.
-                downloadStateRepository.addDownloadState(
-                    quran.edition.id,
-                    DownloadState.STATE_DOWNLOADED,
-                )
+                downloadStateRepository.addDownloadState(quran.edition.id, DownloadState.STATE_DOWNLOADED,)
                 emit(DownloadingProcess.Success())
             } else
                 emit(process.transformProcessType<Unit>().toDownloadProcess())
         }
     }
+
+
 
     fun getQuranBook(editionId: String): Flow<DownloadingProcess<List<AyaWithInfo>>> = flow {
         val downloadState = downloadStateRepository.getDownloadState(editionId)
