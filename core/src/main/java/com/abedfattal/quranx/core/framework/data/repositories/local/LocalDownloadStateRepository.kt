@@ -2,8 +2,6 @@ package com.abedfattal.quranx.core.framework.data.repositories.local
 
 import com.abedfattal.quranx.core.framework.db.daos.DownloadStateDao
 import com.abedfattal.quranx.core.model.DownloadState
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.distinctUntilChanged
 
 
 /** @suppress **/
@@ -25,10 +23,15 @@ internal class LocalDownloadStateRepository(private val downloadStateDao: Downlo
     ) {
         downloadStateDao.addDownloadState(DownloadState(id, state))
     }
-
+    suspend fun addOrUpdateDownloadState(
+        id: String,
+        state: Int
+    ) {
+        downloadStateDao.addOrUpdateDownloadState(DownloadState(id, state))
+    }
     suspend fun removeDownloadState(
         id: String,
     ) {
-        downloadStateDao.remoteState(id)
+        downloadStateDao.removeState(id)
     }
 }

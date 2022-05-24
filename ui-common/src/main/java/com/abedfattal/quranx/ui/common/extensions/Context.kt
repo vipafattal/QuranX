@@ -4,13 +4,21 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.net.Uri
+import android.os.Bundle
 import android.util.TypedValue
 import androidx.annotation.AttrRes
-import com.abedfattal.quranx.ui.common.R
+import java.util.*
 
 
 inline fun <reified T : Any> Context.launchActivity() {
     val intent = newIntent<T>()
+    startActivity(intent)
+}
+
+inline fun <reified T : Any> Context.launchWithBundle(bundle: Bundle?) {
+    val intent = newIntent<T>()
+    if (bundle != null)
+        intent.putExtras(bundle)
     startActivity(intent)
 }
 
@@ -37,19 +45,28 @@ fun Context.isDarkThemeOn() =
         Configuration.UI_MODE_NIGHT_UNDEFINED -> false
         else -> false
     }
-
+ fun Context.restartApp() {
+    packageManager.getLaunchIntentForPackage(packageName)
+        ?.apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(this)
+        }
+    @Suppress("ReplaceJavaStaticMethodWithKotlinAnalog")
+    System.exit(0)
+}
 
 val Context.colorAccent: Int
-    get() = valueOfAttribute(R.attr.colorAccent)
+    get() = valueOfAttribute(com.google.android.material.R.attr.colorAccent)
 
 val Context.colorPrimary: Int
-    get() = valueOfAttribute(R.attr.colorPrimary)
+    get() = valueOfAttribute(com.google.android.material.R.attr.colorPrimary)
 
 val Context.colorPrimaryDark: Int
-    get() = valueOfAttribute(R.attr.colorPrimaryDark)
+    get() = valueOfAttribute(com.google.android.material.R.attr.colorPrimaryDark)
 
 val Context.colorSecondary: Int
-    get() = valueOfAttribute(R.attr.colorSecondary)
+    get() = valueOfAttribute(com.google.android.material.R.attr.colorSecondary)
 
 val Context.colorBackground: Int
     get() = valueOfAttribute(android.R.attr.colorBackground)

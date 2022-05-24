@@ -23,11 +23,11 @@ interface QuranDao {
     @Query("select * from $AYAT_TABLE  where surah_number = :surahNumber and ayaEdition =:editionId order by ayaNumberInMushaf asc")
     suspend fun getSurahAyatByEdition(editionId: String, surahNumber: Int): List<AyaWithInfo>
 
-    @Query("select * from $AYAT_TABLE  where ayaEdition =:editionId and ayaNumberInMushaf = :number")
+    @Query("select * from $AYAT_TABLE where ayaEdition =:editionId and ayaNumberInMushaf = :number")
     suspend fun getAyaByEdition(number: Int, editionId: String): AyaWithInfo?
 
-    @Query("select * from $AYAT_TABLE  where ayaEdition = :edition")
-    suspend fun getAyatEdition(edition: String): List<AyaWithInfo>
+    @Query("select * from $AYAT_TABLE where ayaEdition = :edition order by ayaNumberInMushaf asc")
+    suspend fun getAyatByEdition(edition: String): List<AyaWithInfo>
 
     @Transaction
     @Query("select * from $EDITIONS_TABLE  where id in (:editions)")
@@ -56,11 +56,11 @@ interface QuranDao {
     suspend fun getPageAllEditions(page: Int, vararg editions: String): List<AyatWithEdition>
 
     @Transaction
-    @Query("select * from $EDITIONS_TABLE join $AYAT_TABLE on id = ayaEdition where ayaEdition in (:editions) and ayaNumberInMushaf = :ayaNumberInMushaf")
+    @Query("select * from $AYAT_TABLE where ayaEdition in (:editions) and ayaNumberInMushaf = :ayaNumberInMushaf")
     suspend fun getAyaAllEditions(
         ayaNumberInMushaf: Int,
         vararg editions: String
-    ): List<AyatWithEdition>
+    ): List<AyaWithInfo>
 
     @Transaction
     @Query("select * from $EDITIONS_TABLE join $AYAT_TABLE on id = ayaEdition where id in (:editions) and surah_number = :surahNumber and numberInSurah = :ayaNumberInSurah")
@@ -78,10 +78,16 @@ interface QuranDao {
     suspend fun getAyatOfJuz(juz: Int, editionId: String): List<AyaWithInfo>
 
     @Transaction
-    @Query("select * from $AYAT_TABLE where ayaNumberInMushaf between :startNumber AND :endNumber and ayaEdition = :editionId order by numberInSurah ASC")
+    @Query(
+        "select * from $AYAT_TABLE " +
+                "where ayaEdition = :editionId and surah_number = :surahNumber " +
+                "and ayaNumberInMushaf between :startNumber and :endNumber " +
+                "order by numberInSurah ASC"
+    )
     suspend fun getAyatByNumberInMushafRange(
         startNumber: Int,
         endNumber: Int,
+        surahNumber: Int,
         editionId: String,
 
         ): List<AyaWithInfo>

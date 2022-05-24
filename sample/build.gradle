@@ -39,11 +39,11 @@ dependencies {
     implementation androidm.constraintlayout
     implementation "androidx.activity:activity-ktx:$activity_version"
 
-    implementation project(':core')
-    implementation project(':tajweedrules')
-    implementation project(':tajweedprocessor')
-    implementation project(':wordsprocessor')
-    implementation project(':ui-library')
+    implementation project(':QuranX:core')
+    implementation project(':QuranX:tajweedrules')
+    implementation project(':QuranX:tajweedprocessor')
+    implementation project(':QuranX:wordsprocessor')
+    implementation project(':QuranX:ui-library')
 
     //ViewModel + LiveData
     implementation lifecycle.viewmodel

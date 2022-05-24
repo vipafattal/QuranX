@@ -1,6 +1,5 @@
 package com.abedfattal.quranx.ui.library.ui.read
 
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.*
@@ -14,14 +13,13 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.abedfattal.quranx.core.model.Edition
 import com.abedfattal.quranx.core.model.Surah
-import com.abedfattal.quranx.core.utils.isArabic
+import com.abedfattal.quranx.core.utils.isNotArabic
 import com.abedfattal.quranx.tajweedprocessor.Tajweed
 import com.abedfattal.quranx.ui.common.extensions.colorAccent
 import com.abedfattal.quranx.ui.common.extensions.isDarkThemeOn
-import com.abedfattal.quranx.ui.common.extensions.view.animateElevation
-import com.abedfattal.quranx.ui.common.extensions.view.onScroll
-import com.abedfattal.quranx.ui.common.preferences.AppPreferences
+import com.abedfattal.quranx.ui.common.removePunctuation
 import com.abedfattal.quranx.ui.library.R
+import com.abedfattal.quranx.ui.library.ReadLibrary.tempPreferences
 import com.abedfattal.quranx.ui.library.ui.bookmarks.BookmarksViewModel
 import com.abedfattal.quranx.ui.library.ui.read.adapter.ReadLibraryAdapter
 import com.abedfattal.quranx.ui.library.ui.read.menus.ReadingMenu
@@ -29,29 +27,26 @@ import com.abedfattal.quranx.ui.library.ui.read.menus.TajweedMenu
 import com.abedfattal.quranx.ui.library.ui.read.menus.WordByWordMenu
 import com.abedfattal.quranx.ui.library.ui.read.processor.tajweed.TajweedColorsHelper
 import com.abedfattal.quranx.ui.library.ui.settings.LibraryPreferences
-import com.abedfattal.quranx.ui.library.utils.EN_WORD_BY_WORD
-import com.abedfattal.quranx.ui.library.utils.QURAN_TAJWEED_ID
+import com.abedfattal.ui.supported.edition.SupportedUiEditions
 import kotlinx.android.synthetic.main.fragment_read_library.*
 import java.util.*
 
-class ReadLibraryFragment : Fragment() {
+abstract class ReadLibraryFragment : Fragment() {
 
     private val readLibraryViewModel: ReadLibraryViewModel by lazy {
         ViewModelProvider(this).get(ReadLibraryViewModel::class.java)
     }
     private val bookmarksViewModel by lazy { BookmarksViewModel.get(this) }
-    private val preferences: AppPreferences by lazy { AppPreferences("appTemp", requireContext()) }
-    private var scrollAyahPosition = 0
     private var previewingSurahIndex = 0
     private lateinit var surahsDrawerAdapter: SurahsDrawerAdapter
     private var surahLists: List<Surah> = listOf()
 
     private lateinit var readLibraryAdapter: ReadLibraryAdapter
-    private val bookEdition by lazy {
-        Edition.fromJson(
-            ReadLibraryFragmentArgs.fromBundle(requireArguments()).edition
-        )
-    }
+
+    protected abstract val bookEdition: Edition
+    protected abstract val startAtSurah: Int
+    protected abstract val startAtAya: Int
+
     private val tajweedColorsHelper by lazy {
         TajweedColorsHelper(requireContext().isDarkThemeOn())
     }
@@ -72,7 +67,7 @@ class ReadLibraryFragment : Fragment() {
 
         initFragment()
 
-        readLibraryViewModel.getSurahs(bookEdition.id).observe(viewLifecycleOwner) {
+        readLibraryViewModel.getSurahs(bookEdition.identifier).observe(viewLifecycleOwner) {
             surahLists = it
             updateSurahsDrawerAdapter(previewingSurahIndex)
         }
@@ -85,20 +80,16 @@ class ReadLibraryFragment : Fragment() {
         surahsDrawerAdapter = SurahsDrawerAdapter(::onSurahDrawerClicked)
         recycler_surahs_list.adapter = surahsDrawerAdapter
 
-        initRecyclerScroll()
         openLastReadSurah()
         onActivityBackPressed()
     }
 
     private fun AppCompatActivity.initSystemWindows() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            window.statusBarColor = Color.WHITE
-        } else
+        if (Build.VERSION.SDK_INT < 23)
             toolbar_library_surah.setBackgroundColor(requireContext().colorAccent)
 
         toolbar_library_surah.navigationIcon =
-            AppCompatResources.getDrawable(this, R.drawable.ic_menu)
+            AppCompatResources.getDrawable(this, com.abedfattal.quranx.ui.common.R.drawable.ic_menu)
 
         setSupportActionBar(toolbar_library_surah)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -106,39 +97,21 @@ class ReadLibraryFragment : Fragment() {
     }
 
     private fun updateCurrentSurahInfo(surah: Surah) {
-        if (Locale.getDefault().isArabic) {
+        val defaultLocal = Locale.getDefault()
+        if (defaultLocal.isNotArabic) {
             toolbar_library_surah.subtitle = surah.englishNameTranslation
             toolbar_library_surah.title = surah.englishName
-        } else
-            toolbar_library_surah.title = surah.name
-    }
-
-    private fun initRecyclerScroll() {
-        val layoutManger = recycler_read_library.layoutManager as LinearLayoutManager
-        recycler_read_library.onScroll { _, dy ->
-            scrollAyahPosition = layoutManger.findFirstVisibleItemPosition()
-            if (dy > 0)
-                app_bar_library_surah.animateElevation(false)
-            else
-                app_bar_library_surah.animateElevation(true)
-
-            if (dy > 0 && layoutManger.findFirstVisibleItemPosition() >= 2)
-                hideToolbar()
-            else if (dy < 0)
-                showToolbar()
         }
+        toolbar_library_surah.title = surah.name.removePunctuation()
     }
 
     private fun openLastReadSurah() {
-        val bundleArgument = ReadLibraryFragmentArgs.fromBundle(requireArguments())
-        val startAtAyaNumberInSurah = bundleArgument.startAtAyaNumberInSurah
-        val startAtSurah = bundleArgument.startAtSurah
 
-        scrollAyahPosition = if (startAtAyaNumberInSurah != -1) startAtAyaNumberInSurah
-        else preferences.getInt(LastScrollPosition + bookEdition, 0)
+        val scrollAyahPosition = if (startAtAya != -1) startAtAya
+        else tempPreferences.getInt(LastScrollPosition + bookEdition.identifier, 0)
 
         val lastSurahReadNumber = if (startAtSurah != -1) startAtSurah
-        else preferences.getInt(LAST_SURAH_NUMBER_ARG + bookEdition, 1)
+        else tempPreferences.getInt(LAST_SURAH_NUMBER_ARG + bookEdition.identifier, 1)
 
         openSurah(lastSurahReadNumber, scrollAyahPosition)
     }
@@ -149,7 +122,7 @@ class ReadLibraryFragment : Fragment() {
 
         bookmarksViewModel
 
-        readLibraryViewModel.getEditionAyat(bookEdition.id, surahNumber)
+        readLibraryViewModel.getEditionAyat(bookEdition, surahNumber)
             .observe(viewLifecycleOwner) { surahWithAyat ->
 
                 updateCurrentSurahInfo(surahWithAyat.surah!!)
@@ -179,7 +152,7 @@ class ReadLibraryFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         val readingMenu: ReadingMenu? =
             when {
-                mainEditionIsEqualTo(QURAN_TAJWEED_ID) -> TajweedMenu(
+                mainEditionIsEqualTo(SupportedUiEditions.QURAN_TAJWEED.identifier) -> TajweedMenu(
                     menu,
                     inflater,
                     tajweedColorsHelper,
@@ -187,7 +160,7 @@ class ReadLibraryFragment : Fragment() {
                 ) {
                     readLibraryAdapter.changeTajweedColors(tajweedColorsHelper.tajweedColors)
                 }
-                mainEditionIsEqualTo(EN_WORD_BY_WORD) -> WordByWordMenu(
+                mainEditionIsEqualTo(SupportedUiEditions.EN_WORD_BY_WORD.identifier) -> WordByWordMenu(
                     menu,
                     inflater
                 ) {
@@ -200,11 +173,11 @@ class ReadLibraryFragment : Fragment() {
     }
 
     private fun onSurahDrawerClicked(surah: Surah) {
-        saveCurrentReadScrollPosition(0)
+        saveReadScrollPosition(0)
 
         readLibraryDrawer.closeDrawer(GravityCompat.START)
-        preferences.put(
-            LAST_SURAH_NUMBER_ARG + bookEdition,
+        tempPreferences.put(
+            LAST_SURAH_NUMBER_ARG + bookEdition.identifier,
             surah.number
         )
         showToolbar()
@@ -234,12 +207,13 @@ class ReadLibraryFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         //if user changed configuration like rotation we save scroll position.
-        saveCurrentReadScrollPosition(scrollAyahPosition)
+        (recycler_read_library.layoutManager as? LinearLayoutManager)?.run {
+            saveReadScrollPosition(findFirstVisibleItemPosition())
+        }
     }
 
-    private fun saveCurrentReadScrollPosition(pos: Int) {
-        preferences.put(LastScrollPosition + bookEdition, pos)
-        scrollAyahPosition = pos
+    private fun saveReadScrollPosition(position: Int) {
+        tempPreferences.put(LastScrollPosition + bookEdition.identifier, position)
     }
 
     private fun hideToolbar() {
@@ -260,9 +234,9 @@ class ReadLibraryFragment : Fragment() {
 
     private fun mainEditionIsEqualTo(editionId: String): Boolean {
         return (
-                (bookEdition.type == Edition.TYPE_QURAN && bookEdition.id == editionId) ||
+                (bookEdition.type == Edition.TYPE_QURAN && bookEdition.identifier == editionId) ||
                         ((bookEdition.type == Edition.TYPE_TAFSEER || bookEdition.type == Edition.TYPE_TRANSLATION)
-                                && LibraryPreferences.getTranslationQuranEdition()?.id == editionId))
+                                && LibraryPreferences.getTranslationQuranEdition()?.identifier == editionId))
     }
 
     companion object {

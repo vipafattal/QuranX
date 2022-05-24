@@ -14,16 +14,23 @@ import kotlinx.coroutines.flow.Flow
 interface BookmarksDao {
 
     @Query("select * from $EDITIONS_TABLE join $BOOKMARKS_TABLE on id = bookmark_editionId order by type ASC")
-    fun listenToEditionBookmarks(): Flow<List<Edition>>
+    fun listenToAyaEditionBookmarks(): Flow<List<Edition>>
+
+    @Query("select * from $BOOKMARKS_TABLE where bookmark_type = :type")
+    suspend fun getBookmarksByType(type: String): List<Bookmark>
 
     @Query("select * from $EDITIONS_TABLE join $BOOKMARKS_TABLE on id = bookmark_editionId order by type ASC")
     suspend fun getBookmarkedEditions(): List<Edition>
 
-    @Query("select * from $AYAT_TABLE join $BOOKMARKS_TABLE on bookmark_editionId = ayaEdition where bookmark_ayaNumber = ayaNumberInMushaf order by bookmark_date desc")
+    @Query("select * from $BOOKMARKS_TABLE where bookmark_editionId = :id order by bookmark_date desc")
+    fun listenToEditionBookmarks(id: String): Flow<List<Bookmark>>
+
+
+    @Query("select * from $BOOKMARKS_TABLE join $AYAT_TABLE on bookmark_editionId = ayaEdition and bookmark_ayaNumber = ayaNumberInMushaf where bookmark_is_deleted = 0 order by bookmark_date desc")
     fun listenToBookmarks(): Flow<List<AyaWithInfo>>
 
     @Query("select * from $AYAT_TABLE join $BOOKMARKS_TABLE on bookmark_editionId = ayaEdition where bookmark_editionId = :editionId order by bookmark_date desc")
-    fun listenToEditionBookmarks(editionId: String): Flow<List<AyaWithInfo>>
+    fun listenToAyaEditionBookmarks(editionId: String): Flow<List<AyaWithInfo>>
 
     @Transaction
     @Query("select * from $AYAT_TABLE join $BOOKMARKS_TABLE on bookmark_editionId = ayaEdition where bookmark_ayaNumber == ayaNumberInMushaf order by bookmark_date desc")
@@ -41,14 +48,21 @@ interface BookmarksDao {
     @Query("select * from $AYAT_TABLE join $BOOKMARKS_TABLE on bookmark_editionId = ayaEdition where bookmark_editionId ==:editionId and bookmark_ayaNumber == :ayaNumberInMushaf")
     suspend fun getAyaBookmarkStatus(ayaNumberInMushaf: Int, editionId: String): AyaWithInfo?
 
+    @Transaction
+    @Query("select * from $BOOKMARKS_TABLE where bookmark_editionId ==:editionId and bookmark_ayaNumber == :ayaNumberInMushaf")
+    suspend fun getBookmark(ayaNumberInMushaf: Int, editionId: String): Bookmark?
+
     @Query("select * from $BOOKMARKS_TABLE order by bookmark_date desc")
-    suspend fun getAllBookmarks():List<Bookmark>
+    suspend fun getAllBookmarks(): List<Bookmark>
 
     @Query("select * from $BOOKMARKS_TABLE where bookmark_is_dirty like 1 order by bookmark_date desc")
-    suspend fun getDirtyBookmarks():List<Bookmark>
+    suspend fun getDirtyBookmarks(): List<Bookmark>
 
-    @Insert(onConflict=OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addBookmark(bookmark: Bookmark)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun addBookmarks(bookmarks: List<Bookmark>)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateBookmark(bookmark: Bookmark)
@@ -57,6 +71,10 @@ interface BookmarksDao {
     suspend fun removeBookmark(
         ayaNumber: Int, editionId: String
     )
+
+    @Query("delete from $BOOKMARKS_TABLE where bookmark_id == :id")
+    suspend fun removeBookmark(id: String)
+
     @Query("delete from $BOOKMARKS_TABLE")
     suspend fun removeAllBookmarked()
 

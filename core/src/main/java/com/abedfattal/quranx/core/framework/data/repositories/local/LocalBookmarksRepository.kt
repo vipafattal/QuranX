@@ -16,15 +16,29 @@ import java.util.*
  *
  * @property bookmarksDao represents the data access object for [Bookmark] table.
  */
-class LocalBookmarksRepository internal constructor(private val bookmarksDao: BookmarksDao) {
+class LocalBookmarksRepository internal constructor(private val bookmarksDao: BookmarksDao) :
+    ILocalBookmarksRepository {
+
+
+    override fun listenToEditionChanges(id:String):Flow<List<Bookmark>> {
+        return bookmarksDao.listenToEditionBookmarks(id)
+    }
 
     /**
      * Listen for bookmarks table changes, like when new [Bookmark] is added or removed from the table.
      *
      * @return [AyaWithInfo] list contains only the bookmarked verses and ordered ascending by [Aya.number].
      */
-    fun listenToBookmarksChanges(): Flow<List<AyaWithInfo>> {
+    override fun listenToAyatBookmarksChanges(): Flow<List<AyaWithInfo>> {
         return bookmarksDao.listenToBookmarks().distinctUntilChanged()
+    }
+    /**
+     * Listen for bookmarks table changes, like when new [Bookmark] is added or removed from the table.
+     *
+     * @return [AyaWithInfo] list contains only the bookmarked verses and ordered ascending by [Aya.number].
+     */
+    override fun listenToAyatBookmarksChanges(editionId: String): Flow<List<AyaWithInfo>> {
+        return bookmarksDao.listenToAyaEditionBookmarks(editionId).distinctUntilChanged()
     }
 
     /**
@@ -32,8 +46,8 @@ class LocalBookmarksRepository internal constructor(private val bookmarksDao: Bo
      *
      * @return [Edition] info list contains only the bookmarked edition ordered ascending by [Edition.type].
      */
-    fun listenToBookmarksEditionChanges(): Flow<List<Edition>> {
-        return bookmarksDao.listenToEditionBookmarks().distinctUntilChanged()
+    override fun listenToBookmarksEditionChanges(): Flow<List<Edition>> {
+        return bookmarksDao.listenToAyaEditionBookmarks().distinctUntilChanged()
     }
 
     /**
@@ -41,7 +55,7 @@ class LocalBookmarksRepository internal constructor(private val bookmarksDao: Bo
      *
      * @return [Edition] info list contains only the bookmarked edition ordered ascending by [Edition.type].
      */
-    suspend fun getBookmarkedEdition(): List<Edition> {
+    override suspend fun getBookmarkedEdition(): List<Edition> {
         return bookmarksDao.getBookmarkedEditions()
     }
 
@@ -50,16 +64,16 @@ class LocalBookmarksRepository internal constructor(private val bookmarksDao: Bo
      *
      * @return [AyaWithInfo] list contains only the bookmarked verses and ordered ascending by [Aya.number].
      */
-    fun listenToEditionBookmarks(editionId: String): Flow<List<AyaWithInfo>> {
-        return bookmarksDao.listenToEditionBookmarks(editionId).distinctUntilChanged()
+    override fun listenToEditionBookmarks(editionId: String): Flow<List<AyaWithInfo>> {
+        return bookmarksDao.listenToAyaEditionBookmarks(editionId).distinctUntilChanged()
     }
 
     /**
-     * List all bookmarked verses. To Listen for bookmark changes see [listenToBookmarksChanges].
+     * List all bookmarked verses. To Listen for bookmark changes see [listenToAyatBookmarksChanges].
      *
      * @return [AyaWithInfo] list contains only the bookmarked verses and ordered ascending by [Aya.number].
      */
-    suspend fun getAllBookmarkedAyat(): List<AyaWithInfo> {
+    override suspend fun getAllBookmarkedAyat(): List<AyaWithInfo> {
         return bookmarksDao.getAllBookmarkedAyat()
     }
 
@@ -70,10 +84,14 @@ class LocalBookmarksRepository internal constructor(private val bookmarksDao: Bo
      *
      * @return [AyaWithInfo] list contains only the bookmarked verses and ordered ascending by [Aya.number].
      */
-    suspend fun getBookmarkedAyatInEdition(editionId: String): List<AyaWithInfo> {
+    override suspend fun getBookmarkedAyatInEdition(editionId: String): List<AyaWithInfo> {
         return bookmarksDao.getBookmarkedAyatInEdition(editionId)
     }
 
+
+    override suspend fun getBookmarksByType(type:String): List<Bookmark> {
+        return bookmarksDao.getBookmarksByType(type)
+    }
 
     /**
      * list all bookmarked verse in all editions.
@@ -82,7 +100,7 @@ class LocalBookmarksRepository internal constructor(private val bookmarksDao: Bo
      *
      * @return [AyaWithInfo] list that contains only the bookmarked verse in all editions.
      */
-    suspend fun getAyaBookmarkInAllEdition(ayaNumberInMushaf: Int): List<AyaWithInfo> {
+    override suspend fun getAyaBookmarkInAllEdition(ayaNumberInMushaf: Int): List<AyaWithInfo> {
         return bookmarksDao.getAyaBookmarkInAllEdition(ayaNumberInMushaf)
     }
 
@@ -94,8 +112,14 @@ class LocalBookmarksRepository internal constructor(private val bookmarksDao: Bo
      *
      * @return [AyaWithInfo] only if it's bookmarked, otherwise the result is null.
      */
-    suspend fun getAyaBookmarkStatus(ayaNumberInMushaf: Int, editionId: String): AyaWithInfo? {
+    override suspend fun getAyaBookmarkStatus(ayaNumberInMushaf: Int, editionId: String): AyaWithInfo? {
         return bookmarksDao.getAyaBookmarkStatus(ayaNumberInMushaf, editionId)
+    }
+
+
+    override suspend fun getBookmark(number: Int, ayaEdition: String): Bookmark?
+    {
+        return bookmarksDao.getBookmark(number,ayaEdition)
     }
 
     /**
@@ -105,7 +129,7 @@ class LocalBookmarksRepository internal constructor(private val bookmarksDao: Bo
      * @param editionId which represents the verse edition to bookmark.
      * @param isAdd which determines to add the following bookmark info or remove from the table.
      */
-    suspend fun addBookmark(
+    override suspend fun addBookmark(
         ayaNumber: Int,
         editionId: String,
         editionType: String,
@@ -124,23 +148,32 @@ class LocalBookmarksRepository internal constructor(private val bookmarksDao: Bo
         )
     }
 
-    suspend fun addBookmark(bookmark: Bookmark) {
+    override suspend fun addBookmark(bookmark: Bookmark) {
         bookmarksDao.addBookmark(bookmark)
     }
+    override suspend fun addBookmark(bookmark: List<Bookmark>) {
+        bookmarksDao.addBookmarks(bookmark)
+    }
 
-    suspend fun updateBookmark(bookmark: Bookmark) {
+    override suspend fun updateBookmark(bookmark: Bookmark) {
         bookmarksDao.updateBookmark(bookmark)
     }
 
-    suspend fun updateDirtyState(bookmark: Bookmark, newDirtyState: Boolean) {
+    override suspend fun updateDirtyState(bookmark: Bookmark, newDirtyState: Boolean) {
         bookmarksDao.updateBookmark(bookmark.copy(isDirty = newDirtyState))
     }
 
-    suspend fun getDirtyBookmarked(): List<Bookmark> {
+    override suspend fun getDirtyBookmarked(): List<Bookmark> {
         return bookmarksDao.getDirtyBookmarks()
     }
+    override suspend fun removeBookmarksPermanently(id: String){
+        return bookmarksDao.removeBookmark(id)
+    }
 
-    suspend fun restBookmarks() {
+    override suspend fun restBookmarks() {
         bookmarksDao.removeAllBookmarked()
     }
+
+
+
 }

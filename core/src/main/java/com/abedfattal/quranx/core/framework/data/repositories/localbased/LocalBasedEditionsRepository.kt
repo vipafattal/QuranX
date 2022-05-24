@@ -16,23 +16,6 @@ class LocalBasedEditionsRepository internal constructor(
 ) : LocalBased() {
 
     /**
-     * List all [Edition] by certain [Edition.type] from the database if only exists,
-     * otherwise will call the API service to provide the corresponds [Edition] list.
-     *
-     * @param type represents the edition's type to get from database which can be any of [Edition.getAllEditionsTypes].
-     *
-     * @return a flow of a [ProcessState] that contains the [Edition] list,
-     * and the [ProcessState] actually represents the remote process state rather then local process state.
-     */
-    fun getEditionsByType(type: String): Flow<ProcessState<List<Edition>>> {
-        return caller(
-            local = { local.getEditionsByType(type) },
-            remote = { remote.getEditionsByType(type) },
-            onRemoteSuccess = { local.addAllEdition(it) },
-        )
-    }
-
-    /**
      * List all [Edition] by certain [Edition.format] from the database if only exists,
      * otherwise will call the API service to provide the corresponds [Edition] list.
      *
@@ -41,8 +24,9 @@ class LocalBasedEditionsRepository internal constructor(
      * @return a flow of a [ProcessState] that contains the [Edition] list,
      * and the [ProcessState] actually represents the remote process state rather then local process state.
      */
-    fun getEditionsByFormat(format: String): Flow<ProcessState<List<Edition>>> {
+    fun getEditionsByFormat(format: String, prioritizeRemote:Boolean= false): Flow<ProcessState<List<Edition>>> {
         return caller(
+            prioritizeRemote,
             local = { local.getEditionsByFormat(format) },
             remote = { remote.getEditionsByFormat(format) },
             onRemoteSuccess = { local.addAllEdition(it) },
@@ -63,9 +47,11 @@ class LocalBasedEditionsRepository internal constructor(
     fun getEditions(
         format: String,
         languageCode: String,
-        type: String
+        type: String,
+        prioritizeRemote:Boolean= false
     ): Flow<ProcessState<List<Edition>>> {
         return caller(
+            prioritizeRemote,
             local = { local.getEditions(format, languageCode, type) },
             remote = { remote.getEditions(format, languageCode, type) },
             onRemoteSuccess = { local.addAllEdition(it) },

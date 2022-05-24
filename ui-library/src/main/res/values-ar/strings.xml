@@ -11,7 +11,7 @@
     <string name="arabic_numbers">عرض أرقام عربية</string>
     <string name="translation_with_aya">عرض ترجمة/تفسير مع الآية</string>
     <string name="font_size_key">حجم الخط</string>
-    <string name="reading">إعدادت القراءة</string>
+    <string name="library_options">إعدادت المكتبة</string>
     <string name="previewing_text">معاينة للنص</string>
     <string name="more_books_subscription">تحتاج إلى أشتراك لتحميل مزيد من الكتب</string>
     <string name="books_require_update">بعض الكتب طرأ عليها تحديث هام، لذا يلزم إعادة تحمليها</string>
@@ -24,10 +24,12 @@
     <string name="choose_quran_edition">اختر نسخة قرآن</string>
     <string name="quran_translation_summary">اختيار نسخة القران التي سوف تظهر مع التفسير/الترجمة في المكتبة أثناء القراءة.</string>
     <string name="set_quran_edition">تغير نسخة القرآن الظهر في التفسير</string>
-    <string name="choose_theme">أختيار التصميم</string>
     <string name="not_downloaded_edtion">الكتاب غير محمل</string>
     <string name="bookmarks">العلامات</string>
     <string name="no_bookmarks">لا يوجد علامات مرجعية محفوظة</string>
     <string name="books">الكتُب</string>
+    <string name="press_on_aya_for_showing_list_of_rules">انقر على كلمة في الآية لإظهار أحكام التجويد في الكلمة</string>
+    <string name="notes_mudud_rules_issue">تحتوي أحكام المدود بعض الأخطاء ونعمل على إصلاحها في التحديثات القادمة</string>
+    <string name="copy_text">نسخ</string>
 
 </resources>

@@ -2,6 +2,7 @@ package com.abedfattal.quranx.core.framework.db.daos
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import com.abedfattal.quranx.core.framework.db.DOWNLOAD_STATE_TABLE
 import com.abedfattal.quranx.core.model.DownloadState
@@ -23,8 +24,11 @@ interface DownloadStateDao {
     @Insert
     suspend fun addDownloadState(state: DownloadState)
 
+    @Insert(onConflict = REPLACE)
+    suspend fun addOrUpdateDownloadState(state: DownloadState)
+
     @Query("delete from $DOWNLOAD_STATE_TABLE where download_state_id == :id")
-    suspend fun remoteState(
+    suspend fun removeState(
         id: String
     )
 }

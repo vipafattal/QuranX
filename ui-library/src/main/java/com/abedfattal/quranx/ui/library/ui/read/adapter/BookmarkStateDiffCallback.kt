@@ -3,8 +3,6 @@ package com.abedfattal.quranx.ui.library.ui.read.adapter
 import androidx.recyclerview.widget.DiffUtil
 import com.abedfattal.quranx.core.model.AyaWithInfo
 
-import kotlinx.android.synthetic.main.item_read_library.*
-
 internal class BookmarkStateDiffCallback(
     private val oldList: List<AyaWithInfo>,
     private val newList: List<AyaWithInfo>
@@ -18,6 +16,6 @@ internal class BookmarkStateDiffCallback(
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition].bookmark == newList[newItemPosition].bookmark
+        return oldList[oldItemPosition].isBookmarked == newList[newItemPosition].isBookmarked
     }
 }

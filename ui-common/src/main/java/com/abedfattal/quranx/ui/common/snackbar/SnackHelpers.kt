@@ -7,7 +7,7 @@ import com.google.android.material.snackbar.Snackbar
 
 fun Snackbar.setSnackbarTextColor(textColor: Int) {
 
-    val tv: TextView = view.findViewById(R.id.snackbar_text)
+    val tv: TextView = view.findViewById(com.google.android.material.R.id.snackbar_text)
     tv.setTextColor(colorOf(textColor))
 
 }

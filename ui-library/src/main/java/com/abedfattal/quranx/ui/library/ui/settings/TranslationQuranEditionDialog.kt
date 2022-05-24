@@ -27,9 +27,11 @@ class TranslationQuranEditionDialog : BaseDialog() {
         quranEditionGroup.invisible()
         bindEditionsDataToView()
 
+        //TODO convert Radio button to simple recyclerview item picker like language.
     }
 
     private fun bindEditionsDataToView() {
+
         val optionsList = listOf(editionOne, editionTwo, editionThree)
         translationQuranViewModel.getDownloadedQuranEdition()
             .observe(viewLifecycleOwner) { quranEditions ->
@@ -57,7 +59,7 @@ class TranslationQuranEditionDialog : BaseDialog() {
 
     private fun isUserQuranEdition(quranEdition: Edition): Boolean {
         val userEdition = LibraryPreferences.getTranslationQuranEdition()
-        return userEdition != null && userEdition.id == quranEdition.id
+        return userEdition != null && userEdition.identifier == quranEdition.identifier
     }
 
     private fun activateOptionListener(quranEditions: List<EditionDownloadState>) {
@@ -71,11 +73,12 @@ class TranslationQuranEditionDialog : BaseDialog() {
 
             if (!quranEditions[editionIndex].isDownloaded) {
                 requireView().findViewById<MaterialRadioButton>(checkedId).isChecked = false
-                LibraryPreferences.setTranslationQuranEdition(quranEditions[editionIndex].edition)
                 Toast.makeText(requireContext(), R.string.not_downloaded_edtion, Toast.LENGTH_LONG)
                     .show()
-            } else
+            } else {
+                LibraryPreferences.setTranslationQuranEdition(quranEditions[editionIndex].edition)
                 dismiss()
+            }
         }
     }
 

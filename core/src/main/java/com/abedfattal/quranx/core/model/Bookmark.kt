@@ -7,7 +7,6 @@ import com.abedfattal.quranx.core.framework.data.repositories.local.LocalBookmar
 import com.abedfattal.quranx.core.framework.db.BOOKMARKS_TABLE
 import com.abedfattal.quranx.core.utils.DateSerializer
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import kotlinx.serialization.json.Json
 import java.util.*
 
@@ -41,14 +40,14 @@ data class Bookmark(
     var userId: String = "",
     @Serializable(with = DateSerializer::class)
     var lastUpdate: Date? = null,
-) {
+) : SerializableModel() {
 
 
     /**
      * Convert the current [Bookmark] object into json [String].
      */
 
-    fun toJson() = Json.encodeToString(serializer(), this)
+    override fun toJson() = Json.encodeToString(serializer(), this)
 
     companion object {
         /**
@@ -59,4 +58,3 @@ data class Bookmark(
         }
     }
 }
-

@@ -7,10 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.abedfattal.quranx.ui.common.extensions.view.inflater
 import com.abedfattal.quranx.core.model.Surah
 import com.abedfattal.quranx.core.utils.isArabic
+import com.abedfattal.quranx.ui.common.R.*
 import com.abedfattal.quranx.ui.common.extensions.view.onClick
 import com.abedfattal.quranx.ui.common.extensions.colorOf
 import com.abedfattal.quranx.ui.common.extensions.colorAccent
-import com.abedfattal.quranx.ui.common.extensions.textColor
+import com.abedfattal.quranx.ui.common.removePunctuation
 import com.abedfattal.quranx.ui.library.R
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_library_choose_surah.*
@@ -25,6 +26,7 @@ class SurahsDrawerAdapter(
 
     private var dataList: List<Surah> = mutableListOf()
     private var previewSurahIndex = 0
+    private val locale = Locale.getDefault()
 
     fun updateAdapter(
         newDataList: List<Surah>,
@@ -54,15 +56,15 @@ class SurahsDrawerAdapter(
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), LayoutContainer {
         override val containerView: View = itemView
 
-        fun bindView(data: Surah) {
+        fun bindView(surah: Surah) {
 
             surahName.text =
-                if (Locale.getDefault().isArabic) data.name else data.englishName
-            surahNumber.text = data.getFormattedNumber()
+                if (locale.isArabic) surah.name.removePunctuation() else surah.englishName
+            surahNumber.text = surah.getFormattedNumber()
            // pageNumber.text = data.numberOfAyahs.toString()
-            itemView.onClick { onClick(data) }
+            itemView.onClick { onClick(surah) }
 
-            setIsViewColored(data.number == previewSurahIndex)
+            setIsViewColored(surah.number == previewSurahIndex)
         }
 
         private fun setIsViewColored(colored: Boolean) {
@@ -70,12 +72,12 @@ class SurahsDrawerAdapter(
 
             if (colored) {
                 val colorAccent = context.colorAccent
-                library_item_color.setCardBackgroundColor(colorOf(R.color.colorAccentLight,context))
+                library_item_color.setCardBackgroundColor(colorOf(color.colorNotes,context))
                 surahName.setTextColor(colorAccent)
                 surahNumber.setTextColor(colorAccent)
                 //pageNumber.setTextColor(colorAccent)
             } else {
-                val textColor = context.textColor
+                val textColor = colorOf(color.textColor,context)
                 library_item_color.setBackgroundColor(Color.TRANSPARENT)
                 surahName.setTextColor(textColor)
                 surahNumber.setTextColor(textColor)

@@ -34,7 +34,7 @@ abstract class BaseBottomSheet : BottomSheetDialogFragment() {
         dialog.setOnShowListener { Dialog ->
             val d = Dialog as BottomSheetDialog
 
-            val bottomSheet = d.findViewById<View>(R.id.design_bottom_sheet) as FrameLayout?
+            val bottomSheet = d.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet) as FrameLayout?
 
             val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
             bottomSheetBehavior.addBottomSheetCallback(dialogSlidingListener)

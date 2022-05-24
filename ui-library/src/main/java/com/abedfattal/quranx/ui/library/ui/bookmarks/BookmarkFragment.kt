@@ -54,9 +54,11 @@ open class BookmarkFragment : Fragment() {
 
 
         swipeToRefreshInit()
-        bookmarksViewModel.listenToAllBookmarks().observe(viewLifecycleOwner) { data ->
-            if (data.isEmpty())
+        bookmarksViewModel.listenToAllAyatBookmarks().observe(viewLifecycleOwner) { data ->
+            if (data.isEmpty()) {
                 empty_data_text.visible()
+                empty_data_img.visible()
+            }
 
             val ayatList = data.toMutableList()
             removeListConfirmSnackbar =
@@ -65,10 +67,15 @@ open class BookmarkFragment : Fragment() {
                     ayatList,
                     snackbarItemRemovedListener
                 )
-            bookmarksAdapter = BookmarksAdapter(ayatList, removeListConfirmSnackbar)
+            bookmarksAdapter =
+                BookmarksAdapter(ayatList, removeListConfirmSnackbar, ::onBookmarkClicked)
             recycler_bookmarks.adapter = bookmarksAdapter
 
         }
+    }
+
+    open fun onBookmarkClicked(ayaWithInfo: AyaWithInfo) {
+
     }
 
     private fun swipeToRefreshInit() {

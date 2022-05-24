@@ -1,5 +1,6 @@
 package com.abedfattal.quranx.core.model
 
+import androidx.annotation.Keep
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -9,19 +10,20 @@ import kotlinx.serialization.json.Json
 
 
 /** @suppress **/
+@Keep
 @Serializable
 @Entity(tableName = DOWNLOAD_STATE_TABLE)
 data class DownloadState(
-    @PrimaryKey()
+    @PrimaryKey
     @ColumnInfo(name = "download_state_id")
     val id: String,
     @ColumnInfo(name = "download_state")
     val state: Int,
-) {
+):SerializableModel() {
     /**
      * Convert the current [DownloadState] object into json [String].
      */
-    fun toJson() = Json.encodeToString(serializer(), this)
+    override fun toJson() = Json.encodeToString(serializer(), this)
 
    companion object {
        const val STATE_DOWNLOADED = 0

@@ -1,5 +1,6 @@
 package com.abedfattal.quranx.core.framework.data.repositories.localbased
 
+import com.abedfattal.quranx.core.framework.api.models.Quran
 import com.abedfattal.quranx.core.framework.data.repositories.local.LocalDownloadStateRepository
 import com.abedfattal.quranx.core.framework.data.repositories.local.LocalEditionsRepository
 import com.abedfattal.quranx.core.framework.data.repositories.local.LocalQuranRepository
@@ -30,33 +31,37 @@ class LocalBasedQuranRepository internal constructor(
      *
      * @return a flow of a [ProcessState] that actually represents the remote process state rather then local process state.
      */
-    fun downloadQuranBook(id: String): Flow<DownloadingProcess<Unit>> = flow {
-         remoteRepository.getQuranBook(id).collect { process ->
+    fun downloadQuranBook(editionToDownload: Edition): Flow<DownloadingProcess<Unit>> = flow {
+        remoteRepository.getQuranBook(editionToDownload.identifier).collect { process ->
             if (process is ProcessState.Success && process.data != null) {
                 emit(DownloadingProcess.Saving())
-                val quran = process.data
-                quranLocalRepository.addQuranBook(quran)
-                editionsLocalRepository.addEdition(quran.edition)
-                //Set this edition as downloaded.
-                downloadStateRepository.addDownloadState(quran.edition.id, DownloadState.STATE_DOWNLOADED,)
+                addFullQuranBook(process.data.copy(edition = editionToDownload))
                 emit(DownloadingProcess.Success())
             } else
                 emit(process.transformProcessType<Unit>().toDownloadProcess())
         }
     }
 
+    //TODO move to quran local repo
+    suspend fun addFullQuranBook(quran: Quran.QuranData) {
+        quranLocalRepository.addQuranBook(quran)
+        editionsLocalRepository.addEdition(quran.edition)
+        //Set this edition as downloaded.
+        downloadStateRepository.addOrUpdateDownloadState(quran.edition.identifier, DownloadState.STATE_DOWNLOADED)
+    }
 
 
-    fun getQuranBook(editionId: String): Flow<DownloadingProcess<List<AyaWithInfo>>> = flow {
+    fun getQuranBook(edition: Edition): Flow<DownloadingProcess<List<AyaWithInfo>>> = flow {
+        val editionId = edition.identifier
         val downloadState = downloadStateRepository.getDownloadState(editionId)
         if (downloadState != null && downloadState.state == DownloadState.STATE_DOWNLOADED) {
-            val ayat = quranLocalRepository.getAyatEditions(editionId)
+            val ayat = quranLocalRepository.getAyatByEdition(editionId)
             emit(ProcessState.Success(ayat).toDownloadProcess())
         } else {
             emitAll(
-                downloadQuranBook(editionId).map { process ->
+                downloadQuranBook(edition).map { process ->
                     if (process is DownloadingProcess.Success) {
-                        val ayat = quranLocalRepository.getAyatEditions(editionId)
+                        val ayat = quranLocalRepository.getAyatByEdition(editionId)
                         DownloadingProcess.Success(ayat)
                     } else
                         process.transformProcessType()
@@ -74,8 +79,13 @@ class LocalBasedQuranRepository internal constructor(
      * @return a flow of a [ProcessState] that contains the [Aya],
      * and the [ProcessState] actually represents the remote process state rather then local process state.
      */
-    fun getAya(numberInMushaf: Int, editionId: String): Flow<ProcessState<Aya>> {
-        return callerItem(
+    fun getAya(
+        numberInMushaf: Int,
+        editionId: String,
+        prioritizeRemote: Boolean = false
+    ): Flow<ProcessState<Aya>> {
+        return caller(
+            prioritizeRemote,
             local = { quranLocalRepository.getAya(numberInMushaf, editionId)?.aya },
             remote = { remoteRepository.getAya(numberInMushaf, editionId) },
             onRemoteSuccess = { quranLocalRepository.addAya(it) },
@@ -91,8 +101,13 @@ class LocalBasedQuranRepository internal constructor(
      * @return a flow of a [ProcessState] that contains the [Aya] list of the page,
      * and the [ProcessState] actually represents the remote process state rather then local process state.
      */
-    fun getPage(number: Int, editionId: String): Flow<ProcessState<List<Aya>>> {
+    fun getPage(
+        number: Int,
+        editionId: String,
+        prioritizeRemote: Boolean = false
+    ): Flow<ProcessState<List<Aya>>> {
         return caller(
+            prioritizeRemote,
             local = { quranLocalRepository.getPage(number, editionId).map { it.aya } },
             remote = { remoteRepository.getPage(number, editionId) },
             onRemoteSuccess = { quranLocalRepository.addAyat(it) },
@@ -110,8 +125,13 @@ class LocalBasedQuranRepository internal constructor(
      * @return a flow of a [ProcessState] that contains the [Aya] list of the juz,
      * and the [ProcessState] actually represents the remote process state rather then local process state.
      */
-    fun getJuz(number: Int, editionId: String): Flow<ProcessState<List<Aya>>> {
+    fun getJuz(
+        number: Int,
+        editionId: String,
+        prioritizeRemote: Boolean = false
+    ): Flow<ProcessState<List<Aya>>> {
         return caller(
+            prioritizeRemote,
             local = { quranLocalRepository.getJuz(number, editionId).map { it.aya } },
             remote = { remoteRepository.getJuz(number, editionId) },
             onRemoteSuccess = { quranLocalRepository.addAyat(it) },

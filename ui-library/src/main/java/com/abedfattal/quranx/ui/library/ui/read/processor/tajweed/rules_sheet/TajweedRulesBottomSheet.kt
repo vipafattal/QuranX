@@ -31,7 +31,7 @@ import kotlinx.android.synthetic.main.bottomsheet_tajweed_word_rule.*
 import kotlinx.android.synthetic.main.item_tajweed_word_rules.*
 
 
-class TajweedRulesBottomSheet : BaseBottomSheet() {
+open class TajweedRulesBottomSheet : BaseBottomSheet() {
 
     override val closeView: View get() = close_image
     override val layoutId: Int = R.layout.bottomsheet_tajweed_word_rule
@@ -88,7 +88,7 @@ class TajweedRulesBottomSheet : BaseBottomSheet() {
 
     private fun highlightWord() {
         val text = tajweed_aya_text.text
-        val string = tajweed.getAyahWithoutStyle(selectedWord.trim())
+        val string = Tajweed.getAyahWithoutStyle(selectedWord.trim())
         val startPoint = text.indexOf(string)
         val endPoint = startPoint + string.length
         val spannableText = text.toSpannable()

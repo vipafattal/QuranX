@@ -1,5 +1,6 @@
 package com.abedfattal.quranx.core.framework.data.repositories.remote
 
+import androidx.annotation.Keep
 import com.abedfattal.quranx.core.framework.api.QURAN_CLOUD_BASE_URL
 import com.abedfattal.quranx.core.framework.api.QuranCloudAPI
 import com.abedfattal.quranx.core.model.Edition
@@ -16,6 +17,7 @@ import kotlinx.coroutines.flow.Flow
  * Note that each function you call you will get a result of [Flow], which wraps the response with [ProcessState].
  *
  */
+@Keep
 class RemoteEditionsRepository internal constructor(
     private val api: QuranCloudAPI
 ) {
@@ -60,18 +62,6 @@ class RemoteEditionsRepository internal constructor(
      */
     fun getAllEditionsType(): Flow<ProcessState<List<String>>> {
         return newRequest { api.getEditionsTypes() }.processTransform { it.editionsType }
-    }
-
-    /**
-     * List all [Edition] by certain type.
-     * @param type represents the type of the [Edition] you want to list.
-     *
-     * @return [Edition] list only that confirms with [type].
-     */
-    fun getEditionsByType(type: String): Flow<ProcessState<List<Edition>>> {
-        return newRequest {
-            api.getEditionsByType(type)
-        }.processTransform { it.editions }
     }
 
     /**

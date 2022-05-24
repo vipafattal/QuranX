@@ -22,7 +22,12 @@
         <item name="android:textColor">?android:textColorPrimary</item>
         <item name="titleTextColor">?android:textColorPrimary</item>
         <item name="actionMenuTextColor">?android:textColorPrimary</item>
-        <item name="textWithBackgroundColor">#fff</item>
+        <item name="textWithBackgroundColor">#ffffff</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlayExtended" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/collapsable_fab_radius</item>
     </style>
 
 
@@ -44,15 +49,14 @@
     </style>
 
     <style name="popupMenu" parent="AppTheme">
-        <item name="backgroundColor">@color/colorPrimaryDark</item>
-
-        <item name="android:textColorPrimary">@color/textColor</item>
+        <item name="popupMenuBackground">@color/appBackgroundColor</item>
+        <item name="android:textColor">@color/textColor</item>
     </style>
 
     <style name="TabText" parent="AppTheme">
         <item name="android:textSize">17sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:fontFamily">@font/open_sans_bold</item>
+        <item name="android:fontFamily">@font/normal_bold</item>
     </style>
 
     <style name="TabsStyle" parent="Widget.MaterialComponents.TabLayout">

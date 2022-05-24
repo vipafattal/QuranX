@@ -8,10 +8,10 @@ import com.abedfattal.quranx.ui.library.ReadLibrary
 
 fun TextView.setTextSizeFromType(@StringRes type: Int,wight:Float = 1f) {
     val textDimenRes = when (type) {
-        R.string.small_font_size -> R.dimen._16ssp
-        R.string.medium_font_size -> R.dimen._19ssp
-        R.string.large_font_size -> R.dimen._25ssp
-        R.string.x_large_font_size -> R.dimen._29ssp
+        R.string.small_font_size -> com.intuit.ssp.R.dimen._16ssp
+        R.string.medium_font_size -> com.intuit.ssp.R.dimen._19ssp
+        R.string.large_font_size -> com.intuit.ssp.R.dimen._25ssp
+        R.string.x_large_font_size -> com.intuit.ssp.R.dimen._29ssp
         else -> throw IllegalArgumentException("Unknown text size type")
     }
 

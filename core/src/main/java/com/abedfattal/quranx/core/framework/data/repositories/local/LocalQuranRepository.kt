@@ -23,7 +23,7 @@ class LocalQuranRepository internal constructor(
 ) {
 
     /**
-     * Get all saved verses in Surah by [surahNumber] that confirms with specific [Edition.id].
+     * Get all saved verses in Surah by [surahNumber] that confirms with specific [Edition.identifier].
      */
     suspend fun getAyatBySurah(editionId: String, surahNumber: Int): List<AyaWithInfo> {
         return quranDao.getSurahAyatByEdition(editionId, surahNumber)
@@ -53,8 +53,8 @@ class LocalQuranRepository internal constructor(
 
         return AyatWithTafseer(
             null,
-            tafseerList = data.firstOrNull { it.edition.id == tafseerEdition },
-            quranList = data.firstOrNull { it.edition.id == quranEdition },
+            tafseerList = data.firstOrNull { it.edition.identifier == tafseerEdition },
+            quranList = data.firstOrNull { it.edition.identifier == quranEdition },
         )
     }
 
@@ -76,8 +76,8 @@ class LocalQuranRepository internal constructor(
      *
      * @return [AyaWithInfo] list that exist in specific edition.
      */
-    suspend fun getAyatEditions(edition: String): List<AyaWithInfo> {
-        return quranDao.getAyatEdition(edition)
+    suspend fun getAyatByEdition(edition: String): List<AyaWithInfo> {
+        return quranDao.getAyatByEdition(edition)
     }
 
     /**
@@ -109,23 +109,24 @@ class LocalQuranRepository internal constructor(
 
         require(quranEdition != tafseerEdition)
 
-        return quranDao.listenToSurahAyatByEdition(surahNumber, tafseerEdition, quranEdition).transform { ayatWithTafseer ->
-            val dataSize = ayatWithTafseer.size
-            val firstList = ayatWithTafseer.subList(0, dataSize / 2)
-            var quranList: List<AyaWithInfo> = emptyList()
-            var tafseerList: List<AyaWithInfo> = emptyList()
-            if (firstList.getOrNull(0) != null) {
-                if (firstList[0].aya.ayaEdition == quranEdition) {
-                    quranList = ayatWithTafseer.subList(0, dataSize / 2)
-                    tafseerList = ayatWithTafseer.subList(dataSize / 2, dataSize)
-                } else {
-                    tafseerList = ayatWithTafseer.subList(0, dataSize / 2)
-                    quranList = ayatWithTafseer.subList(dataSize / 2, dataSize)
-                }
-            }
-            emit(AyatInfoWithTafseer(null,tafseerList, quranList))
-        }.distinctUntilChanged()
+        return quranDao.listenToSurahAyatByEdition(surahNumber, tafseerEdition, quranEdition)
+            .transform { ayatWithTafseer ->
+
+                val quranList: List<AyaWithInfo> =
+                    ayatWithTafseer.filter { it.aya.ayaEdition == quranEdition }
+                val tafseerList: List<AyaWithInfo> =
+                    ayatWithTafseer.filter { it.aya.ayaEdition == tafseerEdition }
+
+                emit(
+                    AyatInfoWithTafseer(
+                        null,
+                        if (tafseerList.isEmpty()) null else tafseerList,
+                        if (quranList.isEmpty()) null else quranList
+                    )
+                )
+            }.distinctUntilChanged()
     }
+
     /**
      * Listen for bookmarks table changes, like when new [Bookmark] is added or removed from the table, see [updateBookmarkStatus].
      *
@@ -136,9 +137,10 @@ class LocalQuranRepository internal constructor(
         surahNumber: Int
     ): Flow<AyatInfoWithTafseer> {
 
-        return quranDao.listenToSurahAyatByEdition(surahNumber, edition).transform { ayatWithTafseer ->
-            emit(AyatInfoWithTafseer(null,null, ayatWithTafseer))
-        }.distinctUntilChanged()
+        return quranDao.listenToSurahAyatByEdition(surahNumber, edition)
+            .transform { ayatWithTafseer ->
+                emit(AyatInfoWithTafseer(null, null, ayatWithTafseer))
+            }.distinctUntilChanged()
     }
 
     /**
@@ -189,7 +191,7 @@ class LocalQuranRepository internal constructor(
     suspend fun getAyaEditions(
         ayaNumberInMushaf: Int,
         vararg editions: String
-    ): List<AyatWithEdition> {
+    ): List<AyaWithInfo> {
         return quranDao.getAyaAllEditions(
             ayaNumberInMushaf,
             editions = editions
@@ -281,8 +283,17 @@ class LocalQuranRepository internal constructor(
      *
      * @return [AyaWithInfo] list that exist in specific edition.
      */
-    suspend fun getAyatByRange(range: IntRange, editionId: String): List<AyaWithInfo> {
-        return quranDao.getAyatByNumberInMushafRange(range.first, range.last, editionId)
+    suspend fun getAyatByRange(
+        range: IntRange,
+        surahNumber: Int,
+        editionId: String
+    ): List<AyaWithInfo> {
+        return quranDao.getAyatByNumberInMushafRange(
+            range.first,
+            range.last,
+            surahNumber,
+            editionId
+        )
     }
 
     /**
@@ -323,12 +334,14 @@ class LocalQuranRepository internal constructor(
         quran.surahs.forEach { quranCloudSurah ->
             val surahAyat = quranCloudSurah.ayat.onEach { aya ->
                 aya.surah_number = quranCloudSurah.number
-                aya.ayaEdition = quran.edition.id
+                aya.ayaEdition = quran.edition.identifier
+                aya.text = aya.text.replace("\n", "")
             }
             addAyat(surahAyat)
-            addSurah(quranCloudSurah.toSurah(quran.edition.id))
+            addSurah(quranCloudSurah.toSurah(quran.edition.identifier))
         }
     }
+
 
     /**
      * Save a [Surah] into database. To save a list of [Surah] see [addAllSurahs].

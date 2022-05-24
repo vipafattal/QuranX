@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.abedfattal.quranx.core.framework.data.DataSources
 import com.abedfattal.quranx.ui.library.models.EditionDownloadState
-import com.abedfattal.quranx.ui.library.utils.SUPPORTED_QURAN_EDITIONS
+import com.abedfattal.ui.supported.edition.SupportedUiEditions
 import kotlinx.coroutines.Dispatchers
 
 class TranslationQuranViewModel : ViewModel() {
@@ -17,10 +17,10 @@ class TranslationQuranViewModel : ViewModel() {
                 DataSources.localDataSource.editionsRepository.getDownloadedEditions()
 
             emit(
-                SUPPORTED_QURAN_EDITIONS.map { supportedEdition ->
+                SupportedUiEditions.ALL_EDITIONS.map { supportedEdition ->
                     EditionDownloadState(
                         edition = supportedEdition,
-                        isDownloaded = downloadEdition.firstOrNull { it.id == supportedEdition.id } != null)
+                        isDownloaded = downloadEdition.firstOrNull { it.identifier == supportedEdition.identifier } != null)
                 }
             )
         }

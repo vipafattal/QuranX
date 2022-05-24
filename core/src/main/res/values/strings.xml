@@ -6,6 +6,12 @@
     <string name="connection_error">Connection Error</string>
     <string name="connection_reset">Connection reset</string>
     <string name="unknown_error">Unknown error</string>
+    <string name="no_saved_data">No saved data</string>
 
+    <string name="downloading_in_progress_state">Downloading</string>
+    <string name="downloading_saving_state">Saving download files</string>
+    <string name="downloading_pending_state">Download pending</string>
+    <string name="downloading_failed_state">Download failed</string>
+    <string name="downloading_success_state">Download completed</string>
 </resources>
 

@@ -2,6 +2,8 @@ package com.abedfattal.quranx.core.model
 
 import androidx.room.Embedded
 import androidx.room.Relation
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 
 /**
  * This [AyaWithInfo] model is used by database to query a verse ([Aya]) with [Edition] and get the [bookmark] state.
@@ -11,6 +13,7 @@ import androidx.room.Relation
  * @property edition represents the verse edition.
  * @property bookmark represents the verse bookmark status, which is null if the verse is not bookmarked.
  */
+@Serializable
 data class AyaWithInfo(
     @Embedded
     val aya: Aya,
@@ -18,7 +21,7 @@ data class AyaWithInfo(
         parentColumn = "surah_number",
         entityColumn = "surahNumberInMushaf"
     )
-    var surah: Surah?,
+    var surah: Surah,
     @Relation(
         parentColumn = "ayaEdition",
         entityColumn = "id",
@@ -30,5 +33,21 @@ data class AyaWithInfo(
         entityColumn = "bookmark_ayaNumber",
         entity = Bookmark::class
     )
-    val bookmark: Bookmark?
-)
+    var bookmark: Bookmark?
+) : SerializableModel() {
+
+    val isBookmarked get() = bookmark != null && aya.ayaEdition == bookmark!!.editionId && !bookmark!!.isDeleted
+
+
+    init {
+        if (!isBookmarked) bookmark = null
+    }
+
+
+    override fun toJson(): String = Json.encodeToString(serializer(), this)
+
+    companion object {
+        fun fromJson(value: String): AyaWithInfo = Json.decodeFromString(serializer(), value)
+    }
+
+}

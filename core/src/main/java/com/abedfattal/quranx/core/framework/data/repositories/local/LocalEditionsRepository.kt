@@ -44,13 +44,13 @@ class LocalEditionsRepository internal constructor(private val editionsDao: Edit
 
         return if (format == null || type == null) {
             if (format == null && type == null)
-                editionsDao.listenToDownloadedEditions().distinctUntilChanged()
+                editionsDao.listenToDownloadedEditions()
             else if (format != null)
-                editionsDao.listenToDownloadedEditionsByFormat(format).distinctUntilChanged()
+                editionsDao.listenToDownloadedEditionsByFormat(format)
             else
-                editionsDao.listenToDownloadedEditionsByType(type!!).distinctUntilChanged()
+                editionsDao.listenToDownloadedEditionsByType(type!!)
         } else
-            editionsDao.listenToDownloadedEditions(format, type).distinctUntilChanged()
+            editionsDao.listenToDownloadedEditions(format, type)
     }
 
     /**
@@ -79,7 +79,7 @@ class LocalEditionsRepository internal constructor(private val editionsDao: Edit
     /**
      * Get specific [Edition] by id. To list all [Edition] by ids see [getAllEditions].
      *
-     * @param editionId which is the corresponds for [Edition.id].
+     * @param editionId which is the corresponds for [Edition.identifier].
      *
      * @return [Edition] that if only exists in database.
      */
@@ -90,7 +90,7 @@ class LocalEditionsRepository internal constructor(private val editionsDao: Edit
     /**
      * List all [Edition] by ids. To get a specific [Edition] see [getEdition].
      *
-     * @param editionIds represent for all the [Edition.id] to list from database.
+     * @param editionIds represent for all the [Edition.identifier] to list from database.
      *
      * @return [Edition] list that is ordered ascending by [Edition.language].
      */
@@ -132,6 +132,7 @@ class LocalEditionsRepository internal constructor(private val editionsDao: Edit
     suspend fun getEditionsByFormat(format: String): List<Edition> {
         return editionsDao.getEditionsByFormat(format)
     }
+
 
     /**
      * Add a list of [Edition] to the database table. To add a single edition see [Edition].

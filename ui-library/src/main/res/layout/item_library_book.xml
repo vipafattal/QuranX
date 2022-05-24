@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="3dp"
+        android:theme="@style/AppTheme"
+        android:layout_height="wrap_content"
+        app:cardElevation="0dp"
+        android:clickable="true"
+        app:cardCornerRadius="5dp"
+        android:focusable="true"
+        app:cardBackgroundColor="@android:color/transparent"
+        android:id="@+id/materialCardView">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:id="@+id/edition_name_library"
+            style="@style/AppTheme.Text.Body1.bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/read_translation_button"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="Ahmed Ali" />
+
+        <TextView
+            android:id="@+id/type_library"
+            style="@style/AppTheme.Text.Secondary1.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/edition_name_library"
+            app:layout_constraintTop_toBottomOf="@+id/edition_name_library"
+            tools:text="3 suras downloaded" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/read_translation_button"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="8dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:elevation="0dp"
+            android:focusable="true"
+            app:cardBackgroundColor="@color/colorAccentLight"
+            app:cardCornerRadius="9dp"
+            app:layout_constraintBottom_toBottomOf="@+id/type_library"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/edition_name_library"
+            app:layout_constraintVertical_bias="0.0"
+          >
+
+            <ImageView
+                tools:tint="@color/colorAccent"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_read"
+                app:tint="@color/colorAccent" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <ImageView
+            android:id="@+id/read_library_more_item"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="8dp"
+            android:background="?selectableItemBackgroundBorderless"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/read_translation_button"
+            app:layout_constraintStart_toStartOf="@+id/read_translation_button"
+            app:layout_constraintTop_toBottomOf="@+id/read_translation_button"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_more_hor"
+            app:tint="@color/colorTextSecondary" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

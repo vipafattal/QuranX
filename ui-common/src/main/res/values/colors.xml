@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <color name="colorPrimary">#2D2D2E</color>
+    <color name="colorBorder">#F1F1F1</color>
     <color name="colorPrimaryDark">#121314</color>
     <color name="colorAccent">#ff0026</color>
     <color name="colorAccentDark">#C6072C</color>
     <color name="colorDone">#FF039BE5</color>
     <color name="colorAccentLight">#FFE7EB</color>
+    <color name="colorNotes">#FFE7EB</color>
     <color name="appBackgroundColor">#FFFFFF</color>
     <color name="lightBackgroundColor">#E5CCD0</color>
     <color name="textColor">#000000</color>
     <color name="textColorWithBackground">#EDE9E9</color>
     <color name="colorLightTransparent">#66F1304D</color>
-    <color name="colorTextSecondary">#757575</color>
+    <color name="colorTextSecondary">#888686</color>
+    <color name="colorLoading">#00000000</color>
     <color name="colorTextSecondaryDarkBackground">#9E9D9D</color>
     <color name="colorPlayerItem">#E6FFFFFF</color>
     <color name="colorSecondaryItems">#C5C5C5</color>
@@ -29,7 +32,6 @@
     <color name="libraryItemBg">#2D2D2E</color>
     <color name="colorWarning">#FFAB00</color>
     <color name="transparent">#00000000</color>
-
     <!--  <color name="black">#000000</color>
       <color name="snow">#fbf8f8</color>
       <color name="manatee">#95989a</color>

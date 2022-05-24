@@ -8,11 +8,11 @@ import com.abedfattal.quranx.core.model.Aya
 import com.abedfattal.quranx.tajweedprocessor.Tajweed
 import com.abedfattal.quranx.ui.library.models.TouchedWord
 import com.abedfattal.quranx.ui.library.ui.read.processor.word.touch.CustomClickableSpan
-import com.abedfattal.quranx.ui.library.utils.QURAN_TAJWEED_ID
+import com.abedfattal.ui.supported.edition.SupportedUiEditions
 
 class TajweedSpannable(val context: Context, val aya: Aya, val tajweed: Tajweed) {
     init {
-        require(aya.ayaEdition == QURAN_TAJWEED_ID)
+        require(aya.ayaEdition == SupportedUiEditions.QURAN_TAJWEED.identifier)
     }
 
     inline fun colorWithTouchListener(crossinline onWordTouch: (TouchedWord) -> Unit): Spannable {

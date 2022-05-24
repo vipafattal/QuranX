@@ -1,14 +1,14 @@
 package com.abedfattal.quranx.ui.library.ui.settings
 
 import com.abedfattal.quranx.core.model.Edition
+import com.abedfattal.quranx.ui.common.CommonUI
 import com.abedfattal.quranx.ui.common.preferences.AppPreferences
 import com.abedfattal.quranx.ui.library.R
-import com.abedfattal.quranx.ui.library.ReadLibrary
 import com.abedfattal.quranx.ui.library.ui.settings.SettingsPreferencesConstant.TranslationQuranEditionKey
 
 object LibraryPreferences {
 
-    private val appPreferences: AppPreferences = ReadLibrary.appPreferences
+    private val appPreferences: AppPreferences = CommonUI.userPreferences
 
     fun getTranslationQuranEdition(): Edition? {
         val jsonEdition = appPreferences.getStr(TranslationQuranEditionKey, "")

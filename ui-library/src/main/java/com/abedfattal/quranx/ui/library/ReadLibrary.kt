@@ -2,28 +2,32 @@ package com.abedfattal.quranx.ui.library
 
 import android.annotation.SuppressLint
 import android.content.Context
-import com.abedfattal.quranx.ui.common.CommonUI
 import com.abedfattal.quranx.ui.common.preferences.AppPreferences
+import com.abedfattal.quranx.ui.library.config.LibraryConfig
 
 
 @SuppressLint("StaticFieldLeak")
 object ReadLibrary {
 
-    internal lateinit var app: Context
-        private set
-
-    internal val appPreferences: AppPreferences by lazy { AppPreferences(context = app) }
+    internal val tempPreferences: AppPreferences by lazy { AppPreferences("library-quran-Temp") }
+    internal lateinit var app: Context private set
     internal var userId: String? = null
     internal var mainActivityPath: String = ""
         private set
 
-    fun init(context: Context, mainActivityPath: String) {
+    internal lateinit var libraryConfig: LibraryConfig
+
+    fun init(
+        context: Context,
+        mainActivityPath: String,
+        libraryConfig: LibraryConfig = LibraryConfig()
+    ) {
         app = context
         this.mainActivityPath = mainActivityPath
-        CommonUI.init(context)
+        this.libraryConfig = libraryConfig
     }
 
 
-    const val MANAGE_LIBRARY_FRAGMENT = 0
-    const val READ_LIBRARY_FRAGMENT = 1
+
+
 }

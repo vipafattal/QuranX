@@ -1,5 +1,6 @@
 package com.abedfattal.quranx.core.utils
 
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializer
 import kotlinx.serialization.encoding.Decoder
@@ -9,6 +10,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 /** @suppress **/
+@OptIn(ExperimentalSerializationApi::class)
 @Serializer(forClass = Date::class)
 object DateSerializer : KSerializer<Date> {
 

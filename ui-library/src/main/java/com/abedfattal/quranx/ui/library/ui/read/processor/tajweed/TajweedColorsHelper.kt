@@ -8,7 +8,7 @@ import com.abedfattal.quranx.tajweedprocessor.model.MetaColors.Companion.mudud
 import com.abedfattal.quranx.tajweedprocessor.model.MetaColors.Companion.noon
 import com.abedfattal.quranx.tajweedprocessor.model.MetaColors.Companion.qalaqah
 import com.abedfattal.quranx.ui.library.R
-import com.abedfattal.quranx.ui.library.ReadLibrary
+import com.abedfattal.quranx.ui.library.ReadLibrary.tempPreferences
 
 class TajweedColorsHelper(isDarkThemeOn: Boolean) {
     var tajweedColors = MetaColors(defaultColor = if (isDarkThemeOn) "#FFFFFF" else "#000000")
@@ -31,24 +31,24 @@ class TajweedColorsHelper(isDarkThemeOn: Boolean) {
     }
 
     private var mudud: Boolean
-        get() = ReadLibrary.appPreferences.getBoolean(mududKey, true)
-        set(value) = ReadLibrary.appPreferences.put(mududKey, value)
+        get() = tempPreferences.getBoolean(mududKey, true)
+        set(value) = tempPreferences.put(mududKey, value)
 
     private var noon: Boolean
-        get() = ReadLibrary.appPreferences.getBoolean(noonKey, true)
-        set(value) = ReadLibrary.appPreferences.put(noonKey, value)
+        get() = tempPreferences.getBoolean(noonKey, true)
+        set(value) = tempPreferences.put(noonKey, value)
 
     private var mimm: Boolean
-        get() = ReadLibrary.appPreferences.getBoolean(mimmKey, true)
-        set(value) = ReadLibrary.appPreferences.put(mimmKey, value)
+        get() = tempPreferences.getBoolean(mimmKey, true)
+        set(value) = tempPreferences.put(mimmKey, value)
 
     private var qalaqah: Boolean
-        get() = ReadLibrary.appPreferences.getBoolean(qalaqahKey, true)
-        set(value) = ReadLibrary.appPreferences.put(qalaqahKey, value)
+        get() = tempPreferences.getBoolean(qalaqahKey, true)
+        set(value) = tempPreferences.put(qalaqahKey, value)
 
     private var idgham: Boolean
-        get() = ReadLibrary.appPreferences.getBoolean(idghamKey, true)
-        set(value) = ReadLibrary.appPreferences.put(idghamKey, value)
+        get() = tempPreferences.getBoolean(idghamKey, true)
+        set(value) = tempPreferences.put(idghamKey, value)
 
 
     fun getCheckBoxState(@IdRes checkBoxId: Int): Boolean {

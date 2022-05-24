@@ -64,4 +64,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline6"
             tools:src="@drawable/ic_download" />
+
+    <ProgressBar
+        android:id="@+id/book_download_loading"
+        android:layout_width="31dp"
+        android:layout_height="31dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/download_img"
+        app:layout_constraintEnd_toEndOf="@+id/download_img"
+        app:layout_constraintStart_toStartOf="@+id/download_img"
+        app:layout_constraintTop_toTopOf="@+id/download_img"
+        tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>

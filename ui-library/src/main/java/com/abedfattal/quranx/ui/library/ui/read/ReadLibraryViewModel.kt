@@ -5,8 +5,10 @@ import com.abedfattal.quranx.core.framework.data.DataSources
 import com.abedfattal.quranx.core.model.AyatInfoWithTafseer
 import com.abedfattal.quranx.core.model.Edition
 import com.abedfattal.quranx.core.model.Surah
+import com.abedfattal.quranx.ui.library.ReadLibrary
 import com.abedfattal.quranx.ui.library.framework.usecases.ReadLibraryUseCase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 
@@ -25,14 +27,18 @@ class ReadLibraryViewModel : ViewModel() {
         return surahs
     }
 
-    fun getEditionAyat(edition: String, surahNumber: Int): LiveData<AyatInfoWithTafseer> {
+    fun getEditionAyat(edition: Edition, surahNumber: Int): LiveData<AyatInfoWithTafseer> {
         return ReadLibraryUseCase.getSurah(edition, surahNumber).asLiveData(Dispatchers.IO)
     }
 
     fun listDownloadedEdition(): LiveData<List<Edition>> {
-        if (!::_downloadEdition.isInitialized)
+        if (!::_downloadEdition.isInitialized) {
+            val blacklistedReadEditions = ReadLibrary.libraryConfig.editions.blacklistedReadEditions
             _downloadEdition =
-                localEditionRepo.listenDownloadedEditions().asLiveData(Dispatchers.IO)
+                localEditionRepo.listenDownloadedEditions().map { downloadedEditions ->
+                   downloadedEditions.filterNot { blacklistedReadEditions.contains(it.identifier) }
+                }.asLiveData(Dispatchers.IO)
+        }
 
         return _downloadEdition
     }

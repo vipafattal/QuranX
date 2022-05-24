@@ -29,7 +29,7 @@ class RemoteQuranRepository internal constructor(
      *
      * @see [LocalBasedQuranRepository.downloadQuranBook]
      *
-     * @param editionId represents the Quran [Edition.id].
+     * @param editionId represents the Quran [Edition.identifier].
      *
      * @return the whole book Quran book by [editionId].
      */
@@ -47,7 +47,7 @@ class RemoteQuranRepository internal constructor(
 
      *
      * @param numberInMushaf represents the verse number in Quran.
-     * @param editionId represents the Quran [Edition.id].
+     * @param editionId represents the Quran [Edition.identifier].
      *
      * @return [Aya] a single verse.
      */
@@ -60,7 +60,7 @@ class RemoteQuranRepository internal constructor(
      * Use [getPage] to all verses in single page.
      *
      * @param number represents the page number in Quran.
-     * @param editionId represents the Quran [Edition.id].
+     * @param editionId represents the Quran [Edition.identifier].
      *
      * @return [Aya] list for the whole Quran page.
      */
@@ -74,7 +74,7 @@ class RemoteQuranRepository internal constructor(
      * Use [getJuz] to list all verses in single juz.
      *
      * @param number represents the juz number in Quran.
-     * @param editionId represents the Quran [Edition.id].
+     * @param editionId represents the Quran [Edition.identifier].
      *
      * @return [Aya] list for the whole Quran juz.
      */
@@ -88,7 +88,7 @@ class RemoteQuranRepository internal constructor(
      * Search in a specific Quran text edition.
      *
      * @param query represents the words that you want search for.
-     * @param editionId represents the Quran [Edition.id] that you want to search in.
+     * @param editionId represents the Quran [Edition.identifier] that you want to search in.
      *
      * @return [AyatWithEdition] list result that match with [query].
      */

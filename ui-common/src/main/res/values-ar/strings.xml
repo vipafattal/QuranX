@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="download_app_via">حمل التطبيق عبر الغوغل بلاي</string>
-    <string name="app_version">رقم نسخة المكتبة V1.0</string>
+    <string name="library_version">رقم نسخة المكتبة V1.0</string>
+
+
+    <string name="books_channel_name">إشعارات تحميل الكتب</string>
+
 
     <string name="shortcut_created">تم إنشاء الإختصار</string>
     <string name="home">الرئيسية</string>
@@ -102,7 +106,7 @@
     <string name="pause_media">إيقاف</string>
     <string name="service_not_available">الخدمة غير متاحة</string>
     <string name="no_book_added">لم يتم إضافة أي كتاب بعد</string>
-    <string name="add_book">إضافة كتاب</string>
+    <string name="manage_books">إدارة المكتبة</string>
     <string name="aya_number">رقم الآية</string>
     <string name="tafseer">تفسير</string>
     <string name="page">الصفحة</string>

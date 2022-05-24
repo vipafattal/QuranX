@@ -20,7 +20,7 @@ object Search {
 
             var edition = ""
             var resultIndex = -1
-            results.sortedByDescending { it.edition.id }.map {
+            results.sortedByDescending { it.edition.identifier }.map {
                 resultIndex++
 
                 ayat += Aya(
@@ -28,14 +28,14 @@ object Search {
                     text = it.text,
                     numberInSurah = it.numberInSurah,
                     surah_number = it.surah.number,
-                    ayaEdition = it.edition.id
+                    ayaEdition = it.edition.identifier
                 )
 
-                if (edition != it.edition.id || results.lastIndex == resultIndex) {
+                if (edition != it.edition.identifier || results.lastIndex == resultIndex) {
                     quranWithEditionList += AyatWithEdition(it.edition, ayat.toList())
                     ayat.clear()
                 }
-                edition = it.edition.id
+                edition = it.edition.identifier
             }
             return quranWithEditionList
         }

@@ -21,8 +21,13 @@ object QuranXCore {
         private set
 
 
-    fun init(mContext: Context, dbConfig:DBConfiguration? =null ) {
+    internal fun init(mContext: Context) {
         app = mContext
-        configuration = dbConfig ?: DBConfiguration()
+        configuration = DBConfiguration()
     }
+
+    private fun dbConfig(dbConfig:DBConfiguration){
+        configuration  = dbConfig
+    }
+
 }

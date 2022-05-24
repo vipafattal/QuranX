@@ -25,19 +25,19 @@ import kotlinx.serialization.json.Json
 data class Aya(
     @ColumnInfo(name = "ayaNumberInMushaf")
     val number: Int,
-    val text: String,
+    var text: String,
     val numberInSurah: Int,
     var juz: Int = -1,
     var page: Int = -1,
     var hizbQuarter: Int = -1,
     var surah_number: Int = 0,
     var ayaEdition: String = ""
-) {
+) : SerializableModel(){
 
     /**
      * Convert the current [Aya] object into json [String].
      */
-    fun toJson() = Json.encodeToString(serializer(), this)
+    override fun toJson() = Json.encodeToString(serializer(), this)
 
 
     companion object {

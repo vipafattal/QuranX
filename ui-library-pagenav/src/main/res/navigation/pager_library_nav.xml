@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/read_library_nav"
+    app:startDestination="@id/libraryPagerFragment"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/booksFragment"
+        android:name="com.abedfattal.quranx.ui.library.ui.books.LibraryBooksFragment"
+        android:label="@string/Library">
+        <deepLink
+            app:uri="android-app://com.abed.ui.library/books_fragment" />
+        <action
+            android:id="@+id/action_booksFragment_to_manageLibraryFragment"
+            app:destination="@id/manageLibraryFragment" />
+        <action
+            android:id="@+id/action_booksFragment_to_readLibraryFragment"
+            app:destination="@id/readLibraryFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/readLibraryFragment"
+        android:name="com.abedfattal.quranx.ui.library.ui.read.ReadLibraryFragment"
+        android:label="ReadLibraryFragment">
+        <argument
+            android:name="edition"
+            android:defaultValue='""'
+            app:argType="string" />
+        <argument
+            android:name="startAtSurah"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <argument
+            android:name="startAtAyaNumberInSurah"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/manageLibraryFragment"
+        android:name="com.abedfattal.quranx.ui.library.ui.manage.ManageLibraryFragment"
+        android:label="ManageLibraryFragment" >
+        <argument
+            android:name="editionStart"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.abedfattal.quranx.ui.library.ui.settings.LibrarySettingsFragment"
+        android:label="SettingsFragment" />
+
+    <fragment
+        android:id="@+id/bookmarkFragment"
+        android:name="com.abedfattal.quranx.ui.library.ui.bookmarks.BookmarkFragment"
+        android:label="@string/bookmarks">
+        <deepLink
+            app:uri="android-app://com.abed.ui.library/bookmarks_fragment" />
+        <action
+            android:id="@+id/action_bookmarkFragment_to_readLibraryFragment"
+            app:destination="@id/readLibraryFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/libraryPagerFragment"
+        android:name="com.abedfattal.quranx.ui.library.ui.books.LibraryBooksFragment"
+        android:label="LibraryPagerFragment">
+
+        <action
+            android:id="@+id/action_libraryPagerFragment_to_libraryFragment"
+            app:destination="@id/booksFragment" />
+        <action
+            android:id="@+id/action_libraryPagerFragment_to_bookmarkFragment"
+            app:destination="@id/bookmarkFragment" />
+        <action
+            android:id="@+id/action_libraryPagerFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+
+    </fragment>
+
+
+</navigation>

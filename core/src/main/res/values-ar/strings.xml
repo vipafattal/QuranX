@@ -7,5 +7,13 @@
     <string name="connection_error">خطأ في الإتصال</string>
     <string name="service_not_available">الخدمة غير متاحة</string>
     <string name="unknown_error">حدث خطأ غير معروف في الإتصال</string>
+    <string name="no_saved_data">لا يوجد بيانات محفوظة</string>
 
+
+
+    <string name="downloading_in_progress_state">جاري التحميل</string>
+    <string name="downloading_saving_state">جاري حفظ البيانات</string>
+    <string name="downloading_pending_state">التحميل مُعلق</string>
+    <string name="downloading_failed_state">فشل التحميل</string>
+    <string name="downloading_success_state">اكتمل التحميل</string>
 </resources>

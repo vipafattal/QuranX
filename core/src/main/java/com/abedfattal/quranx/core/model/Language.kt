@@ -16,11 +16,11 @@ import kotlinx.serialization.json.Json
 data class Language(
     @PrimaryKey
     val code: String
-) {
+) :SerializableModel(){
     /**
      * Convert the current [Language] object into json [String].
      */
-    fun toJson() = Json.encodeToString(serializer(), this)
+    override fun toJson() = Json.encodeToString(serializer(), this)
 
     fun isArabic() = code == "ar"
 

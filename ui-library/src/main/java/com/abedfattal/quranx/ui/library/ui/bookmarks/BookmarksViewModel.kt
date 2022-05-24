@@ -4,50 +4,57 @@ import androidx.lifecycle.*
 import com.abedfattal.quranx.core.framework.data.DataSources
 import com.abedfattal.quranx.core.model.AyaWithInfo
 import com.abedfattal.quranx.core.model.Bookmark
-import com.abedfattal.quranx.core.model.Edition
 import com.abedfattal.quranx.ui.library.ReadLibrary
-import com.abedfattal.quranx.ui.library.ui.simpleLoading.LoadingViewModel
+import com.abedfattal.quranx.ui.library.framework.usecases.BookmarksUpdateUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import java.util.*
 
 class BookmarksViewModel : ViewModel() {
     private val bookmarksRepository = DataSources.localDataSource.bookmarksRepository
 
-    fun listenToAllBookmarks(): LiveData<List<AyaWithInfo>> =
-        bookmarksRepository.listenToBookmarksChanges()
-            .map { it.distinctBy { it.aya.number }.filter { it.bookmark != null } }
+    fun listenToAllAyatBookmarks(): LiveData<List<AyaWithInfo>> =
+        bookmarksRepository.listenToAyatBookmarksChanges().map { ayatList ->
+            ayatList.sortedWith(
+                compareBy(
+                    { it.edition.type },
+                    { it.surah.number },
+                    { it.aya.numberInSurah },
+                )
+            )
+        }
             .asLiveData(Dispatchers.IO)
+
+    fun listenToAyaBookmarks(id: String): LiveData<List<Bookmark>> =
+        bookmarksRepository.listenToEditionChanges(id).asLiveData(Dispatchers.IO)
+
 
     fun listenToBookmarkedEdition(editionId: String): LiveData<List<AyaWithInfo>> =
         bookmarksRepository.listenToEditionBookmarks(editionId).asLiveData(Dispatchers.IO)
 
-    fun addBookmark(ayaNumber: Int, edition: Edition) {
+
+    fun updateBookmarkStateInData(ayaWithInfo: AyaWithInfo) {
         viewModelScope.launch(Dispatchers.IO) {
-            bookmarksRepository.addBookmark(
-                ayaNumber,
-                edition.id,
-                edition.type,
-                ReadLibrary.userId ?: ""
+            BookmarksUpdateUseCase.updateBookmark(
+                ayaWithInfo = ayaWithInfo,
+                removePermanently = ReadLibrary.libraryConfig.bookmarksRemovedPermanently,
             )
         }
     }
 
+
     fun removeBookmarks(bookmarks: List<Bookmark>) {
         viewModelScope.launch(Dispatchers.IO) {
-            for (b in bookmarks) {
-                bookmarksRepository.updateBookmark(b.copy(isDeleted = true, isDirty = true, lastUpdate = Date()))
-            }
+            BookmarksUpdateUseCase.removeBookmarks(
+                bookmarks = bookmarks,
+                removePermanently = ReadLibrary.libraryConfig.bookmarksRemovedPermanently
+            )
         }
     }
-    fun removeBookmarks(bookmark: Bookmark) {
-        viewModelScope.launch(Dispatchers.IO) {
-                bookmarksRepository.updateBookmark(bookmark.copy(isDeleted = true, isDirty = true, lastUpdate = Date()))
 
-        }
-    }
+
     companion object {
-        fun get(owner:ViewModelStoreOwner )= ViewModelProvider(owner).get(BookmarksViewModel::class.java)
+        fun get(owner: ViewModelStoreOwner) =
+            ViewModelProvider(owner).get(BookmarksViewModel::class.java)
     }
 }

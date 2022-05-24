@@ -4,15 +4,18 @@ import android.annotation.SuppressLint
 import android.content.Context
 import com.abedfattal.quranx.ui.common.preferences.AppPreferences
 
-@SuppressLint("StaticFieldLeak")
-object CommonUI {
+class CommonUI internal constructor(mContext: Context) {
 
-    val preferences: AppPreferences by lazy { AppPreferences(context = context) }
+    init {
+        context = mContext
+    }
 
-    internal lateinit var context: Context
+    companion object {
+        @SuppressLint("StaticFieldLeak")
+        internal lateinit var context: Context
+            private set
 
-    fun init(context: Context) {
-        this.context = context
+        val userPreferences: AppPreferences by lazy { AppPreferences() }
     }
 
 }

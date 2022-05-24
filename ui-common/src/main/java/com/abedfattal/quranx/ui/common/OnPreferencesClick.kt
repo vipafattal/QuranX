@@ -13,3 +13,12 @@ inline fun PreferenceFragmentCompat.onPreferencesClick(
         true
     }
 }
+
+inline fun Preference.onPreferencesClick(
+    crossinline doOnClick: unitFun
+) {
+    setOnPreferenceClickListener {
+        doOnClick()
+        true
+    }
+}

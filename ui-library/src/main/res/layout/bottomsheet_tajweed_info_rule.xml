@@ -1,59 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|bottom"
-        android:minHeight="180dp"
-        android:orientation="vertical"
-        android:background="@color/appBackgroundColor"
-        app:behavior_hideable="true"
-        tools:theme="@style/AppTheme"
-        app:cardCornerRadius="0dp"
-        app:layout_behavior="@string/bottom_sheet_behavior">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center|bottom"
+    android:minHeight="180dp"
+    android:orientation="vertical"
+    app:behavior_hideable="true"
+    app:cardCornerRadius="0dp"
+    app:layout_behavior="@string/bottom_sheet_behavior"
+    tools:theme="@style/AppTheme">
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="16dp">
-
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                    style="@style/TextAppearance.AppCompat.Title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/colors_mean"  />
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/colors_mean"
+                android:textColor="@color/textColor" />
 
             <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
             <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/close_image"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    app:cardBackgroundColor="@color/appBackgroundColor"
-                    app:cardCornerRadius="15dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView4"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView4"
-                    app:strokeColor="@color/colorSecondaryItems"
-                    app:strokeWidth="1dp">
-            <ImageView
+                android:id="@+id/close_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:cardBackgroundColor="@color/appBackgroundColor"
+                app:cardCornerRadius="15dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView4"
+                app:strokeColor="@color/colorSecondaryItems"
+                app:strokeWidth="1dp">
+
+                <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -64,18 +63,39 @@
         </LinearLayout>
 
 
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/tajweedColorsRecycler"
+        <com.google.android.material.card.MaterialCardView
+            android:layout_marginVertical="16dp"
+            android:layout_width="match_parent"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/colorNotes"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/rulesInfoNotes"
+                android:drawablePadding="12dp"
+                style="@style/AppTheme.Text.Body2"
+                android:textColor="@color/colorAccent"
+                android:paddingVertical="8dp"
+                android:paddingHorizontal="12dp"
+                android:text="@string/press_on_aya_for_showing_list_of_rules"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/linearLayout"
-                tools:listitem="@layout/item_tajweed_word_rules" />
+                android:layout_height="match_parent"
+                app:drawableTint="@color/colorAccent"
+                app:drawableStartCompat="@drawable/ic_info_filled" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tajweedColorsRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout"
+            tools:listitem="@layout/item_tajweed_word_rules" />
     </LinearLayout>
 
 

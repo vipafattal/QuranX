@@ -17,12 +17,12 @@ import kotlinx.coroutines.flow.Flow
  */
 class RemoteLanguagesRepository internal constructor(
     private val api: QuranCloudAPI
-) {
+) : IRemoteLanguagesRepository {
 
     /**
      * @return the whole supported [Language] by the API service
      */
-    fun getSupportedLanguage(): Flow<ProcessState<List<Language>>> {
+    override fun getSupportedLanguage(): Flow<ProcessState<List<Language>>> {
         return newRequest { api.getSupportedLanguage() }.processTransform { languagesResponse ->
             languagesResponse.languages.map { code -> Language(code) }
         }

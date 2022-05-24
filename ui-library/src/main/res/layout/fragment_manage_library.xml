@@ -11,7 +11,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             tools:context=".ui.library.manage.ManageLibraryActivity">
-
             <include layout="@layout/toolbar_manage_library"/>
 
     <androidx.recyclerview.widget.RecyclerView

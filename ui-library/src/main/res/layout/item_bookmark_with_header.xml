@@ -14,11 +14,10 @@
             android:layout_height="50dp">
 
         <TextView
-
                 android:layout_gravity="center_vertical"
-                android:layout_marginHorizontal="@dimen/_6sdp"
+                android:layout_marginHorizontal="22dp"
                 tools:text="Quran"
-                android:textAppearance="@style/AppTheme.Text.HeadLine2.bold"
+                android:textAppearance="@style/AppTheme.Text.Body1"
                 android:id="@+id/type_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

@@ -10,19 +10,16 @@ fun TextView.animateText(@StringRes newText: Int) {
 }
 
 fun TextView.animateText(newText: CharSequence) {
-    AlphaAnimation(1.0f, 0.0f).run {
-        duration = 200
-        repeatCount = 1
-        repeatMode = Animation.REVERSE
-
+    AlphaAnimation(0f, 1f).run {
+        duration = 250
         setAnimationListener(object : Animation.AnimationListener {
-            override fun onAnimationStart(animation: Animation?) {}
+            override fun onAnimationStart(animation: Animation?) {
+            }
 
-            override fun onAnimationEnd(animation: Animation?) {}
-
-            override fun onAnimationRepeat(animation: Animation?) {
+            override fun onAnimationEnd(animation: Animation?) {
                 text = newText
             }
+            override fun onAnimationRepeat(animation: Animation?) {}
         })
 
         startAnimation(this)

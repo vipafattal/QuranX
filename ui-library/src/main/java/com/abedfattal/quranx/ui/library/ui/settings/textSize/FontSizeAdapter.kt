@@ -39,7 +39,7 @@ class FontSizeAdapter(
                 quranTextViewSize.setTextSizeFromType(sizeName)
                 translationTextViewSize.setTextSizeFromType(sizeName)
 
-                translationTextViewSize.typeface = Fonts.getTranslationFont(context, appLanguage)
+                translationTextViewSize.typeface = Fonts.getNormalFont(context,appLanguage)
 
                 onClicks(itemView, textSizeRow, selectedTextSizeRadio) {
                     itemView.selectedTextSizeRadio.isChecked = true

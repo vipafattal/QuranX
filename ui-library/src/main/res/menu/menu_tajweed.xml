@@ -4,7 +4,7 @@
 
     <item
             android:id="@+id/tajweedRulesInfo"
-            android:icon="@drawable/ic_info"
+            android:icon="@drawable/ic_info_filled"
             android:title="@string/mududd_rules"
             app:showAsAction="ifRoom" />
 

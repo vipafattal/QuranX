@@ -1,139 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layoutDirection="ltr"
-        tools:theme="@style/AppTheme">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layoutDirection="ltr"
+    tools:theme="@style/AppTheme">
 
     <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/item_read_library_root_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="16dp" />
+        android:id="@+id/item_read_library_root_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="16dp" />
 
 
-    <View
-            android:id="@+id/bookmarkedBackground"
-            android:layout_width="4dp"
-            android:layout_height="0dp"
-            app:layout_constrainedHeight="true"
-            tools:background="@color/colorPrimary"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/item_read_library_root_view" />
 
-    <com.google.android.material.card.MaterialCardView
-            android:id="@+id/aya_number_parent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:minWidth="@dimen/_32sdp"
-            android:minHeight="@dimen/_32sdp"
-            android:rotation="45"
-            app:cardBackgroundColor="@color/transparent"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/item_read_library_root_view"
-            app:strokeColor="@color/textColor"
-            app:strokeWidth="1.8dp">
+    <TextView
+        android:id="@+id/aya_number_library"
+        android:textStyle="bold"
+        style="@style/AppTheme.Text.Secondary2.Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="12dp"
+        android:textColor="@color/textColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/item_read_library_root_view"
 
-        <TextView
-                android:id="@+id/aya_number_library"
-                style="@style/AppTheme.Text.Secondary2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="-45"
-                android:textColor="@color/textColor"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="100" />
-    </com.google.android.material.card.MaterialCardView>
+        tools:text="100" />
 
     <FrameLayout
-            android:id="@+id/quran_text_framelayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="12dp"
+        android:id="@+id/quran_text_framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="12dp"
 
-            app:layout_constrainedWidth="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/aya_number_parent">
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aya_number_library">
 
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/wordbyword_recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                app:layout_constraintTop_toTopOf="@+id/item_read_library_root_view" />
+            android:id="@+id/wordbyword_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintTop_toTopOf="@+id/item_read_library_root_view" />
 
         <TextView
-                android:id="@+id/quran_text_readlibrary"
-                style="@style/QuranicText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ" />
+            android:id="@+id/quran_text_readlibrary"
+            style="@style/QuranicText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ" />
     </FrameLayout>
 
     <TextView
-            android:id="@+id/second_text_readlibrary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
-            android:lineSpacingExtra="1.3dp"
-            android:lineSpacingMultiplier="1.2"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/quran_text_framelayout"
-            tools:text="@string/preview_translation" />
+        android:id="@+id/second_text_readlibrary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:lineSpacingExtra="1.3dp"
+        android:lineSpacingMultiplier="1.2"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quran_text_framelayout"
+        tools:text="@string/preview_translation" />
 
     <View
-            android:id="@+id/divider_item_library"
-            android:layout_width="wrap_content"
-            android:layout_height="0.7dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/colorSecondaryItems"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ayaMoreOptions" />
+        android:id="@+id/divider_item_library"
+        android:layout_width="wrap_content"
+        android:layout_height="0.7dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorSecondaryItems"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ayaMoreOptions" />
 
 
     <ImageView
-            android:id="@+id/ayaMoreOptions"
-            android:layout_width="@dimen/clickable_image_size"
-            android:layout_height="@dimen/clickable_image_size"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="12dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/second_text_readlibrary"
-            app:srcCompat="@drawable/ic_more_hor" />
+        android:id="@+id/ayaMoreOptions"
+        android:layout_width="@dimen/clickable_image_size"
+        android:layout_height="@dimen/clickable_image_size"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="12dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/second_text_readlibrary"
+        app:srcCompat="@drawable/ic_more_hor" />
 
     <ImageView
-            android:id="@+id/bookmarkAyaButton"
-            android:layout_width="@dimen/clickable_image_size"
-            android:layout_height="@dimen/clickable_image_size"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="12dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/ayaMoreOptions"
-            app:layout_constraintTop_toBottomOf="@+id/second_text_readlibrary"
-            tools:srcCompat="@drawable/ic_bookmark_border"
-          />
+        android:id="@+id/bookmarkAyaButton"
+        android:layout_width="@dimen/clickable_image_size"
+        android:layout_height="@dimen/clickable_image_size"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ayaMoreOptions"
+        app:layout_constraintTop_toBottomOf="@+id/second_text_readlibrary"
+        tools:srcCompat="@drawable/ic_bookmark_border" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

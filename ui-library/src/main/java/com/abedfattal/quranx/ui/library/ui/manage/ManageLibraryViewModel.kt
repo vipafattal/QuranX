@@ -1,98 +1,102 @@
 package com.abedfattal.quranx.ui.library.ui.manage
 
-import androidx.lifecycle.*
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.abedfattal.quranx.core.framework.data.DataSources
-import com.abedfattal.quranx.core.model.DownloadingProcess
 import com.abedfattal.quranx.core.model.Edition
-import com.abedfattal.quranx.core.model.ProcessState
-import com.abedfattal.quranx.ui.common.models.Process
+import com.abedfattal.quranx.ui.library.ReadLibrary
+import com.abedfattal.quranx.ui.library.framework.download.EditionDownloadJob
+import com.abedfattal.quranx.ui.library.framework.download.EditionsDownloadService
+import com.abedfattal.quranx.ui.library.framework.usecases.ManageLibraryUseCase
 import com.abedfattal.quranx.ui.library.models.EditionDownloadState
 import com.abedfattal.quranx.ui.library.ui.settings.LibraryPreferences
-import com.abedfattal.quranx.ui.library.utils.QURAN_SUPPORTED_EDITIONS_IDS
+import com.abedfattal.quranx.ui.library.utils.EditionShortcut
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.cancelChildren
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 
 class ManageLibraryViewModel : ViewModel() {
 
-    private lateinit var allAvailableEditions: MutableLiveData<List<EditionDownloadState>>
+    private val allAvailableEditions: MutableLiveData<List<Pair<EditionDownloadState, EditionDownloadJob?>>> =
+        MutableLiveData(
+        )
 
     private val localBasedQuranDataRepo = DataSources.localBasedDataSource.quranRepository
-    private val remoteEditionsRepo = DataSources.remoteDataSource.editionsRepository
     private val localEditionsRepo = DataSources.localDataSource.editionsRepository
 
-    private fun prepareData() {
-        if (!::allAvailableEditions.isInitialized)
-            allAvailableEditions = MutableLiveData()
-        if (allAvailableEditions.value == null || allAvailableEditions.value!!.isNotEmpty())
-            viewModelScope.launch(Dispatchers.IO) {
-                remoteEditionsRepo.getTextEditions().collect { remoteEditionsProcess ->
-                    if (remoteEditionsProcess is ProcessState.Success) {
-                        val remoteEditions = remoteEditionsProcess.data!!.filter {
-                            it.language != "ar" || it.type == Edition.TYPE_TAFSEER || it.type == Edition.TYPE_QURAN && QURAN_SUPPORTED_EDITIONS_IDS.contains(
-                                it.id
-                            )
-                        }
-                        localEditionsRepo.listenDownloadedEditions().collect { downloadedEditions ->
+    private var remoteEditions: List<Edition> = listOf()
+    private var downloadedEditions: List<Edition> = listOf()
+    private var downloadInProgressEditions: List<EditionDownloadJob> = listOf()
 
-                            allAvailableEditions.postValue(remoteEditions.asSequence()
-                                .map { edition ->
-                                    EditionDownloadState(
-                                        edition,
-                                        downloadedEditions.any { it.id == edition.id })
-                                }.sortedBy { it.edition.language }.toList()
-                            )
-                        }
-                    }
-                }
+    private fun prepareData() {
+        viewModelScope.launch(Dispatchers.IO) {
+            ManageLibraryUseCase.getTextEdition().collect {
+                remoteEditions = it
+                dataHasChange()
             }
+
+        }
+        viewModelScope.launch(Dispatchers.IO) {
+            EditionsDownloadService.downloadingProcess.collect {
+                downloadInProgressEditions = it
+                dataHasChange()
+            }
+        }
+
+        viewModelScope.launch(Dispatchers.IO) {
+            localEditionsRepo.listenDownloadedEditions().collect {
+                downloadedEditions = it
+                dataHasChange()
+            }
+        }
+
     }
 
-    fun getEditions(): LiveData<List<EditionDownloadState>> {
+    private fun dataHasChange() {
+        if (remoteEditions.isNotEmpty())
+            allAvailableEditions.postValue(remoteEditions
+                .map { edition ->
+
+                    val editionDownloadState = EditionDownloadState(
+                        edition,
+                        downloadedEditions.any { it.identifier == edition.identifier })
+
+                    val downloadProgressJob =
+                        downloadInProgressEditions.firstOrNull { it.edition.identifier == edition.identifier }
+
+                    return@map (editionDownloadState to downloadProgressJob)
+
+                }
+            )
+    }
+
+
+    fun getEditions(): MutableLiveData<List<Pair<EditionDownloadState, EditionDownloadJob?>>> {
         prepareData()
         return allAvailableEditions
     }
 
-    fun downloadMushaf(edition: Edition): LiveData<DownloadingProcess<Unit>> {
-        return localBasedQuranDataRepo.downloadQuranBook(edition.id).onEach { downloadingProcess ->
-            if (downloadingProcess is DownloadingProcess.Success &&
-                edition.type == Edition.TYPE_QURAN && LibraryPreferences.getTranslationQuranEdition() == null
-            )
-                LibraryPreferences.setTranslationQuranEdition(edition)
-        }.asLiveData(Dispatchers.IO)
-    }
-
-    fun deleteMushaf(edition: Edition): LiveData<Int> {
-        val process = MutableLiveData<Int>()
-
-        if (edition.id == LibraryPreferences.getTranslationQuranEdition()?.id)
+    fun deleteMushaf(edition: Edition) {
+        EditionShortcut(edition, ReadLibrary.app).disableShortcut()
+        if (edition.identifier == LibraryPreferences.getTranslationQuranEdition()?.identifier)
             changeTranslationQuranOnDelete()
 
-        viewModelScope.launch {
-            localBasedQuranDataRepo.deleteQuranBook(edition.id, false)
-            delay(500)
-            process.postValue(Process.SUCCESS)
+        viewModelScope.launch(Dispatchers.IO) {
+            localBasedQuranDataRepo.deleteQuranBook(edition.identifier, true)
         }
 
-        return process
     }
 
     private fun changeTranslationQuranOnDelete() {
         viewModelScope.launch(Dispatchers.IO) {
-            val anyDownloadedQuran = localEditionsRepo.getDownloadedEditions()
-                .firstOrNull { it.type == Edition.TYPE_QURAN }
+            val anyDownloadedQuran =
+                localEditionsRepo.getDownloadedEditions(type = Edition.TYPE_QURAN).firstOrNull()
 
             LibraryPreferences.setTranslationQuranEdition(anyDownloadedQuran)
         }
     }
 
-    fun cancelWork() {
-        viewModelScope.coroutineContext.cancelChildren()
-    }
 }
 
 

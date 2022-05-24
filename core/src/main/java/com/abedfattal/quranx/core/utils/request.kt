@@ -1,6 +1,5 @@
 package com.abedfattal.quranx.core.utils
 
-import android.util.Log
 import com.abedfattal.quranx.core.R
 import com.abedfattal.quranx.core.model.ProcessState
 import kotlinx.coroutines.flow.flow
@@ -31,13 +30,13 @@ internal inline fun <reified T> newRequest(
 
 @PublishedApi
 internal inline fun <reified T> onRequestCompleted(
-    request:  () -> Response<T>,
+    request: () -> Response<T>,
     onSuccess: (data: T) -> Unit,
-    onError: (reason:String?, friendlyMsg: Int) -> Unit
+    onError: (reason: String?, friendlyMsg: Int) -> Unit
 ) {
 
     var userErrorMsg: Int = R.string.unknown_error
-    var errorReason:String? ="Unknown error"
+    var errorReason: String? = "Unknown error"
     var data: T? = null
     val className = T::class.java.name
 
@@ -48,31 +47,35 @@ internal inline fun <reified T> onRequestCompleted(
         if (response.isSuccessful)
             data = response.body()
         else
-            Log.d("Unknown error for $className", response.errorBody().toString())
+            printLog("Unknown error for $className", response.errorBody().toString())
 
     } catch (e: UnknownHostException) {
-        Log.d("Get response for $className", e.message ?: "Unknown error")
+        printLog("Get response for $className", e.message ?: "Unknown error")
         userErrorMsg = R.string.no_internet
     } catch (io: SocketTimeoutException) {
-        Log.d("Get response for $className", io.message ?: "Unknown error")
+        printLog("Get response for $className", io.message ?: "Unknown error")
         errorReason = io.message
         userErrorMsg = R.string.timout
     } catch (so: SocketException) {
-        Log.d("Get response for $className", so.message ?: "Unknown error")
+        printLog("Get response for $className", so.message ?: "Unknown error")
         errorReason = so.message
         userErrorMsg = R.string.connection_reset
     } catch (pro: ProtocolException) {
-        Log.d("Get response for $className", pro.message ?: "Unknown error")
+        printLog("Get response for $className", pro.message ?: "Unknown error")
         errorReason = pro.message
 
         userErrorMsg = R.string.connection_error
     } catch (io: IOException) {
-        Log.d("Get response for $className", io.message ?: "Unknown error")
+        printLog("Get response for $className", io.message ?: "Unknown error")
         userErrorMsg = R.string.service_not_available
         errorReason = io.message
     }
     if (data != null) onSuccess(data)
-    else onError(errorReason,userErrorMsg)
+    else onError(errorReason, userErrorMsg)
+}
+
+fun printLog(tag: String, msg: String) {
+    print("$tag, $msg")
 }
 
 /*suspend inline fun <reified T> Deferred<Response<T>>.onComplete(
@@ -87,14 +90,14 @@ internal inline fun <reified T> onRequestCompleted(
         if (response.isSuccessful) {
             prepareMainList = response.body()
         } else {
-            Log.d("Unknown error for $className", response.errorBody().toString())
+            printLog("Unknown error for $className", response.errorBody().toString())
             errorMsg = "Unknown error"
         }
     } catch (e: UnknownHostException) {
-        Log.d("Get response for $className", e.message ?: "Unknown error")
+        printLog("Get response for $className", e.message ?: "Unknown error")
         errorMsg = "No internet connection"
     } catch (timeOut: SocketTimeoutException) {
-        Log.d("Get response for $className", timeOut.message ?: "Unknown error")
+        printLog("Get response for $className", timeOut.message ?: "Unknown error")
         errorMsg = "Timeout"
     }
     onComplete(prepareMainList, errorMsg)

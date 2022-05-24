@@ -28,7 +28,7 @@
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="15"
-            tools:listitem="@layout/item_library" />
+            tools:listitem="@layout/item_library_book" />
     </RelativeLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -36,9 +36,10 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/fab_extended_height"
         android:layout_margin="12dp"
-        android:text="@string/add_book"
+        android:text="@string/manage_books"
         android:textAllCaps="false"
         android:textColor="#fff"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlayExtended"
         app:backgroundTint="@color/colorAccent"
         app:elevation="@dimen/fab_elevation"
         app:icon="@drawable/ic_library_add"

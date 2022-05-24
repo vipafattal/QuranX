@@ -5,8 +5,8 @@ plugins {
     id 'kotlinx-serialization'
     id 'kotlin-kapt'
     id "androidx.navigation.safeargs.kotlin"
-    id 'org.jetbrains.dokka'
-    id 'maven-publish'
+    //id 'org.jetbrains.dokka'
+    //id 'maven-publish'
 }
 
 android {
@@ -15,8 +15,6 @@ android {
     defaultConfig {
         minSdk 21
         targetSdk 31
-        versionCode 1
-        versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
         vectorDrawables.useSupportLibrary = true
@@ -75,13 +73,13 @@ dependencies {
     implementation frameworks.ssp
     implementation frameworks.flex
 
-
     //QuranX
-    implementation project(":core")
-    implementation project(":wordsprocessor")
-    implementation project(":tajweedprocessor")
-    implementation project(":tajweedrules")
-    implementation project(":ui-common")
+    implementation project(":QuranX:core")
+    implementation project(":QuranX:wordsprocessor")
+    implementation project(":QuranX:tajweedprocessor")
+    implementation project(":QuranX:tajweedrules")
+    implementation project(":QuranX:ui-common")
+    implementation project(':QuranX:ui-supported-edition')
 
     implementation 'com.github.vipafattal:KotlinRecycler:1.2.1'
 
@@ -90,6 +88,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
 
+/*
 afterEvaluate {
     publishing {
         publications {
@@ -106,3 +105,4 @@ afterEvaluate {
         }
     }
 }
+*/

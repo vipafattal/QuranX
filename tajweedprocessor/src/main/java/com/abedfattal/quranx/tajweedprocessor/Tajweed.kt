@@ -70,9 +70,9 @@ class Tajweed(val metaColors: MetaColors = MetaColors()) {
      * @sample com.abedfattal.quranx.sample.tajweedprocessor.TajweedAdapter
      *
      */
-    fun getStyledWords(rawAyah: String): Spannable {
+    fun getStyledWords(rawAyah: String, suffix:String = ""): Spannable {
         val ayahSplits = Splitter.getAyahSplits(rawAyah)
-        return applyTajweedColors(ayahSplits)
+        return applyTajweedColors(ayahSplits,suffix)
     }
 
     /**
@@ -84,22 +84,25 @@ class Tajweed(val metaColors: MetaColors = MetaColors()) {
     }
 
     /**
-     * Removes metas from [rawAyah] and returns the text.
-     */
-    fun getAyahWithoutStyle(rawAyah: String): String {
-        return rawAyah.replace("[]\\[$tajweedMetas:0-9]".toRegex(), "")
-    }
-
-    /**
      * Converting [splits] to a [android.text.SpannableStringBuilder],
      * so we could apply color for each meta.
      */
-    private fun applyTajweedColors(splits: List<String>): Spannable {
+    private fun applyTajweedColors(splits: List<String>, suffix: String): Spannable {
         val spannableAya = SpannableStringBuilder("")
         Splitter.doOnSplits(splits) { meta, ayahSpilt ->
             val metaColor = metaColors.colorOfMeta(meta)
             spannableAya.setSplitSpan(ayahText = ayahSpilt, color = metaColor)
         }
-        return spannableAya
+        return spannableAya.append(suffix)
+    }
+
+    companion object {
+
+        /**
+         * Removes metas from [rawAyah] and returns the text.
+         */
+        fun getAyahWithoutStyle(rawAyah: String): String {
+            return rawAyah.replace("[]\\[$tajweedMetas:0-9]".toRegex(), "")
+        }
     }
 }

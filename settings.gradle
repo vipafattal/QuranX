@@ -1,8 +1,27 @@
 rootProject.name = "QuranX"
+
 include ':sample'
-include ':core'
-include ':tajweedrules'
-include ':tajweedprocessor'
-include ':wordsprocessor'
-include ':ui-library'
-include ':ui-common'
+
+include ':QuranX:core'
+project ':QuranX:core'
+
+include ':QuranX:tajweedrules'
+project ':QuranX:tajweedrules'
+
+include ':QuranX:tajweedprocessor'
+project ':QuranX:tajweedprocessor'
+
+include ':QuranX:wordsprocessor'
+project ':QuranX:wordsprocessor'
+
+include ':QuranX:ui-library'
+project ':QuranX:ui-library'
+
+include ':QuranX:ui-common'
+project ':QuranX:ui-common'
+
+include ':QuranX:ui-supported-edition'
+project ':QuranX:ui-supported-edition'
+
+include ':QuranX:ui-library-pagenav'
+project ':QuranX:ui-library-pagenav'

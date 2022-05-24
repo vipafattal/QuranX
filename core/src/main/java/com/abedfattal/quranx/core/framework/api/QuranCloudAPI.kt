@@ -14,24 +14,23 @@ import retrofit2.http.Query
 interface QuranCloudAPI {
 
     //Languages
-    @GET("edition/language")
+    @GET(ApiEndpoints.languages)
     suspend fun getSupportedLanguage(): Response<Meta.SupportedLanguage>
 
-
     //Editions
-    @GET("edition?format=text")
+    @GET(ApiEndpoints.textEditions)
     suspend fun getTextEditions(): Response<Meta.Editions>
 
-    @GET("edition?format=audio")
+    @GET(ApiEndpoints.audioEditions)
     suspend fun getAudioEditions(): Response<Meta.Editions>
 
-    @GET("edition/type")
+    @GET(ApiEndpoints.editionsByType)
     suspend fun getEditionsTypes(): Response<Meta.EditionsType>
 
-    @GET("edition/type/{type}")
+    @GET("${ApiEndpoints.editionsByTypeParam}?{type}")
     suspend fun getEditionsByType(@Path("type") type: String): Response<Meta.Editions>
 
-    @GET("edition")
+    @GET(ApiEndpoints.editions)
     suspend fun getEditions(
         @Query("format") format: String,
         @Query("language") language: String,
@@ -39,22 +38,22 @@ interface QuranCloudAPI {
     ): Response<Meta.Editions>
 
     //Quran
-    @GET("quran/{edition}?fontHack=true")
+    @GET(ApiEndpoints.quranByEditionParam)
     suspend fun getQuranBook(@Path("edition") editionId: String): Response<Quran.QuranBook>
 
-    @GET("ayah/{number}/{edition}?fontHack=true")
+    @GET(ApiEndpoints.ayahByEditionAndNumberParams)
     suspend fun getAya(
         @Path("number") numberInMushaf: Int,
         @Path("edition") editionId: String,
     ): Response<Ayat.AyaData>
 
-    @GET("page/{page_number}/{edition}?fontHack=true")
+    @GET(ApiEndpoints.pageByNumberAndEditionParams)
     suspend fun getPage(
         @Path("page_number") page: Int,
         @Path("edition") editionId: String
     ): Response<Ayat.QuranPageData>
 
-    @GET("juz/{juz_number}/{edition}?fontHack=true")
+    @GET(ApiEndpoints.juzByNumberAndEditionParams)
     suspend fun getJuz(
         @Path("juz_number") juz: Int,
         @Path("edition") editionId: String
@@ -62,13 +61,13 @@ interface QuranCloudAPI {
 
 
     //Search
-    @GET("search/{query}/all/{language_code}?fontHack=true")
+    @GET(ApiEndpoints.searchQueryByLanguageParams)
     suspend fun searchAllQuran(
         @Path("query") query: String,
         @Path("language_code") language: String,
     ): Response<Search.QuranResults>
 
-    @GET("search/{query}/all/{edition}?fontHack=true")
+    @GET(ApiEndpoints.searchQueryByEdition)
     suspend fun searchQuranByEdition(
         @Path("query") query: String,
         @Path("edition") editionId: String,

@@ -10,6 +10,7 @@
     <color name="colorLightTransparent">#66F1304D</color>
     <color name="appBackgroundColor">#121314</color>
     <color name="lightBackgroundColor">#3E2E30</color>
+    <color name="colorBorder">#575757</color>
 
     <color name="textColor">#FFFFFF</color>
     <color name="textColorWithBackground">#888888</color>

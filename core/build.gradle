@@ -1,10 +1,10 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
-    id 'org.jetbrains.dokka'
-    id 'kotlin-kapt'
     id 'kotlinx-serialization'
-    id 'maven-publish'
+    id 'kotlin-kapt'
+    //id 'maven-publish'
+    //id 'org.jetbrains.dokka'
 }
 android {
 
@@ -27,12 +27,6 @@ android {
         jvmTarget = '1.8'
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
 }
 
 
@@ -44,22 +38,43 @@ dependencies {
     implementation kt.serialization
     implementation androidm.appcompat
 
+    implementation startup
+
     implementation coroutines.core
     implementation coroutines.android
 
     implementation roomDB.core
     implementation roomDB.ktx
+
     kapt roomDB.kapt
 
     implementation retrofit.core
     implementation retrofit.converter
-    implementation retrofit.interceptor
 
+    // Dependencies for local unit tests
+    testImplementation kt.ktx_test
+    testImplementation coroutines.testing
+    testImplementation tests.mock_server
+    testImplementation tests.ext_junit
     testImplementation tests.junit
     testImplementation tests.espresso_core
+    testImplementation tests.espresso_contrib
+    testImplementation tests.hamcrest
+    testImplementation tests.robolectric
+    testImplementation tests.dexmaker
+    testImplementation tests.arch_core_testing
+
+    androidTestImplementation coroutines.testing
     androidTestImplementation tests.ext_junit
+    androidTestImplementation tests.junit
+    androidTestImplementation tests.espresso_core
+    androidTestImplementation tests.espresso_contrib
+    androidTestImplementation tests.mockito
+    androidTestImplementation tests.dexmaker
+    androidTestImplementation tests.arch_core_testing
+
 }
-    afterEvaluate {
+  /*  afterEvaluate {
         publishing {
             publications {
                 // Creates a Maven publication called "release".
@@ -75,4 +90,4 @@ dependencies {
             }
         }
     }
-
+*/

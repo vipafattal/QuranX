@@ -18,10 +18,10 @@ private var numbers = arrayOf(
     '9' to '٩'
 )
 
-fun Int.toLocalizedNumber(forceArabic: Boolean = false): String {
+fun Int.toLocalizedNumber(isArabicNumber:Boolean): String {
 
     var output = this.toString()
-    if (Locale.getDefault().language == "ar" || forceArabic)
+    if (isArabicNumber)
         for ((englishNumber, arabicNumber) in numbers)
             output = output.replace(englishNumber, arabicNumber)
 

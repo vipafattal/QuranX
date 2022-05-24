@@ -2,17 +2,18 @@ package com.abedfattal.quranx.ui.common.preferences
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.abedfattal.quranx.ui.common.CommonUI.Companion.context
 import com.abedfattal.quranx.ui.common.extensions.edit;
 
 
 /**
  * Created by Abed on 12/14/2017.
  */
-class AppPreferences(sharedPreferencesFileName: String = "AppPreferences", context: Context) {
+class AppPreferences constructor(fileName: String = "AppPreferences") {
 
     private val mPref: SharedPreferences by lazy {
         context.getSharedPreferences(
-            sharedPreferencesFileName,
+            fileName,
             Context.MODE_PRIVATE
         )
     }
@@ -35,6 +36,26 @@ class AppPreferences(sharedPreferencesFileName: String = "AppPreferences", conte
 
     fun getStr(key: String, defValue: String = ""): String {
         return mPref.getString(key, defValue)!!
+    }
+
+    fun getStrNullable(key: String): String? {
+        return mPref.getString(key, "")!!.run {
+            ifEmpty { null }
+        }
+    }
+
+    fun putOf(vararg pairs: Pair<String, Any>) {
+        pairs.forEach { (key, value) ->
+            when (value) {
+                is Long -> put(key, value)
+                is Int -> put(key, value)
+                is String -> put(key, value)
+                is Boolean -> put(key, value)
+                is Float -> put(key, value)
+                is Double -> put(key, value)
+            }
+
+        }
     }
 
     fun put(key: String, `val`: String) {

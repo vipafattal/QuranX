@@ -45,7 +45,7 @@ class TajweedMenu(
 
     private fun initTajweedInfoButton() {
         findItem(R.id.tajweedRulesInfo).setOnMenuItemClickListener {
-            TajweedColoringInfoBottomSheet().show(fragmentManager, "")
+            TajweedColoringInfoBottomSheet.show(fragmentManager)
             true
         }
     }

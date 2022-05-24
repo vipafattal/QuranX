@@ -12,7 +12,7 @@
     <string name="font_size_key">Font size</string>
     <string name="translation_with_aya">Display verses with translation</string>
     <string name="arabic_numbers">Show Arabic numbers</string>
-    <string name="reading">Reading Settings</string>
+    <string name="library_options">Library Options</string>
 
     <string name="previewing_text">Text preview</string>
     <string name="more_books_subscription">Subscription required to download more books</string>
@@ -26,11 +26,13 @@
     <string name="choose_quran_edition">Choose Quran Edition</string>
     <string name="quran_translation_summary">Set the version of Quran to be displayed with translation in the library.</string>
     <string name="set_quran_edition">Change translation Quran edition</string>
-    <string name="choose_theme">Choose Theme</string>
     <string name="not_downloaded_edtion">Book not Downloaded</string>
 
     <string name="no_bookmarks">No Bookmarks Saved Yet</string>
     <string name="bookmarks">Bookmarks</string>
     <string name="books">Books</string>
+    <string name="press_on_aya_for_showing_list_of_rules">Press on a verse word to list the reading rules</string>
+    <string name="notes_mudud_rules_issue">Notes prolongation (Mudud) rules have some issues, and we are working on fixing them in the coming updates</string>
+    <string name="copy_text">Copy</string>
 
 </resources>

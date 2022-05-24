@@ -7,16 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.abedfattal.quranx.ui.common.extensions.view.*
+import com.abedfattal.quranx.core.model.Edition
+import com.abedfattal.quranx.ui.common.extensions.view.addDividerDecoration
+import com.abedfattal.quranx.ui.common.extensions.view.gone
+import com.abedfattal.quranx.ui.common.extensions.view.onScroll
+import com.abedfattal.quranx.ui.common.extensions.view.visible
 import com.abedfattal.quranx.ui.library.R
 import com.abedfattal.quranx.ui.library.ui.read.ReadLibraryViewModel
 import kotlinx.android.synthetic.main.fragment_library.*
 
 
-class LibraryBooksFragment : Fragment() {
+abstract class LibraryBooksFragment : Fragment() {
 
     private val readLibraryViewModel: ReadLibraryViewModel by lazy {
         ViewModelProvider(this).get(ReadLibraryViewModel::class.java)
@@ -24,14 +29,12 @@ class LibraryBooksFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
+        //checkForBookBookShortcut()
         initEditionsRecyclerView()
         recycler_items_library.addDividerDecoration(RecyclerView.VERTICAL)
-        onClicks(add_item_fab) { view ->
-            val destinationId =
-                if (view.id == R.id.add_item_fab) R.id.action_libraryPagerFragment_to_manageLibraryFragment
-                else R.id.action_bookmarkFragment_to_readLibraryFragment
-            findNavController().navigate(destinationId)
+
+        add_item_fab.setOnClickListener {
+            navigateToManageLibrary()
         }
 
         val layoutManager = recycler_items_library.layoutManager as LinearLayoutManager
@@ -57,14 +60,30 @@ class LibraryBooksFragment : Fragment() {
 
     private fun initEditionsRecyclerView() {
         readLibraryViewModel.listDownloadedEdition().observe(viewLifecycleOwner) { quranEditions ->
-
             if (quranEditions.isNotEmpty()) {
                 empty_data_text?.gone()
-                recycler_items_library?.adapter = LibraryBooksAdapter(quranEditions)
+                recycler_items_library?.adapter = LibraryBooksAdapter(quranEditions, ::onBooksItemClicked)
             } else
                 empty_data_text?.visible()
         }
     }
 
+    protected abstract fun onBooksItemClicked(edition: Edition)
+
+    abstract fun navigateToManageLibrary()
+
+
+/*    private fun checkForBookBookShortcut() {
+        //if coming from shortcut.
+        arguments?.getString(LIBRARY_BOOK_EDITION_ARG)?.let { jsonEdition ->
+            findNavController().navigate(
+                LibraryPagerFragmentDirections.actionLibraryPagerFragmentToSettingsFragment(
+
+                )
+            )
+            //When resuming fragment doesn't launch back this block.
+            requireArguments().putString(LIBRARY_BOOK_EDITION_ARG, null)
+        }
+    }*/
 
 }

@@ -33,7 +33,7 @@ class WordsAdapter(private val wordsList: List<AyaWordV2>) :
             fun bind(word: AyaWordV2) {
                 arabicWordTextView.text = word.arabicWord
                 englishWordTextView.text = word.wordTranslation
-                englishTransliterationWordTextView.text = word.wordTranslation
+                englishTransliterationWordTextView.text = word.wordTransliteration
             }
         }
 

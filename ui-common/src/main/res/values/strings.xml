@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <string name="download_app_via">Download the app via GooglePlay</string>
-    <string name="app_version">Library Version 1.0</string>
+    <string name="library_version">Library Version 1.0</string>
 
     <string name="facebook_app_id" translatable="false">245217256790818</string>
     <string name="facebook_login_protocol_scheme" translatable="false">fb245217256790818</string>
@@ -10,6 +10,7 @@
     <string name="fb_login_protocol_scheme" translatable="false">fb245217256790818</string>
 
     <string name="playback_channel_name" translatable="false">Playback</string>
+    <string name="books_channel_name">Books Download Notification</string>
     <string name="xplayer_description" translatable="false">Xplayer Description</string>
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="reciters">Reciters</string>
@@ -108,7 +109,7 @@
     <string name="service_not_available">Service not available</string>
     <string name="language_not_supported">Not Fully Supported</string>
     <string name="no_book_added">No Any Books Added Yet</string>
-    <string name="add_book">Add Book</string>
+    <string name="manage_books">Manage Books</string>
     <string name="aya_number">Aya number</string>
     <string name="tafseer">Tafseer</string>
     <string name="page">page</string>

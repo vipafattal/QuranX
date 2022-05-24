@@ -32,12 +32,12 @@ data class Surah(
     val revelationType: String,
     val numberOfAyahs: Int,
     val surahEdition: String
-) {
+) : SerializableModel() {
 
     /**
      * Convert the current [Surah] object into json [String].
      */
-    fun toJson() = Json.encodeToString(serializer(), this)
+    override fun toJson() = Json.encodeToString(serializer(), this)
 
     /**
      * @return [number] in format of 001,010,100, etc...
@@ -48,6 +48,20 @@ data class Surah(
         else -> number.toString()
     }
 
+    fun getLocalizedRevelation(locale: Locale): String {
+        return when (revelationType) {
+            "Meccan" -> if (locale.isArabic) "مكية" else revelationType
+            "Medinan" -> if (locale.isArabic) "مدنية" else revelationType
+            else -> ""
+        }
+    }
+
+    fun getLocalizedTextNumber(locale: Locale): String {
+        return "$numberOfAyahs " + if (locale.isArabic) {
+            if (numberOfAyahs > 10) "آية" else "آيات"
+        } else "verses"
+    }
+
     /**
      * @return Surah name depending on the current device [Locale].
      *
@@ -56,7 +70,7 @@ data class Surah(
     fun getLocalizedName(language: Language): String =
         if (language.isArabic()) name else englishName
 
-    fun getLocalizedName(locale: Locale): String = if (!locale.isArabic)
+    fun getLocalizedName(locale: Locale): String = if (locale.isArabic)
         name else englishName
 
     companion object {

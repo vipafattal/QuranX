@@ -1,0 +1,10 @@
+{
+  "status": "OK",
+  "code": 200,
+  "data": [
+    "en",
+    "ar",
+    "fr",
+    "tr"
+  ]
+}
