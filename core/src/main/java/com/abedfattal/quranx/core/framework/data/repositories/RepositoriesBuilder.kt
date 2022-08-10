@@ -26,9 +26,9 @@ internal object RepositoriesBuilder {
     val localDownloadStateRepository by lazy { LocalDownloadStateRepository(downloadStateDao) }
 
     //RemoteDataSource Repo's
-    val remoteQuranRepository by lazy { RemoteQuranRepository(Dependencies.api) }
-    val remoteLanguagesRepository by lazy { RemoteLanguagesRepository(Dependencies.api) }
-    val remoteEditionsRepository by lazy { RemoteEditionsRepository(Dependencies.api) }
+    val remoteQuranRepository by lazy { RemoteQuranRepository(Dependencies.webApi) }
+    val remoteLanguagesRepository by lazy { RemoteLanguagesRepository(Dependencies.webApi) }
+    val remoteEditionsRepository by lazy { RemoteEditionsRepository(Dependencies.webApi) }
 
 
     //LocalBasedDataSource Repo's

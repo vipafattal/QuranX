@@ -30,7 +30,6 @@ class EditionDownloadManager(
                 }
             }
         })
-
     }
 
     fun downloadEdition(edition: Edition) {

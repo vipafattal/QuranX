@@ -2,7 +2,7 @@ package com.abedfattal.quranx.core.model
 
 import androidx.annotation.StringRes
 import com.abedfattal.quranx.core.model.ProcessState.*
-import com.abedfattal.quranx.core.utils.processTransform
+import com.abedfattal.quranx.core.utils.transform
 
 /**
  * A wrapper class for processes that can [Loading], [Success], or [Failed].
@@ -32,7 +32,7 @@ sealed class ProcessState<T> {
 
     /**
      * Used by library to transform the current process [T] type to another.
-     * @see processTransform
+     * @see transform
      */
     fun <T> transformProcessType(): ProcessState<T> {
         return when (this) {

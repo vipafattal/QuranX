@@ -1,0 +1,32 @@
+{
+    "code": 200,
+    "status": "OK",
+    "data": {
+        "number": 10,
+        "text": "الَّذِينَ يُؤْمِنُونَ بِالْغَيْبِ وَيُقِيمُونَ الصَّلَاةَ وَمِمَّا رَزَقْنَاهُمْ يُنْفِقُونَ",
+        "edition": {
+            "identifier": "quran-simple",
+            "language": "ar",
+            "name": "القرآن الكريم المبسط (تشكيل بسيط)",
+            "englishName": "Simple",
+            "format": "text",
+            "type": "quran",
+            "direction": "rtl"
+        },
+        "surah": {
+            "number": 2,
+            "name": "سُورَةُ البَقَرَةِ",
+            "englishName": "Al-Baqara",
+            "englishNameTranslation": "The Cow",
+            "numberOfAyahs": 286,
+            "revelationType": "Medinan"
+        },
+        "numberInSurah": 3,
+        "juz": 1,
+        "manzil": 1,
+        "page": 2,
+        "ruku": 2,
+        "hizbQuarter": 1,
+        "sajda": false
+    }
+}

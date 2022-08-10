@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.map
  * @param block is only class the process is [ProcessState.Success], since it's the only one that have data.
  */
 
-inline fun <reified Data, T : ProcessState<Data>, R> Flow<T>.processTransform(
+inline fun <reified Data, T : ProcessState<Data>, R> Flow<T>.transform(
     crossinline block: suspend (Data) -> R
 ): Flow<ProcessState<R>> {
     return map {

@@ -9,7 +9,7 @@ import com.abedfattal.quranx.core.model.AyatWithEdition
 import com.abedfattal.quranx.core.model.Edition
 import com.abedfattal.quranx.core.model.ProcessState
 import com.abedfattal.quranx.core.utils.newRequest
-import com.abedfattal.quranx.core.utils.processTransform
+import com.abedfattal.quranx.core.utils.transform
 import kotlinx.coroutines.flow.Flow
 
 
@@ -36,7 +36,7 @@ class RemoteQuranRepository internal constructor(
     fun getQuranBook(
         editionId: String,
     ): Flow<ProcessState<Quran.QuranData>> {
-        return newRequest { api.getQuranBook(editionId) }.processTransform { it.quran }
+        return newRequest { api.getQuranBook(editionId) }.transform { it.quran }
     }
 
 
@@ -52,7 +52,7 @@ class RemoteQuranRepository internal constructor(
      * @return [Aya] a single verse.
      */
     fun getAya(numberInMushaf: Int, editionId: String): Flow<ProcessState<Aya>> {
-        return newRequest { api.getAya(numberInMushaf, editionId) }.processTransform { it.aya.copy(ayaEdition = editionId) }
+        return newRequest { api.getAya(numberInMushaf, editionId) }.transform { it.aya.copy(ayaEdition = editionId) }
     }
 
 
@@ -65,7 +65,7 @@ class RemoteQuranRepository internal constructor(
      * @return [Aya] list for the whole Quran page.
      */
     fun getPage(number: Int, editionId: String): Flow<ProcessState<List<Aya>>> {
-        return newRequest { api.getPage(number, editionId) }.processTransform {data->
+        return newRequest { api.getPage(number, editionId) }.transform { data->
             data.pageData.ayahs.map { it.copy(ayaEdition = editionId) }
         }
     }
@@ -79,7 +79,7 @@ class RemoteQuranRepository internal constructor(
      * @return [Aya] list for the whole Quran juz.
      */
     fun getJuz(number: Int, editionId: String): Flow<ProcessState<List<Aya>>> {
-        return newRequest { api.getJuz(number, editionId) }.processTransform {data->
+        return newRequest { api.getJuz(number, editionId) }.transform { data->
             data.juzData.ayahs.map { it.copy(ayaEdition = editionId) }
         }
     }
@@ -101,7 +101,7 @@ class RemoteQuranRepository internal constructor(
                 query,
                 editionId
             )
-        }.processTransform {
+        }.transform {
             it.data.toQuranWithEdition()
         }
     }
@@ -114,7 +114,7 @@ class RemoteQuranRepository internal constructor(
      *
      * @return [AyatWithEdition] list result that match with [query].
      */
-    fun searchAllQuran(
+    fun searchAllQuranByLanguage(
         query: String,
         languageCode: String
     ): Flow<ProcessState<List<AyatWithEdition>>> {
@@ -123,7 +123,7 @@ class RemoteQuranRepository internal constructor(
                 query,
                 languageCode
             )
-        }.processTransform {
+        }.transform {
             it.data.toQuranWithEdition()
         }
     }

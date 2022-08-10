@@ -26,7 +26,7 @@ class LocalQuranRepository internal constructor(
      * Get all saved verses in Surah by [surahNumber] that confirms with specific [Edition.identifier].
      */
     suspend fun getAyatBySurah(editionId: String, surahNumber: Int): List<AyaWithInfo> {
-        return quranDao.getSurahAyatByEdition(editionId, surahNumber)
+        return quranDao.getSurahAyatByEdition(surahNumber, editionId)
     }
 
     /**
@@ -46,7 +46,7 @@ class LocalQuranRepository internal constructor(
     ): AyatWithTafseer {
         require(quranEdition != tafseerEdition)
 
-        val data: List<AyatWithEdition> = quranDao.getSurahAllEditions(
+        val data: List<AyatWithEdition> = quranDao.getSurahAyatAllEditions(
             surahNumber,
             editions = arrayOf(quranEdition, tafseerEdition)
         )
@@ -89,7 +89,7 @@ class LocalQuranRepository internal constructor(
      *
      * @return [AyatWithEdition] list for all requested edition ids ([editions]).
      */
-    suspend fun getJuzEditions(juz: Int, vararg editions: String): List<AyatWithEdition> {
+    suspend fun getJuzEditions(juz: Int, vararg editions: String): List<AyaWithInfo> {
         return quranDao.getJuzAllEditions(
             juz,
             editions = editions
@@ -156,7 +156,7 @@ class LocalQuranRepository internal constructor(
         surahNumber: Int,
         vararg editions: String
     ): List<AyatWithEdition> {
-        return quranDao.getSurahAllEditions(
+        return quranDao.getSurahAyatAllEditions(
             surahNumber,
             editions = editions
         )
@@ -232,7 +232,7 @@ class LocalQuranRepository internal constructor(
      * if no surah exist in database the query will return null.
      */
     suspend fun getSurah(editionId: String, surahNumber: Int): Surah? {
-        return quranDao.getSurahByEdition(editionId, surahNumber)
+        return quranDao.getSurahByEdition(surahNumber, editionId)
     }
 
     /**
@@ -332,14 +332,11 @@ class LocalQuranRepository internal constructor(
      */
     suspend fun addQuranBook(quran: Quran.QuranData) {
         quran.surahs.forEach { quranCloudSurah ->
-            val surahAyat = quranCloudSurah.ayat.onEach { aya ->
-                aya.surah_number = quranCloudSurah.number
-                aya.ayaEdition = quran.edition.identifier
-                aya.text = aya.text.replace("\n", "")
-            }
-            addAyat(surahAyat)
-            addSurah(quranCloudSurah.toSurah(quran.edition.identifier))
+            val (surah, ayat) = quranCloudSurah.toSurahWithAyat(quran.edition.identifier)
+            addAyat(ayat)
+            addSurah(surah)
         }
+        quranDao.addEdition(quran.edition)
     }
 
 

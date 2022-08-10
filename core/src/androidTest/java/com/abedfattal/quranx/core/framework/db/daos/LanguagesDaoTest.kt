@@ -3,7 +3,7 @@ package com.abedfattal.quranx.core.framework.db.daos
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
-import com.abedfattal.quranx.core.framework.db.LibraryDatabaseRule
+import com.abedfattal.quranx.core.rules.LibraryDatabaseRules
 import com.abedfattal.quranx.core.model.Language
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
@@ -36,7 +36,7 @@ class LanguagesDaoTest {
     * Manage database instance after & before each test.
     */
     @get:Rule
-    var databaseRule = LibraryDatabaseRule()
+    var databaseRule = LibraryDatabaseRules()
 
     private val dao: LanguagesDao get() = databaseRule.db.getLanguagesDao()
 
@@ -51,7 +51,7 @@ class LanguagesDaoTest {
     @Test
     @Throws(Exception::class)
     fun addLanguages_withDuplicates_should_returnsValuesWithoutDuplicates() = runTest {
-        dao.addLanguages(languagesWithDuplicates)
+        dao.addLanguagesList(languagesWithDuplicates)
         val result = dao.getAllSupportedLanguage()
         MatcherAssert.assertThat(result, `is`(languages))
     }
@@ -67,8 +67,8 @@ class LanguagesDaoTest {
     @Test
     @Throws(Exception::class)
     fun deleteAllLanguages_should_returnsZeroValue() = runTest {
-        dao.addLanguages(languages)
-        dao.deleteAllLanguage()
+        dao.addLanguagesList(languages)
+        dao.deleteAllLanguages()
         val result = dao.getAllSupportedLanguage()
         MatcherAssert.assertThat(result, `is`(emptyList()))
     }
@@ -76,7 +76,7 @@ class LanguagesDaoTest {
     @Test
     @Throws(Exception::class)
     fun deleteLanguage_should_returnsValuesWithTheDeleted() = runTest {
-        dao.addLanguages(languages)
+        dao.addLanguagesList(languages)
         dao.deleteLanguage(english.code)
         val result = dao.getAllSupportedLanguage()
         MatcherAssert.assertThat(result, `is`(languages.filterNot { it.code == english.code }))

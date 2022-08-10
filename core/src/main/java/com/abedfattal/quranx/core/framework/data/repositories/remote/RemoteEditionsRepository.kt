@@ -6,7 +6,7 @@ import com.abedfattal.quranx.core.framework.api.QuranCloudAPI
 import com.abedfattal.quranx.core.model.Edition
 import com.abedfattal.quranx.core.model.ProcessState
 import com.abedfattal.quranx.core.utils.newRequest
-import com.abedfattal.quranx.core.utils.processTransform
+import com.abedfattal.quranx.core.utils.transform
 import kotlinx.coroutines.flow.Flow
 
 
@@ -43,7 +43,7 @@ class RemoteEditionsRepository internal constructor(
     fun getTextEditions(): Flow<ProcessState<List<Edition>>> {
         return newRequest {
             api.getTextEditions()
-        }.processTransform { it.editions }
+        }.transform { it.editions }
     }
 
     /**
@@ -54,14 +54,14 @@ class RemoteEditionsRepository internal constructor(
     fun getAudioEditions(): Flow<ProcessState<List<Edition>>> {
         return newRequest {
             api.getAudioEditions()
-        }.processTransform { it.editions }
+        }.transform { it.editions }
     }
 
     /**
      * List all [Edition]'s type that can be used by [getEditionsByType].
      */
     fun getAllEditionsType(): Flow<ProcessState<List<String>>> {
-        return newRequest { api.getEditionsTypes() }.processTransform { it.editionsType }
+        return newRequest { api.getEditionsTypes() }.transform { it.editionsType }
     }
 
     /**
@@ -77,7 +77,7 @@ class RemoteEditionsRepository internal constructor(
     ): Flow<ProcessState<List<Edition>>> {
         return newRequest {
             api.getEditions(format = format, language = language, type = type)
-        }.processTransform { it.editions }
+        }.transform { it.editions }
     }
 
 }

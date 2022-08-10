@@ -8,13 +8,14 @@ import com.abedfattal.quranx.core.framework.db.LANGUAGES_TABLE
 import com.abedfattal.quranx.core.model.Language
 
 /** @suppress */
+
 @Dao
 interface LanguagesDao {
     @Query("select * from $LANGUAGES_TABLE order by code ASC")
     suspend fun getAllSupportedLanguage(): List<Language>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun addLanguages(languages: List<Language>)
+    suspend fun addLanguagesList(languages: List<Language>)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addLanguage(languages: Language)
@@ -23,5 +24,5 @@ interface LanguagesDao {
     suspend fun deleteLanguage(languageCode: String)
 
     @Query("delete from $LANGUAGES_TABLE")
-    suspend fun deleteAllLanguage()
+    suspend fun deleteAllLanguages()
 }

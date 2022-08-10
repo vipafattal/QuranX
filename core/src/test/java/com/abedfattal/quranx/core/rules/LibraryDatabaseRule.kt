@@ -1,8 +1,9 @@
-package com.abedfattal.quranx.core.framework.db
+package com.abedfattal.quranx.core.rules
 
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
+import com.abedfattal.quranx.core.framework.db.LibraryDatabase
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 
@@ -17,7 +18,9 @@ class LibraryDatabaseRule : TestWatcher() {
 
         db = Room.inMemoryDatabaseBuilder(
             context, LibraryDatabase::class.java
-        ).build()
+        )
+            .allowMainThreadQueries()
+            .build()
     }
 
     override fun finished(description: Description?) {

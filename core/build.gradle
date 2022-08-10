@@ -45,7 +45,6 @@ dependencies {
 
     implementation roomDB.core
     implementation roomDB.ktx
-
     kapt roomDB.kapt
 
     implementation retrofit.core

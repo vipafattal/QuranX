@@ -16,7 +16,7 @@ import org.junit.Test
 @OptIn(ExperimentalCoroutinesApi::class)
 class LocalBasedLanguagesRepositoryTest {
 
-    //Test data
+    //Testing data
     private val arabic = Language("Ar")
     private val english = Language("En")
     private val french = Language("Fr")
@@ -31,6 +31,7 @@ class LocalBasedLanguagesRepositoryTest {
     private lateinit var remoteRepository: FakeLanguageRemoteRepository
     private lateinit var localRepository: FakeLanguageLocalRepository
 
+    //Subject under test.
     private lateinit var localBasedLanguagesRepository: LocalBasedLanguagesRepository
 
     @Before
@@ -44,14 +45,14 @@ class LocalBasedLanguagesRepositoryTest {
 
 
     @Test
-    fun `get supported local languages returns local languages`() = runTest {
+    fun `getSupportLanguages When remote is #not# prioritized returns local languages`() = runTest {
         val result =
             localBasedLanguagesRepository.getSupportLanguages(prioritizeRemote = false).onSuccess.first()!!
         Assert.assertEquals(result, localLanguages)
     }
 
     @Test
-    fun `get supported remote languages returns remote languages`() = runTest {
+    fun `getSupportLanguages When remote is prioritized returns remote languages`() = runTest {
         remoteRepository.response = ProcessState.Success(remoteLanguages)
         val result =
             localBasedLanguagesRepository
@@ -62,7 +63,7 @@ class LocalBasedLanguagesRepositoryTest {
     }
 
     @Test
-    fun `get supported remote languages returns local languages`() = runTest {
+    fun `getSupportLanguages When remote is prioritized and fail returns local languages`() = runTest {
         remoteRepository.response = ProcessState.Failed("", 0)
 
         val result = localBasedLanguagesRepository
@@ -73,12 +74,14 @@ class LocalBasedLanguagesRepositoryTest {
     }
 
     @Test
-    fun `get supported languages from remote returns fail remote languages`() = runTest {
+    fun `getSupportLanguages When no local or remote data returns failed`() = runTest {
         localRepository.deleteAllLanguages()
         remoteRepository.response = ProcessState.Failed("", 0)
+
         val result = localBasedLanguagesRepository
             .getSupportLanguages(prioritizeRemote = true)
             .first()
+
         Assert.assertEquals(result, remoteRepository.response)
     }
 }

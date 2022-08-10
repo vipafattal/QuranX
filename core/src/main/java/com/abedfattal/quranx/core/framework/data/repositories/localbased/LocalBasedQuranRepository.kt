@@ -42,10 +42,8 @@ class LocalBasedQuranRepository internal constructor(
         }
     }
 
-    //TODO move to quran local repo
     suspend fun addFullQuranBook(quran: Quran.QuranData) {
         quranLocalRepository.addQuranBook(quran)
-        editionsLocalRepository.addEdition(quran.edition)
         //Set this edition as downloaded.
         downloadStateRepository.addOrUpdateDownloadState(quran.edition.identifier, DownloadState.STATE_DOWNLOADED)
     }

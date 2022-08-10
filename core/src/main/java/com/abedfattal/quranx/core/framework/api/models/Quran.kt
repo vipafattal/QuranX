@@ -31,6 +31,9 @@ object Quran {
         @SerializedName("ayahs")
         val ayat: List<Aya>
     ) {
+
+        fun toSurahWithAyat(editionId: String) = toSurah(editionId) to toAyat(editionId)
+
         fun toSurah(editionId: String): Surah {
             return Surah(
                 number = number,
@@ -41,6 +44,14 @@ object Quran {
                 numberOfAyahs = ayat.size,
                 surahEdition = editionId
             )
+        }
+
+        fun toAyat(editionId: String): List<Aya> {
+            return ayat.onEach { aya ->
+                aya.text = aya.text.replace("\n", "")
+                aya.surah_number = number
+                aya.ayaEdition = editionId
+            }
         }
     }
 }

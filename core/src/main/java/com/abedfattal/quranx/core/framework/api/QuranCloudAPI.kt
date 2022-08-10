@@ -14,23 +14,23 @@ import retrofit2.http.Query
 interface QuranCloudAPI {
 
     //Languages
-    @GET(ApiEndpoints.languages)
+    @GET(QuranCloudEndpoints.languages)
     suspend fun getSupportedLanguage(): Response<Meta.SupportedLanguage>
 
     //Editions
-    @GET(ApiEndpoints.textEditions)
+    @GET(QuranCloudEndpoints.textFormatEditions)
     suspend fun getTextEditions(): Response<Meta.Editions>
 
-    @GET(ApiEndpoints.audioEditions)
+    @GET(QuranCloudEndpoints.audioFormatEditions)
     suspend fun getAudioEditions(): Response<Meta.Editions>
 
-    @GET(ApiEndpoints.editionsByType)
+    @GET(QuranCloudEndpoints.editionTypes)
     suspend fun getEditionsTypes(): Response<Meta.EditionsType>
 
-    @GET("${ApiEndpoints.editionsByTypeParam}?{type}")
+    @GET("${QuranCloudEndpoints.editionsByTypeParam}?{type}")
     suspend fun getEditionsByType(@Path("type") type: String): Response<Meta.Editions>
 
-    @GET(ApiEndpoints.editions)
+    @GET(QuranCloudEndpoints.edition)
     suspend fun getEditions(
         @Query("format") format: String,
         @Query("language") language: String,
@@ -38,22 +38,22 @@ interface QuranCloudAPI {
     ): Response<Meta.Editions>
 
     //Quran
-    @GET(ApiEndpoints.quranByEditionParam)
+    @GET(QuranCloudEndpoints.quranByEditionParam)
     suspend fun getQuranBook(@Path("edition") editionId: String): Response<Quran.QuranBook>
 
-    @GET(ApiEndpoints.ayahByEditionAndNumberParams)
+    @GET(QuranCloudEndpoints.ayahByEditionAndNumberParams)
     suspend fun getAya(
         @Path("number") numberInMushaf: Int,
         @Path("edition") editionId: String,
     ): Response<Ayat.AyaData>
 
-    @GET(ApiEndpoints.pageByNumberAndEditionParams)
+    @GET(QuranCloudEndpoints.pageByNumberAndEditionParams)
     suspend fun getPage(
         @Path("page_number") page: Int,
         @Path("edition") editionId: String
     ): Response<Ayat.QuranPageData>
 
-    @GET(ApiEndpoints.juzByNumberAndEditionParams)
+    @GET(QuranCloudEndpoints.juzByNumberAndEditionParams)
     suspend fun getJuz(
         @Path("juz_number") juz: Int,
         @Path("edition") editionId: String
@@ -61,13 +61,13 @@ interface QuranCloudAPI {
 
 
     //Search
-    @GET(ApiEndpoints.searchQueryByLanguageParams)
+    @GET(QuranCloudEndpoints.searchQueryByLanguageParams)
     suspend fun searchAllQuran(
         @Path("query") query: String,
         @Path("language_code") language: String,
     ): Response<Search.QuranResults>
 
-    @GET(ApiEndpoints.searchQueryByEdition)
+    @GET(QuranCloudEndpoints.searchQueryByEdition)
     suspend fun searchQuranByEdition(
         @Path("query") query: String,
         @Path("edition") editionId: String,

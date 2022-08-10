@@ -1,0 +1,11 @@
+{
+    "status": "OK",
+    "code": 200,
+    "data": [
+        "tafsir",
+        "translation",
+        "quran",
+        "transliteration",
+        "versebyverse"
+    ]
+}

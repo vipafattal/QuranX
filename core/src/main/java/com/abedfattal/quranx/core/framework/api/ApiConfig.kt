@@ -4,17 +4,18 @@ package com.abedfattal.quranx.core.framework.api
 
 const val QURAN_CLOUD_BASE_URL = "http://api.alquran.cloud/v1/"
 
-object ApiEndpoints {
+object QuranCloudEndpoints {
 
     //Languages
     const val languages = "edition/language"
 
     //Editions
-    const val editions = "edition"
-    const val textEditions = "$editions?format=text"
-    const val audioEditions = "$editions?format=audio"
-    const val editionsByType = "$editions/type"
-    const val editionsByTypeParam = "$editionsByType?{type}"
+    const val edition = "edition"
+    const val textFormatEditions = "$edition?format=text"
+    const val audioFormatEditions = "$edition?format=audio"
+    const val editionTypes = "$edition/type"
+    const val editionsByTypeParam = "$editionTypes?{type}"
+
 
     //Quran
     private const val withFontHack = "?fontHack=true"

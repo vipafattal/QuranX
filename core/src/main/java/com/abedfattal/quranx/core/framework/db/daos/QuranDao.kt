@@ -4,10 +4,7 @@ import androidx.room.*
 import com.abedfattal.quranx.core.framework.db.AYAT_TABLE
 import com.abedfattal.quranx.core.framework.db.EDITIONS_TABLE
 import com.abedfattal.quranx.core.framework.db.SURAHS_TABLE
-import com.abedfattal.quranx.core.model.Aya
-import com.abedfattal.quranx.core.model.AyaWithInfo
-import com.abedfattal.quranx.core.model.AyatWithEdition
-import com.abedfattal.quranx.core.model.Surah
+import com.abedfattal.quranx.core.model.*
 import kotlinx.coroutines.flow.Flow
 
 /** @suppress */
@@ -18,10 +15,10 @@ interface QuranDao {
     suspend fun getSurahsByEdition(edition: String): List<Surah>
 
     @Query("select * from $SURAHS_TABLE where surahNumberInMushaf = :surahNumber and surahEdition = :editionId order by surahNumberInMushaf asc")
-    suspend fun getSurahByEdition(editionId: String, surahNumber: Int): Surah?
+    suspend fun getSurahByEdition(surahNumber: Int, editionId: String): Surah?
 
     @Query("select * from $AYAT_TABLE  where surah_number = :surahNumber and ayaEdition =:editionId order by ayaNumberInMushaf asc")
-    suspend fun getSurahAyatByEdition(editionId: String, surahNumber: Int): List<AyaWithInfo>
+    suspend fun getSurahAyatByEdition(surahNumber: Int, editionId: String): List<AyaWithInfo>
 
     @Query("select * from $AYAT_TABLE where ayaEdition =:editionId and ayaNumberInMushaf = :number")
     suspend fun getAyaByEdition(number: Int, editionId: String): AyaWithInfo?
@@ -30,12 +27,12 @@ interface QuranDao {
     suspend fun getAyatByEdition(edition: String): List<AyaWithInfo>
 
     @Transaction
-    @Query("select * from $EDITIONS_TABLE  where id in (:editions)")
+    @Query("select * from $EDITIONS_TABLE where id in (:editions)")
     suspend fun getAyatAllEditions(vararg editions: String): List<AyatWithEdition>
 
     @Transaction
-    @Query("select * from $EDITIONS_TABLE join $AYAT_TABLE on id = ayaEdition where id in (:editions) and juz = :juz")
-    suspend fun getJuzAllEditions(juz: Int, vararg editions: String): List<AyatWithEdition>
+    @Query("select * from $AYAT_TABLE where ayaEdition in (:editions) and juz = :juz")
+    suspend fun getJuzAllEditions(juz: Int, vararg editions: String): List<AyaWithInfo>
 
     @Transaction
     @Query("select * from $AYAT_TABLE where surah_number = :surahNumber and ayaEdition in (:editions) order by ayaEdition ASC")
@@ -46,7 +43,7 @@ interface QuranDao {
 
     @Transaction
     @Query("select * from $EDITIONS_TABLE join $AYAT_TABLE on id = ayaEdition where surah_number = :surahNumber and id in (:editions)")
-    suspend fun getSurahAllEditions(
+    suspend fun getSurahAyatAllEditions(
         surahNumber: Int,
         vararg editions: String
     ): List<AyatWithEdition>
@@ -115,6 +112,8 @@ interface QuranDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addAyat(ayat: List<Aya>)
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun addEdition(edition: Edition)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addSurah(surah: Surah)

@@ -3,7 +3,7 @@ package com.abedfattal.quranx.core.model
 import androidx.annotation.StringRes
 import com.abedfattal.quranx.core.R
 import com.abedfattal.quranx.core.model.DownloadingProcess.*
-import com.abedfattal.quranx.core.utils.processTransform
+import com.abedfattal.quranx.core.utils.transform
 
 /**
  * A wrapper class for processes that can [InProgress], [Success], or [Failed].
@@ -46,7 +46,7 @@ sealed class DownloadingProcess<T>(
 
     /**
      * Used by library to transform the current process [T] type to another.
-     * @see processTransform
+     * @see transform
      */
     fun <T> transformProcessType(): DownloadingProcess<T> {
         return when (this) {

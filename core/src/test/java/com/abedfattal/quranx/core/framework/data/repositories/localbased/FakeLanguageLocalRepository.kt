@@ -5,7 +5,7 @@ import com.abedfattal.quranx.core.model.Language
 
 class FakeLanguageLocalRepository(initialData: List<Language>) : ILocalLanguagesRepository {
 
-    val languages: MutableList<Language> = initialData.toMutableList()
+    private val languages: MutableList<Language> = initialData.toMutableList()
 
     override suspend fun getAllSupportedLanguage(): List<Language> = languages
 

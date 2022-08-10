@@ -39,6 +39,7 @@ internal inline fun <reified T> onRequestCompleted(
     var errorReason: String? = "Unknown error"
     var data: T? = null
     val className = T::class.java.name
+    var errorCode = -1
 
     try {
 
@@ -46,8 +47,10 @@ internal inline fun <reified T> onRequestCompleted(
 
         if (response.isSuccessful)
             data = response.body()
-        else
+        else {
             printLog("Unknown error for $className", response.errorBody().toString())
+            errorCode = response.code()
+        }
 
     } catch (e: UnknownHostException) {
         printLog("Get response for $className", e.message ?: "Unknown error")
@@ -69,9 +72,14 @@ internal inline fun <reified T> onRequestCompleted(
         printLog("Get response for $className", io.message ?: "Unknown error")
         userErrorMsg = R.string.service_not_available
         errorReason = io.message
+    } catch (e: Exception) {
+        printLog("Get response for $className", e.message ?: "Unknown error")
+        userErrorMsg = R.string.unknown_error
+        errorReason = e.message
     }
+
     if (data != null) onSuccess(data)
-    else onError(errorReason, userErrorMsg)
+    else onError("reason:$errorReason, code:$errorCode", userErrorMsg)
 }
 
 fun printLog(tag: String, msg: String) {

@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit
 /** @suppress */
 internal object Dependencies {
 
-    val api: QuranCloudAPI by lazy {
+    val webApi: QuranCloudAPI by lazy {
 
        /* val logger = HttpLoggingInterceptor()
         logger.level = HttpLoggingInterceptor.Level.BASIC
